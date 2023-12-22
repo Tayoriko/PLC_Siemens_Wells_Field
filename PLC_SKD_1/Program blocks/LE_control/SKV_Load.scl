@@ -1,0 +1,105 @@
+﻿FUNCTION "SKV_Load" : Void
+{ S7_Optimized_Access := 'TRUE' }
+VERSION : 0.1
+   VAR_INPUT 
+      Add_REQ : Bool;   // Запрос ввода нового устр-ва в работу
+   END_VAR
+
+   VAR_OUTPUT 
+      Add_Ready : Bool;   // Устр-ва готовы к вводу нового устр-ва в работу
+   END_VAR
+
+   VAR_IN_OUT 
+      cnt : Int;   // счетчик
+   END_VAR
+
+   VAR_TEMP 
+      x : Int;
+   END_VAR
+
+
+BEGIN
+	//обнуление временных значений
+	#Add_Ready := FALSE;
+	"SKV_Main_DB".cnt.Ready := 0;
+	"SKV_Main_DB".cnt.Low := 0;
+	"SKV_Main_DB".cnt.Start := 0;
+	"SKV_Main_DB".cnt.Work := 0;
+	
+	IF "SKV_Main_DB".SP.Auto > "SKV_Main_DB".SP.Max THEN
+	    "SKV_Main_DB".SP.Auto := "SKV_Main_DB".SP.Max;
+	END_IF;
+	
+	//вычисление точки схождения скоростей
+	"SKV_Main_DB".SP.Point := "SKV_Main_DB".SP.Low + ((("SKV_Main_DB".SP.Auto - "SKV_Main_DB".SP.Low) / "SKV_Main_DB".cnt.Min) * 2);
+	
+	//Распределение уставки по работающим насосам
+	FOR #x := 1 TO "SKV_Main_DB".cnt.All DO
+	    
+	    //число готовых насосов
+	    IF "SKV_Main_DB".One[#x].CMD.Ready THEN
+	        "SKV_Main_DB".cnt.Ready := "SKV_Main_DB".cnt.Ready + 1;
+	    END_IF;
+	    
+	    //число насосов в работе
+	    IF "SKV_Main_DB".One[#x].CMD.Start_M THEN
+	        "SKV_Main_DB".cnt.Start := "SKV_Main_DB".cnt.Start + 1;
+	    END_IF;
+	    
+	    //число насосов в штатном режиме
+	    IF "SKV_Main_DB".One[#x].Status = 3 THEN
+	        "SKV_Main_DB".cnt.Work := "SKV_Main_DB".cnt.Work + 1;
+	    END_IF;
+	    
+	    //запуск установки
+	    IF "SKV_cnt_DB".Step > 0 THEN
+	        IF "SKV_cnt_DB".Step < 10 THEN
+	            IF "SKV_Main_DB".One[#x].Status = 1 THEN
+	                "SKV_Main_DB".One[#x].Mode := 2;
+	            END_IF;
+	            IF "SKV_Main_DB".One[#x].Status = 2 THEN
+	                "SKV_Main_DB".One[#x].Mode := 3;
+	            END_IF;
+	            "SKV_Main_DB".One[#x].SP.Auto := "SKV_Main_DB".SP.Auto;
+	        END_IF;
+	    END_IF;
+	    
+	    //уставка в рабочем режиме
+	    IF "SKV_Main_DB".One[#x].Status = 3 OR "SKV_Main_DB".One[#x].Status = 30 THEN
+	        "SKV_Main_DB".One[#x].SP.Auto := "SKV_Main_DB".SP.Auto;
+	    END_IF;
+	    
+	  //цикл замедления при подключении нового насоса
+	    IF #Add_REQ THEN
+	        
+	        //команда замедлиться для подключения работающих насосов
+	        IF "SKV_Main_DB".One[#x].Status = 3 THEN
+	            "SKV_Main_DB".One[#x].Mode := 4;
+	        END_IF;
+	        
+	        //коррекция уставки для замедленных насосов
+	        IF "SKV_Main_DB".One[#x].Status = 40 THEN
+	            "SKV_Main_DB".One[#x].SP.Auto := "SKV_Main_DB".SP.Point;
+	        END_IF;
+	        
+	        //контроль готовности всех насосов
+	        IF "SKV_Main_DB".One[#x].Status = 4 THEN
+	            "SKV_Main_DB".cnt.Low := "SKV_Main_DB".cnt.Low + 1;
+	            IF "SKV_Main_DB".cnt.Low = #cnt THEN
+	                #Add_Ready := true;
+	            END_IF;
+	        END_IF;
+	        
+	    END_IF;
+	    
+	    //возвращение в рабочий режим
+	    IF NOT #Add_REQ THEN
+	        IF "SKV_Main_DB".One[#x].Status = 4 THEN
+	            "SKV_Main_DB".One[#x].Mode := 3;
+	        END_IF;
+	    END_IF;
+	    
+	END_FOR;
+	
+END_FUNCTION
+

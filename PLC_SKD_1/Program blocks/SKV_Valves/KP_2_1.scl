@@ -1,0 +1,68 @@
+﻿FUNCTION_BLOCK "KP_2_1"
+{ S7_Optimized_Access := 'FALSE' }
+VERSION : 0.1
+   VAR 
+      limit { S7_SetPoint := 'True'} : Int := 2;   // число задвижек в камере
+      load : Int;   // отображаемые на экране настройки
+      load_last : Int;
+      KP : Array[0..10] of "DRV_AUMA";
+      load_ok { S7_SetPoint := 'True'} : Bool;
+   END_VAR
+
+   VAR_TEMP 
+      ID : Int;
+      cnt : Int;
+   END_VAR
+
+
+BEGIN
+	//дистанционный режим управления
+	FOR #cnt := 1 TO #limit BY 1 DO
+	    IF "Comm_SKV_2".To_SKV.Valves.Local[0] THEN
+	        IF #KP[#cnt].CMD.Hand THEN
+	            #KP[#cnt].CMD.Start_M := "Comm_SKV_2".From_SKV.Valves.REQ[#cnt];
+	        END_IF;
+	        IF "Comm_SKV_2".From_SKV.Valves.REQ[0] THEN
+	            #KP[#cnt].CMD.Reset := TRUE;
+	            #load := 10;
+	        END_IF;
+	    ELSE
+	        "Comm_SKV_2".To_SKV.Valves.Local[#cnt] := #KP[#cnt].CMD.Start_M;
+	    END_IF;
+	END_FOR;
+	
+	//экранный буфер
+	"Load_KP_2_1"(last := #load_last,
+	              load := #load,
+	              ok := #load_ok);
+	IF "KP_Reset" THEN
+	    #load := 10;
+	END_IF;
+	
+	FOR #cnt := 1 TO #limit BY 1 DO
+	    #ID := #KP[#cnt].CodeID;
+	    #KP[#cnt].CMD.Local := NOT "AUMA_KP_2_1_DB".AUMA[#ID].Message.Sel_Dist;
+	    #KP[#cnt].Alarm.Link := NOT "AUMA_KP_2_1_DB".AUMA[#ID].Link;
+	    #KP[#cnt].Use.Enable := "AUMA_KP_2_1_DB".AUMA[#ID].Use;
+	    #KP[#cnt].Name := "AUMA_KP_2_1_DB".AUMA[#ID].Name;
+	    #KP[#cnt].Position := INT_TO_REAL("AUMA_KP_2_1_DB".AUMA[#ID].Position) / 10.0;
+	    #KP[#cnt].FB.QF := "AUMA_KP_2_1_DB".AUMA[#ID].Message.NotReady;
+	    #KP[#cnt].FB.KM_Open := "AUMA_KP_2_1_DB".AUMA[#ID].Message.Opening;
+	    #KP[#cnt].FB.KM_Close := "AUMA_KP_2_1_DB".AUMA[#ID].Message.Closing;
+	    #KP[#cnt].FB.Open := "AUMA_KP_2_1_DB".AUMA[#ID].Message.Open;
+	    #KP[#cnt].FB.Close := "AUMA_KP_2_1_DB".AUMA[#ID].Message.Close;
+	    #KP[#cnt]();
+	    "AUMA_KP_2_1_DB".AUMA[#ID].Speed := #KP[#cnt].Speed;
+	    "AUMA_KP_2_1_DB".AUMA[#ID].CMD.Open := #KP[#cnt].CMD_Open;
+	    "AUMA_KP_2_1_DB".AUMA[#ID].CMD.Close := #KP[#cnt].CMD_Close;
+	    IF "AUMA_KP_2_1_DB".AUMA[#ID].CMD.Open <> "AUMA_KP_2_1_DB".AUMA[#ID].CMD_last.Open THEN
+	        "AUMA_KP_2_1_DB".AUMA[#ID].CMD_last.Open := "AUMA_KP_2_1_DB".AUMA[#ID].CMD.Open;
+	        "AUMA_KP_2_1_DB".AUMA[#ID].Update := true;
+	    END_IF;
+	    IF "AUMA_KP_2_1_DB".AUMA[#ID].CMD.Close <> "AUMA_KP_2_1_DB".AUMA[#ID].CMD_last.Close THEN
+	        "AUMA_KP_2_1_DB".AUMA[#ID].CMD_last.Close := "AUMA_KP_2_1_DB".AUMA[#ID].CMD.Close;
+	        "AUMA_KP_2_1_DB".AUMA[#ID].Update := true;
+	    END_IF;
+	END_FOR;
+END_FUNCTION_BLOCK
+

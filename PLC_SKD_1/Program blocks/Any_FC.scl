@@ -1,0 +1,45 @@
+﻿FUNCTION "Any_FC" : Void
+{ S7_Optimized_Access := 'TRUE' }
+VERSION : 0.1
+
+BEGIN
+	"Any_DB".SKV_FE_All := 0;
+	IF NOT "Comm_SKV_1".Alarm.Link AND "Comm_SKV_1".FE > 0 AND "Comm_SKV_1".From_SKV.Status = 1 THEN
+	    "Any_DB".SKV_FE_All := "Any_DB".SKV_FE_All + "Comm_SKV_1".FE;
+	END_IF;
+	IF NOT "Comm_SKV_2".Alarm.Link AND "Comm_SKV_2".FE > 0  AND "Comm_SKV_2".From_SKV.Status = 1 THEN
+	    "Any_DB".SKV_FE_All := "Any_DB".SKV_FE_All + "Comm_SKV_2".FE;
+	END_IF;
+	IF NOT "Comm_SKV_3".Alarm.Link AND "Comm_SKV_3".FE > 0  AND "Comm_SKV_3".From_SKV.Status = 1 THEN
+	    "Any_DB".SKV_FE_All := "Any_DB".SKV_FE_All + "Comm_SKV_3".FE;
+	END_IF;
+	IF NOT "Comm_SKV_12".Alarm.Link AND "Comm_SKV_12".FE > 0  AND "Comm_SKV_12".From_SKV.Status = 1 THEN
+	    "Any_DB".SKV_FE_All := "Any_DB".SKV_FE_All + "Comm_SKV_12".FE;
+	END_IF;
+	IF NOT "Comm_SKV_13".Alarm.Link AND "Comm_SKV_13".FE > 0  AND "Comm_SKV_13".From_SKV.Status = 1 THEN
+	    "Any_DB".SKV_FE_All := "Any_DB".SKV_FE_All + "Comm_SKV_13".FE;
+	END_IF;
+	IF NOT "Comm_SKV_14".Alarm.Link AND "Comm_SKV_14".FE > 0  AND "Comm_SKV_14".From_SKV.Status = 1 THEN
+	    "Any_DB".SKV_FE_All := "Any_DB".SKV_FE_All + "Comm_SKV_14".FE;
+	END_IF;
+	IF NOT "Comm_SKV_15".Alarm.Link AND "Comm_SKV_15".FE > 0  AND "Comm_SKV_15".From_SKV.Status = 1 THEN
+	    "Any_DB".SKV_FE_All := "Any_DB".SKV_FE_All + "Comm_SKV_15".FE;
+	END_IF;
+	IF NOT "Comm_SKV_21".Alarm.Link AND "Comm_SKV_21".FE > 0  AND "Comm_SKV_21".From_SKV.Status = 1 THEN
+	    "Any_DB".SKV_FE_All := "Any_DB".SKV_FE_All + "Comm_SKV_21".FE;
+	END_IF;
+	IF NOT "Comm_SKV_22".Alarm.Link AND "Comm_SKV_22".FE > 0  AND "Comm_SKV_22".From_SKV.Status = 1 THEN
+	    "Any_DB".SKV_FE_All := "Any_DB".SKV_FE_All + "Comm_SKV_22".FE;
+	END_IF;
+	IF NOT "Comm_SKV_23".Alarm.Link AND "Comm_SKV_23".FE > 0 AND "Comm_SKV_23".From_SKV.Status = 1 THEN
+	    "Any_DB".SKV_FE_All := "Any_DB".SKV_FE_All + "Comm_SKV_23".FE;
+	END_IF;
+	IF NOT "Comm_SKV_20".Alarm.Link AND "Comm_SKV_20".FE > 0  AND "Comm_SKV_20".From_SKV.Status = 1 THEN
+	    "Any_DB".SKV_FE_All := "Any_DB".SKV_FE_All + "Comm_SKV_20".FE;
+	END_IF;
+	
+	"Any_DB".SP_ELZ := ("Any_DB".D * "Any_DB".SKV_FE_All) / "Any_DB".C;
+	"Any_DB".SP_1 := "Any_DB".SP_ELZ / 2;
+	"Any_DB".SP_2 := "Any_DB".SP_ELZ / 2;
+END_FUNCTION
+

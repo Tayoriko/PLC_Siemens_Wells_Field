@@ -1,0 +1,129 @@
+﻿FUNCTION_BLOCK "SKV_Main"
+{ S7_Optimized_Access := 'FALSE' }
+VERSION : 0.1
+   VAR 
+      One : Array[0..11] of "SKV_One";
+      SP : Struct   // Уставки
+         Max { S7_SetPoint := 'True'} : Real;   // - максимальная производительность
+         High : Real;   // - высокая производительность
+         Auto : Real;   // - рабочая уставка
+         Point : Real;   // - сниженная производительность
+         Low : Real;   // - низкая производительность
+         Min { S7_SetPoint := 'True'} : Real;   // - минимальная производительность
+      END_STRUCT;
+      cnt : Struct   // счетчики
+         Min { S7_SetPoint := 'True'} : Int;   // - минимальное кол-во устр-в
+         Fix { S7_SetPoint := 'True'} : Int := 2;   // - кол-во устр-в в фиксированном режиме
+         All : Int;   // - кол-во устройств общее
+         Group : Int;   // - кол-во основных устройств
+         Reserve : Int;   // - кол-во резервных устройств
+         Ready : Int;   // - кол-во готовых устройств
+         Low : Int;   // - кол-во устр-в на сниженной скорости
+         Work : Int;   // - кол-во запущенных устройств
+         Start : Int;   // - кол-во устр-в в работе
+      END_STRUCT;
+      tmp : Int;
+   END_VAR
+
+
+BEGIN
+	//Распредление нагрузки
+	"SKV_Load"(Add_REQ :="SKV_cnt_DB".CMD.Add,
+	           Add_Ready => "SKV_cnt_DB".Data.Add_Ready,
+	           cnt := #tmp);
+	
+	//Управление запуском и остановом
+	"SKV_cnt_DB"();
+	
+	//Выбор кол-ва устр-в
+	"SKV_Logic_DB"();
+	
+	//Проверка готовности маршрутов
+	"Route_Check_DB"();
+	
+	//управление маршрутами
+	"Route_Control_DB"();
+	
+	REGION "SKV_One"
+	    // Вызов управления каждой скважиной
+	    #One[1](Ready:= "Comm_SKV_1".From_SKV.STATE.Ready,
+	            Warning:= "Comm_SKV_1".From_SKV.STATE.Warning,
+	            Alarm:= "Comm_SKV_1".From_SKV.STATE.Alarm,
+	            Route:="Comm_SKV_1".Route,
+	            FeedBack := "Comm_SKV_1".FE,
+	            REQ_CMD=> "Comm_SKV_1".To_SKV.CMD.REQ,
+	            REQ_SP=> "Comm_SKV_1".SP_FE);
+	    #One[2](Ready := "Comm_SKV_2".From_SKV.STATE.Ready,
+	            Warning := "Comm_SKV_2".From_SKV.STATE.Warning,
+	            Alarm := "Comm_SKV_2".From_SKV.STATE.Alarm,
+	            Route := "Comm_SKV_2".Route,
+	            FeedBack := "Comm_SKV_2".FE,
+	            REQ_CMD => "Comm_SKV_2".To_SKV.CMD.REQ,
+	            REQ_SP => "Comm_SKV_2".SP_FE);
+	    #One[3](Ready := "Comm_SKV_3".From_SKV.STATE.Ready,
+	            Warning := "Comm_SKV_3".From_SKV.STATE.Warning,
+	            Alarm := "Comm_SKV_3".From_SKV.STATE.Alarm,
+	            Route := "Comm_SKV_3".Route,
+	            FeedBack := "Comm_SKV_3".FE,
+	            REQ_CMD => "Comm_SKV_3".To_SKV.CMD.REQ,
+	            REQ_SP => "Comm_SKV_3".SP_FE);
+	    #One[4](Ready := "Comm_SKV_12".From_SKV.STATE.Ready,
+	            Warning := "Comm_SKV_12".From_SKV.STATE.Warning,
+	            Alarm := "Comm_SKV_12".From_SKV.STATE.Alarm,
+	            Route := "Comm_SKV_12".Route,
+	            FeedBack := "Comm_SKV_12".FE,
+	            REQ_CMD => "Comm_SKV_12".To_SKV.CMD.REQ,
+	            REQ_SP => "Comm_SKV_12".SP_FE);
+	    #One[5](Ready := "Comm_SKV_13".From_SKV.STATE.Ready,
+	            Warning := "Comm_SKV_13".From_SKV.STATE.Warning,
+	            Alarm := "Comm_SKV_13".From_SKV.STATE.Alarm,
+	            Route := "Comm_SKV_13".Route,
+	            FeedBack := "Comm_SKV_13".FE,
+	            REQ_CMD => "Comm_SKV_13".To_SKV.CMD.REQ,
+	            REQ_SP => "Comm_SKV_13".SP_FE);
+	    #One[6](Ready := "Comm_SKV_14".From_SKV.STATE.Ready,
+	            Warning := "Comm_SKV_14".From_SKV.STATE.Warning,
+	            Alarm := "Comm_SKV_14".From_SKV.STATE.Alarm,
+	            Route := "Comm_SKV_14".Route,
+	            FeedBack := "Comm_SKV_14".FE,
+	            REQ_CMD => "Comm_SKV_14".To_SKV.CMD.REQ,
+	            REQ_SP => "Comm_SKV_14".SP_FE);
+	    #One[7](Ready := "Comm_SKV_15".From_SKV.STATE.Ready,
+	            Warning := "Comm_SKV_15".From_SKV.STATE.Warning,
+	            Alarm := "Comm_SKV_15".From_SKV.STATE.Alarm,
+	            Route := "Comm_SKV_15".Route,
+	            FeedBack := "Comm_SKV_15".FE,
+	            REQ_CMD => "Comm_SKV_15".To_SKV.CMD.REQ,
+	            REQ_SP => "Comm_SKV_15".SP_FE);
+	    #One[8](Ready := "Comm_SKV_20".From_SKV.STATE.Ready,
+	            Warning := "Comm_SKV_20".From_SKV.STATE.Warning,
+	            Alarm := "Comm_SKV_20".From_SKV.STATE.Alarm,
+	            Route := "Comm_SKV_20".Route,
+	            FeedBack := "Comm_SKV_20".FE,
+	            REQ_CMD => "Comm_SKV_20".To_SKV.CMD.REQ,
+	            REQ_SP => "Comm_SKV_20".SP_FE);
+	    #One[9](Ready := "Comm_SKV_21".From_SKV.STATE.Ready,
+	            Warning := "Comm_SKV_21".From_SKV.STATE.Warning,
+	            Alarm := "Comm_SKV_21".From_SKV.STATE.Alarm,
+	            Route := "Comm_SKV_21".Route,
+	            FeedBack := "Comm_SKV_21".FE,
+	            REQ_CMD => "Comm_SKV_21".To_SKV.CMD.REQ,
+	            REQ_SP => "Comm_SKV_21".SP_FE);
+	    #One[10](Ready := "Comm_SKV_22".From_SKV.STATE.Ready,
+	             Warning := "Comm_SKV_22".From_SKV.STATE.Warning,
+	             Alarm := "Comm_SKV_22".From_SKV.STATE.Alarm,
+	             Route := "Comm_SKV_22".Route,
+	             FeedBack := "Comm_SKV_22".FE,
+	             REQ_CMD => "Comm_SKV_22".To_SKV.CMD.REQ,
+	             REQ_SP => "Comm_SKV_22".SP_FE);
+	    #One[11](Ready := "Comm_SKV_23".From_SKV.STATE.Ready,
+	             Warning := "Comm_SKV_23".From_SKV.STATE.Warning,
+	             Alarm := "Comm_SKV_23".From_SKV.STATE.Alarm,
+	             Route := "Comm_SKV_23".Route,
+	             FeedBack := "Comm_SKV_23".FE,
+	             REQ_CMD => "Comm_SKV_23".To_SKV.CMD.REQ,
+	             REQ_SP => "Comm_SKV_23".SP_FE);
+	END_REGION
+	
+END_FUNCTION_BLOCK
+

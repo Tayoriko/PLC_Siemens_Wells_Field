@@ -1,0 +1,92 @@
+﻿FUNCTION_BLOCK "SKV_Logic"
+{ S7_Optimized_Access := 'FALSE' }
+VERSION : 0.1
+   VAR 
+      Start : Bool;   // Команда запуска
+      Start_Up { S7_SetPoint := 'True'} : Bool;   // Авто-рестарт
+      Mode : Bool;   // Режим работы
+      Step : Int;   // шаг операции
+      LE : Real;   // Текущий усреднённый уровень
+      SP : Struct   // Уставки
+         Max { S7_SetPoint := 'True'} : Real;   // - макс уровень
+         High { S7_SetPoint := 'True'} : Real;   // - высокий уровень
+         Mid { S7_SetPoint := 'True'} : Real;   // - средний уровень
+         Low { S7_SetPoint := 'True'} : Real;   // - низкий уровень
+         Min { S7_SetPoint := 'True'} : Real;   // - минимальный уровень
+      END_STRUCT;
+   END_VAR
+
+
+BEGIN
+	//Отключение при первом пуске
+	IF NOT #Start_Up AND "FirstScan" THEN
+	    #Start := FALSE;
+	END_IF;
+	
+	//Отключение
+	IF NOT #Start THEN
+	    #Step := 0;
+	    "SKV_cnt_DB".CMD.REQ := 0;
+	END_IF;
+	
+	//Общее управление
+	CASE #Step OF
+	    0:  //Запуск системы
+	        IF #Start AND #LE < #SP.Max THEN
+	            "SKV_cnt_DB".CMD.REQ := "SKV_Main_DB".cnt.Min;  //минимальное количество устр-в в работе
+	            #Step := #Step + 1;
+	        END_IF;
+	    1:  //проверка режима
+	        IF #Mode = 0 THEN
+	            #Step := 2; //поддержание уровня
+	        ELSIF #Mode = 1 THEN
+	            #Step := 3; //фиксированная нагрузка
+	        END_IF;
+	    2:  //Поддержание уровня
+	        IF #LE < #SP.High THEN                              //уровень ниже верхней рабочей точки - вошли в рабочий диапазон
+	            IF #LE < #SP.Mid THEN                           //уровень упал ниже среднего - требуется +1 устр-во
+	                IF "SKV_cnt_DB".CMD.REQ = "SKV_Main_DB".cnt.Work THEN
+	                    IF "SKV_Main_DB".cnt.Work < "SKV_Main_DB".cnt.All AND "SKV_cnt_DB".Step = 10 THEN
+	                        "SKV_cnt_DB".CMD.REQ := "SKV_cnt_DB".CMD.REQ + 1;
+	                    END_IF;
+	                END_IF;
+	                IF NOT "SKV_cnt_DB".CMD.Reload AND NOT NOT "SKV_cnt_DB".CMD.Load AND NOT "SKV_cnt_DB".CMD.Rotation AND NOT "SKV_cnt_DB".CMD.Deload AND "SKV_cnt_DB".Step = 10 THEN
+	                    IF "SKV_cnt_DB".CMD.REQ > "SKV_Main_DB".cnt.Start THEN
+	                        "SKV_cnt_DB".CMD.Reload := TRUE;
+	                    END_IF;
+	                    IF "SKV_cnt_DB".CMD.REQ < "SKV_Main_DB".cnt.Start THEN
+	                        "SKV_cnt_DB".CMD.Deload := TRUE;
+	                    END_IF;
+	                END_IF;
+	            END_IF;
+	        ELSE
+	            IF "SKV_cnt_DB".CMD.REQ = "SKV_Main_DB".cnt.Work AND "SKV_cnt_DB".Step = 10 THEN
+	                "SKV_cnt_DB".CMD.REQ := "SKV_cnt_DB".CMD.REQ - 1;
+	                (*IF "SKV_cnt_DB".CMD.REQ < "SKV_Main_DB".cnt.Min THEN
+	                    "SKV_cnt_DB".CMD.REQ := "SKV_Main_DB".cnt.Min;
+	                END_IF;*)
+	                IF "SKV_cnt_DB".CMD.REQ < 0 THEN
+	                    "SKV_cnt_DB".CMD.REQ := 0;
+	                END_IF;
+	            END_IF;
+	        END_IF;
+	        //Смена режима работы
+	        IF #Mode <> 0 THEN
+	            #Step := 1;
+	        END_IF;
+	    3:   //Фиксированный режим
+	        IF NOT "SKV_cnt_DB".CMD.Reload AND NOT NOT "SKV_cnt_DB".CMD.Load AND NOT "SKV_cnt_DB".CMD.Rotation AND NOT "SKV_cnt_DB".CMD.Deload AND "SKV_cnt_DB".Step = 10 THEN
+	            IF "SKV_cnt_DB".CMD.REQ > "SKV_Main_DB".cnt.Start THEN
+	                "SKV_cnt_DB".CMD.Reload := TRUE;
+	            END_IF;
+	            IF "SKV_cnt_DB".CMD.REQ < "SKV_Main_DB".cnt.Start THEN
+	                "SKV_cnt_DB".CMD.Deload := TRUE;
+	            END_IF;
+	        END_IF;
+	        //Смена режима работы
+	        IF #Mode <> 1 THEN
+	            #Step := 1;
+	        END_IF;
+	END_CASE;
+END_FUNCTION_BLOCK
+

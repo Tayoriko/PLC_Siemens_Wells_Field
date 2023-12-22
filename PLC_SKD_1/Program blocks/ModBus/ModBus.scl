@@ -1,0 +1,398 @@
+﻿FUNCTION_BLOCK "ModBus"
+{ S7_Optimized_Access := 'TRUE' }
+VERSION : 0.1
+   VAR 
+      Step : Int;   // Шаг опроса
+      KP : Int;   // номер КП
+      KP_max_AUMA : Int;
+      KP_last : Int;
+      cnt : Int;   // номер опрашиваемого устройства
+      cnt_max_KP : Int := 10;   // общее количество устройств
+      cnt_max_FE : Int;
+      cnt_max_PE : Int;
+      CMD : Struct
+         DIS : Bool;
+         REQ : Bool;
+         BUSY : Bool;
+         DONE : Bool;
+         ERROR : Bool;
+         STATUS : Word;
+      END_STRUCT;
+      CFG : Struct
+         ADDR : UInt;
+         Register : UDInt;
+         Length : UInt;
+         IP {InstructionName := 'IP_V4'; LibVersion := '1.0'; S7_SetPoint := 'False'} : IP_V4;
+         Port { S7_SetPoint := 'True'} : UInt;
+         Mode : USInt;
+      END_STRUCT;
+      Clock { S7_SetPoint := 'False'} : Array[0..10] of "Time_S";
+      test : Int;
+      update { ExternalAccessible := 'False'; ExternalVisible := 'False'; ExternalWritable := 'False'} : Bool;
+      test_run : Bool;
+   END_VAR
+
+   VAR_TEMP 
+      fc_read : Bool;
+      fc_write : Bool;
+      use : Bool;
+      x : Int;
+   END_VAR
+
+
+BEGIN
+	// Общее количество устройств для опроса
+	IF #cnt > #cnt_max_KP THEN
+	    #cnt := 0;
+	END_IF;
+	IF #KP = 0 THEN
+	    #KP := 1;
+	END_IF;
+	
+	
+	//  Цикл опроса
+	CASE #Step OF
+	    0:  //  Шаг 0 - параметры подключения
+	        #Step := 1;
+	        IF #KP <= #KP_max_AUMA THEN
+	            "Modbus_KP"(KP := #KP,
+	                        cnt := #cnt,
+	                        IP := #CFG.IP,
+	                        "Port" := #CFG."Port",
+	                        ADDR := #CFG.ADDR,
+	                        use => #use);
+	        ELSIF #KP = 20 THEN //расходомеры
+	            #use := "FE_DB".FE[#cnt].Use;
+	            #CFG.IP := "tGw_DB".tGw["FE_DB".FE[#cnt].ID].IP;
+	            #CFG."Port" := "tGw_DB".tGw["FE_DB".FE[#cnt].ID]."Port";
+	            #CFG.ADDR := "FE_DB".FE[#cnt].ADDR;
+	        ELSIF #KP = 21 THEN //уровень
+	            #use := "LE_DB".LE[#cnt].Use;
+	            #CFG.IP := "tGw_DB".tGw["LE_DB".LE[#cnt].ID].IP;
+	            #CFG."Port" := "tGw_DB".tGw["LE_DB".LE[#cnt].ID]."Port";
+	            #CFG.ADDR := "LE_DB".LE[#cnt].ADDR;
+	        ELSIF #KP = 22 THEN //давление
+	            #use := "PE_DB".PE[#cnt].Use;
+	            #CFG.IP := "tGw_DB".tGw["PE_DB".PE[#cnt].ID].IP;
+	            #CFG."Port" := "tGw_DB".tGw["PE_DB".PE[#cnt].ID]."Port";
+	            #CFG.ADDR := "PE_DB".PE[#cnt].ADDR;
+	        END_IF;
+	        IF NOT #use OR #CFG.ADDR = 0 THEN
+	            #Step := 10;
+	        END_IF;
+	        IF NOT "ModBus_TCP_DB".CONNECT.ActiveEstablished THEN
+	            #Step := 10;
+	        END_IF;
+	    1:  //  Шаг 1 - параметры чтения
+	        IF #KP <= #KP_max_AUMA THEN   //задвижки AUMA
+	            #CFG.Register := 31001;
+	            #CFG.Length := 3;
+	            #CFG.Mode := 0;
+	        ELSIF #KP = 20 THEN //расходомеры
+	            #CFG.Register := 0;
+	            #CFG.Length := 12;
+	            #CFG.Mode := 104;
+	        ELSIF #KP = 21 THEN //уровень
+	            #CFG.Register := 0;
+	            #CFG.Length := 6;
+	            #CFG.Mode := 104;
+	        ELSIF #KP = 22 THEN //давление
+	            #CFG.Register := 8;
+	            #CFG.Length := 2;
+	            #CFG.Mode := 104;
+	        END_IF;
+	        IF NOT #CMD.BUSY AND NOT #CMD.DONE AND NOT #CMD.ERROR THEN
+	            #Step := 2;
+	            #CMD.DIS := FALSE;
+	        END_IF;
+	    2:  // Шаг 2 - чтение данных
+	        #CMD.REQ := TRUE;
+	        #Clock[0].Start := TRUE;
+	        //успешное чтение данных
+	        IF #CMD.DONE THEN
+	            IF #KP <= #KP_max_AUMA THEN   //задвижки AUMA 
+	                "ModBus_AUMA_READ"();
+	                IF #update THEN
+	                    #Step := 5;
+	                ELSE
+	                    #Step := 10;
+	                END_IF;
+	            ELSIF #KP = 20 THEN     //расходомеры
+	                %DB395.DBW0 := %DB40.DBW0;
+	                %DB395.DBW2 := %DB40.DBW2;
+	                %DB395.DBW4 := %DB40.DBW4;
+	                %DB395.DBW6 := %DB40.DBW6;
+	                %DB395.DBW8 := %DB40.DBW8;
+	                %DB395.DBW10 := %DB40.DBW10;
+	                %DB395.DBW12 := %DB40.DBW12;
+	                %DB395.DBW14 := %DB40.DBW14;
+	                %DB395.DBW16 := %DB40.DBW16;
+	                %DB395.DBW18 := %DB40.DBW18;
+	                %DB395.DBW20 := %DB40.DBW20;
+	                %DB395.DBW22 := %DB40.DBW22;
+	                "FE_DB".FE[#cnt].Flow_Out := "FE_DB".FE[0].Flow_Out;
+	                "FE_DB".FE[#cnt].Flow_In := "FE_DB".FE[0].Flow_In;
+	                "FE_DB".FE[#cnt].Flow := "FE_DB".FE[0].Flow * 3600;
+	                "FE_DB".FE[#cnt].Link := TRUE;
+	                #Step := 10;
+	            ELSIF #KP = 21 THEN    //уровень
+	                %DB396.DBW0 := %DB40.DBW0;
+	                %DB396.DBW2 := %DB40.DBW2;
+	                %DB396.DBW4 := %DB40.DBW4;
+	                %DB396.DBW6 := %DB40.DBW6;
+	                %DB396.DBW8 := %DB40.DBW8;
+	                %DB396.DBW10 := %DB40.DBW10;
+	                "LE_DB".LE[#cnt].LE_1 := "LE_DB".LE[0].LE_1;
+	                "LE_DB".LE[#cnt].LE_2 := "LE_DB".LE[0].LE_2;
+	                "LE_DB".LE[#cnt].LE_3 := "LE_DB".LE[0].LE_3;
+	                "LE_DB".LE[#cnt].Link := TRUE;
+	                #Step := 10;
+	            ELSIF #KP = 22 THEN    //давление
+	                %DB397.DBW0 := %DB40.DBW0;
+	                %DB397.DBW2 := %DB40.DBW2;
+	                "PE_DB".PE[#cnt].PE := "PE_DB".PE[0].PE;
+	                "PE_DB".PE[#cnt].Link := TRUE;
+	                #Step := 10;
+	            END_IF;
+	        END_IF;
+	        //ошибка при чтении
+	        IF #CMD.ERROR OR #Clock[0]."Exit" THEN
+	            "ModBus_AUMA_ERROR"();
+	            #Step := 10;
+	        END_IF;
+	    5:  //  Шаг 5 - параметры записи
+	        #CMD.REQ := FALSE;
+	        #CMD.DIS := TRUE;
+	        //очистка буфера
+	        FOR #x := 0 TO 20 BY 1 DO
+	            "ModBus_TCP_DB".DATA[#x] := 0;
+	        END_FOR;
+	        IF NOT #CMD.BUSY AND NOT #CMD.DONE AND NOT #CMD.ERROR THEN
+	            #Step := 6;
+	        END_IF;
+	    6: //Шаг 6 - выбор области памяти
+	         //  Тип 0 - задвижка AUMA
+	         #CFG.Register := 41001;
+	         #CFG.Length := 1;
+	         #CFG.Mode := 1;
+	         "ModBus_AUMA_WRITE"();
+	        IF NOT #CMD.BUSY AND NOT #CMD.DONE AND NOT #CMD.ERROR THEN
+	            #CMD.REQ := TRUE;
+	            #CMD.DIS := FALSE;
+	            #Clock[1].Start := TRUE;
+	            #Step := 7;
+	        END_IF;
+	    7:  //  Шаг 7 - запись данных
+	        //успешная запись данных
+	        IF #CMD.DONE THEN
+	            #Step := 10;
+	            CASE #KP OF
+	                1:  //  Тип 0 - задвижка AUMA
+	                    "AUMA_KP_2_1_DB".AUMA[#cnt].Link := TRUE;
+	                    "AUMA_KP_2_1_DB".AUMA[#cnt].Update := FALSE;
+	                2:  //  Тип 0 - задвижка AUMA
+	                    "AUMA_KP_2_2_DB".AUMA[#cnt].Link := TRUE;
+	                    "AUMA_KP_2_2_DB".AUMA[#cnt].Update := FALSE;
+	                3:  //  Тип 0 - задвижка AUMA
+	                    "AUMA_KP_2_3_DB".AUMA[#cnt].Link := TRUE;
+	                    "AUMA_KP_2_3_DB".AUMA[#cnt].Update := FALSE;
+	                4:  //  Тип 0 - задвижка AUMA
+	                    "AUMA_KP_2_4_DB".AUMA[#cnt].Link := TRUE;
+	                    "AUMA_KP_2_4_DB".AUMA[#cnt].Update := FALSE;
+	                5:  //  Тип 0 - задвижка AUMA
+	                    "AUMA_KP_2_5_DB".AUMA[#cnt].Link := TRUE;
+	                    "AUMA_KP_2_5_DB".AUMA[#cnt].Update := FALSE;
+	                6:  //  Тип 0 - задвижка AUMA
+	                    "AUMA_KP_2_6_DB".AUMA[#cnt].Link := TRUE;
+	                    "AUMA_KP_2_6_DB".AUMA[#cnt].Update := FALSE;
+	                7:  //  Тип 0 - задвижка AUMA
+	                    "AUMA_KP_2_7_DB".AUMA[#cnt].Link := TRUE;
+	                    "AUMA_KP_2_7_DB".AUMA[#cnt].Update := FALSE;
+	                8:  //  Тип 0 - задвижка AUMA
+	                    "AUMA_KP_2_8_DB".AUMA[#cnt].Link := TRUE;
+	                    "AUMA_KP_2_8_DB".AUMA[#cnt].Update := FALSE;
+	                9:  //  Тип 0 - задвижка AUMA
+	                    "AUMA_KP_2_9_DB".AUMA[#cnt].Link := TRUE;
+	                    "AUMA_KP_2_9_DB".AUMA[#cnt].Update := FALSE;
+	                10: //  Тип 0 - задвижка AUMA
+	                    "AUMA_KP_2_10_DB".AUMA[#cnt].Link := TRUE;
+	                    "AUMA_KP_2_10_DB".AUMA[#cnt].Update := FALSE;
+	                11: //  Тип 0 - задвижка AUMA
+	                    "AUMA_KP_1_DB".AUMA[#cnt].Link := TRUE;
+	                    "AUMA_KP_1_DB".AUMA[#cnt].Update := FALSE;
+	                12: //  Тип 0 - задвижка AUMA
+	                    "AUMA_KP_2_DB".AUMA[#cnt].Link := TRUE;
+	                    "AUMA_KP_2_DB".AUMA[#cnt].Update := FALSE;
+	                13: //  Тип 0 - задвижка AUMA
+	                    "AUMA_KP_3_DB".AUMA[#cnt].Link := TRUE;
+	                    "AUMA_KP_3_DB".AUMA[#cnt].Update := FALSE;
+	                14: //  Тип 0 - задвижка AUMA
+	                    "AUMA_KP_4_DB".AUMA[#cnt].Link := TRUE;
+	                    "AUMA_KP_4_DB".AUMA[#cnt].Update := FALSE;
+	                15: //  Тип 0 - задвижка AUMA
+	                    "AUMA_KP_5_DB".AUMA[#cnt].Link := TRUE;
+	                    "AUMA_KP_5_DB".AUMA[#cnt].Update := FALSE;
+	            END_CASE;
+	            #update := false;
+	        END_IF; 
+	        //ошибка при записи
+	        IF #CMD.ERROR OR #Clock[1]."Exit" THEN
+	            #Step := 10;
+	            CASE #KP OF
+	                1:  //  Тип 0 - задвижка AUMA
+	                    "AUMA_KP_2_1_DB".AUMA[#cnt].Link := FALSE;
+	                    "AUMA_KP_2_1_DB".AUMA[#cnt].NoWrite := TRUE;
+	                2:  //  Тип 0 - задвижка AUMA
+	                    "AUMA_KP_2_2_DB".AUMA[#cnt].Link := FALSE;
+	                    "AUMA_KP_2_2_DB".AUMA[#cnt].NoWrite := TRUE;
+	                3:  //  Тип 0 - задвижка AUMA
+	                    "AUMA_KP_2_3_DB".AUMA[#cnt].Link := FALSE;
+	                    "AUMA_KP_2_3_DB".AUMA[#cnt].NoWrite := TRUE;
+	                4:  //  Тип 0 - задвижка AUMA
+	                    "AUMA_KP_2_4_DB".AUMA[#cnt].Link := FALSE;
+	                    "AUMA_KP_2_4_DB".AUMA[#cnt].NoWrite := TRUE;
+	                5:  //  Тип 0 - задвижка AUMA
+	                    "AUMA_KP_2_5_DB".AUMA[#cnt].Link := FALSE;
+	                    "AUMA_KP_2_5_DB".AUMA[#cnt].NoWrite := TRUE;
+	                6:  //  Тип 0 - задвижка AUMA
+	                    "AUMA_KP_2_6_DB".AUMA[#cnt].Link := FALSE;
+	                    "AUMA_KP_2_6_DB".AUMA[#cnt].NoWrite := TRUE;
+	                7:  //  Тип 0 - задвижка AUMA
+	                    "AUMA_KP_2_7_DB".AUMA[#cnt].Link := FALSE;
+	                    "AUMA_KP_2_7_DB".AUMA[#cnt].NoWrite := TRUE;
+	                8:  //  Тип 0 - задвижка AUMA
+	                    "AUMA_KP_2_8_DB".AUMA[#cnt].Link := FALSE;
+	                    "AUMA_KP_2_8_DB".AUMA[#cnt].NoWrite := TRUE;
+	                9:  //  Тип 0 - задвижка AUMA
+	                    "AUMA_KP_2_9_DB".AUMA[#cnt].Link := FALSE;
+	                    "AUMA_KP_2_9_DB".AUMA[#cnt].NoWrite := TRUE;
+	                10:  //  Тип 0 - задвижка AUMA
+	                    "AUMA_KP_2_10_DB".AUMA[#cnt].Link := FALSE;
+	                    "AUMA_KP_2_10_DB".AUMA[#cnt].NoWrite := TRUE;
+	                11:  //  Тип 0 - задвижка AUMA
+	                    "AUMA_KP_1_DB".AUMA[#cnt].Link := FALSE;
+	                    "AUMA_KP_1_DB".AUMA[#cnt].NoWrite := TRUE;
+	                12:  //  Тип 0 - задвижка AUMA
+	                    "AUMA_KP_2_DB".AUMA[#cnt].Link := FALSE;
+	                    "AUMA_KP_2_DB".AUMA[#cnt].NoWrite := TRUE;
+	                13:  //  Тип 0 - задвижка AUMA
+	                    "AUMA_KP_3_DB".AUMA[#cnt].Link := FALSE;
+	                    "AUMA_KP_3_DB".AUMA[#cnt].NoWrite := TRUE;
+	                14:  //  Тип 0 - задвижка AUMA
+	                    "AUMA_KP_4_DB".AUMA[#cnt].Link := FALSE;
+	                    "AUMA_KP_4_DB".AUMA[#cnt].NoWrite := TRUE;
+	                15:  //  Тип 0 - задвижка AUMA
+	                    "AUMA_KP_5_DB".AUMA[#cnt].Link := FALSE;
+	                    "AUMA_KP_5_DB".AUMA[#cnt].NoWrite := TRUE;
+	            END_CASE;
+	        END_IF;
+	    10: //  Шаг 10 - конец опроса
+	        #CMD.REQ := FALSE;
+	        #CMD.DIS := TRUE;
+	        #cnt := #cnt + 1;
+	        //переключение типа устройства
+	        IF #KP <= #KP_max_AUMA THEN   //задвижки
+	            IF #cnt >= #KP_max_AUMA THEN
+	                IF #KP <= #KP_max_AUMA THEN
+	                    #KP_last := #KP;
+	                    #KP := #KP + 1;
+	                ELSE
+	                    #KP := 20;
+	                END_IF;
+	                #cnt := 1;
+	            END_IF;
+	        ELSIF #KP = 20 THEN //расходомеры
+	            IF #cnt >= #cnt_max_FE THEN
+	                #KP := 21;
+	                #cnt := 1;
+	            END_IF;
+	        ELSIF #KP = 21 THEN //уровень
+	            IF #cnt >= #cnt_max_FE THEN
+	                #KP := 22;
+	                #cnt := 1;
+	            END_IF;
+	        ELSIF #KP = 22 THEN //давление
+	            IF #cnt >= #cnt_max_FE THEN
+	                #KP := 1;
+	                #cnt := 1;
+	            END_IF;
+	        END_IF;
+	        //сброс таймеров
+	        FOR #x := 0 TO 10 BY 1 DO
+	            #Clock[#x].Start := FALSE;
+	        END_FOR;
+	        //очистка буфера
+	        FOR #x := 0 TO 20 BY 1 DO
+	            "ModBus_TCP_DB".DATA[#x] := 0;
+	        END_FOR;
+	        //проверка точки подключения
+	        #Step := 0;
+	END_CASE;
+	
+	//вызов таймеров на исполнение
+	FOR #x := 0 TO 10 BY 1 DO
+	    #Clock[#x]();
+	END_FOR;
+	
+	//отладка
+	IF #test > 0 THEN
+	    IF #Step = 10 THEN
+	        #Step := 100;
+	        #test_run := TRUE;
+	    END_IF;
+	END_IF;
+	IF #test_run THEN
+	    CASE #test OF
+	        1:
+	            "ModBus_AUMA_WRITE"();
+	        99:
+	            #CFG.IP := "tGw_DB".tGw[4].IP;
+	            #CFG."Port" := "tGw_DB".tGw[4]."Port";
+	            #CMD.REQ := FALSE;
+	            #CMD.DIS := TRUE;
+	            "ModBus_TCP_DB".CONNECT.ActiveEstablished := FALSE;
+	    END_CASE;
+	    IF #test = 0 THEN
+	        #test_run := false;
+	        #CMD.DIS := FALSE;
+	        "ModBus_TCP_DB".CONNECT.ActiveEstablished := TRUE;
+	        #Step := 0;
+	    END_IF;
+	END_IF;
+	
+	IF "Reset_All" THEN
+	    FOR #x := 0 TO 10 BY 1 DO
+	        "AUMA_KP_2_1_DB".AUMA[#x].NoRead := FALSE;
+	        "AUMA_KP_2_1_DB".AUMA[#x].NoWrite := FALSE;
+	        "AUMA_KP_2_2_DB".AUMA[#x].NoRead := FALSE;
+	        "AUMA_KP_2_2_DB".AUMA[#x].NoWrite := FALSE;
+	        "AUMA_KP_2_3_DB".AUMA[#x].NoRead := FALSE;
+	        "AUMA_KP_2_3_DB".AUMA[#x].NoWrite := FALSE;
+	        "AUMA_KP_2_4_DB".AUMA[#x].NoRead := FALSE;
+	        "AUMA_KP_2_4_DB".AUMA[#x].NoWrite := FALSE;
+	        "AUMA_KP_2_5_DB".AUMA[#x].NoRead := FALSE;
+	        "AUMA_KP_2_5_DB".AUMA[#x].NoWrite := FALSE;
+	        "AUMA_KP_2_6_DB".AUMA[#x].NoRead := FALSE;
+	        "AUMA_KP_2_6_DB".AUMA[#x].NoWrite := FALSE;
+	        "AUMA_KP_2_7_DB".AUMA[#x].NoRead := FALSE;
+	        "AUMA_KP_2_7_DB".AUMA[#x].NoWrite := FALSE;
+	        "AUMA_KP_2_8_DB".AUMA[#x].NoRead := FALSE;
+	        "AUMA_KP_2_8_DB".AUMA[#x].NoWrite := FALSE;
+	        "AUMA_KP_2_9_DB".AUMA[#x].NoRead := FALSE;
+	        "AUMA_KP_2_9_DB".AUMA[#x].NoWrite := FALSE;
+	        "AUMA_KP_2_10_DB".AUMA[#x].NoRead := FALSE;
+	        "AUMA_KP_2_10_DB".AUMA[#x].NoWrite := FALSE;
+	        "AUMA_KP_1_DB".AUMA[#x].NoRead := FALSE;
+	        "AUMA_KP_1_DB".AUMA[#x].NoWrite := FALSE;
+	        "AUMA_KP_2_DB".AUMA[#x].NoRead := FALSE;
+	        "AUMA_KP_2_DB".AUMA[#x].NoWrite := FALSE;
+	        "AUMA_KP_3_DB".AUMA[#x].NoRead := FALSE;
+	        "AUMA_KP_3_DB".AUMA[#x].NoWrite := FALSE;
+	        "AUMA_KP_4_DB".AUMA[#x].NoRead := FALSE;
+	        "AUMA_KP_4_DB".AUMA[#x].NoWrite := FALSE;
+	        "AUMA_KP_5_DB".AUMA[#x].NoRead := FALSE;
+	        "AUMA_KP_5_DB".AUMA[#x].NoWrite := FALSE;
+	    END_FOR;
+	END_IF;
+END_FUNCTION_BLOCK
+

@@ -1,0 +1,218 @@
+﻿FUNCTION_BLOCK "SKV_cnt"
+{ S7_Optimized_Access := 'FALSE' }
+VERSION : 0.1
+   VAR 
+      CMD : Struct   // Команды и атрибуты
+         Select : Bool;   // - выбрать устр-во
+         Mode : Bool;   // - режим выбора (1 - пуск, 0 - останов)
+         Rotation : Bool;   // - ротация устр-в
+         Load : Bool;   // - ввод недостающего устр-ва
+         Reload : Bool;   // - ввод резервного устр-ва
+         Deload : Bool;   // - вывод устр-ва при аварии
+         Add : Bool;   // - запрос ввода нового устр-ва
+         REQ : Int;   // - количество требуемых устр-в
+      END_STRUCT;
+      Data : Struct   // Данные
+         Ready : Bool;   // - готовность выбранного насоса
+         Add_Ready : Bool;   // - система готова к вводу нового устр-ва
+         C : Real;   // - вес проверяемого устр-ва
+         REQ : Int;   // - кол-во запущенных устр-в
+         N : Int;   // - номер выбранного устр-ва
+         Status : Int;   // - статус выбранного устр-ва
+         N_On : Int;   // - устр-во для запуска при ротации
+         N_Off : Int;   // - устр-во для останова при ротации
+      END_STRUCT;
+      Step : Int;   // Шаг операции
+      dev : Int;
+      Clock : Array[0..4] of "Time_S";   // Блок таймеров
+   END_VAR
+
+
+BEGIN
+	//Выбор насоса для запуска или останова
+	"SKV_Select"(Limit:= "SKV_Main_DB".cnt.All,
+	             Ready=>#Data.Ready,
+	             Status=>#Data.Status,
+	             C:=#Data.C,
+	             REQ:=#CMD.Select,
+	             Mode:=#CMD.Mode,
+	             Number:=#Data.N);
+	
+	//Отключение
+	IF #CMD.REQ = 0 AND "SKV_Main_DB".cnt.Work = 0 THEN
+	    #Step := 0;
+	    #Data.REQ := 0;
+	END_IF;
+	
+	//Запуск первого устр-ва
+	CASE #Step OF
+	    0:  //появилась команда запуска
+	        IF #CMD.REQ > 0 THEN
+	            #CMD.Select := TRUE;
+	            #CMD.Mode := TRUE;
+	            #Step := 1;
+	        END_IF;
+	    1:  //выбор завершён
+	        IF NOT #CMD.Select THEN
+	            IF #Data.Ready THEN
+	                #Step := 2;
+	            ELSE
+	                #Step := 3;
+	            END_IF;
+	        END_IF;
+	    2:  //проверка выбора - устр-во готово
+	        "SKV_Main_DB".One[#Data.N].CMD.Start_A := TRUE;
+	        #Data.REQ := #Data.REQ + 1;
+	        IF #Data.REQ >= #CMD.REQ THEN
+	            #Step := 9;
+	        ELSE
+	            #Step := 0;
+	        END_IF;
+	    3:  //проверка выбора - устр-во не готово
+	        IF "SKV_Main_DB".cnt.Ready >= #CMD.REQ THEN
+	            IF #Data.REQ < #CMD.REQ THEN
+	                #Step := 0;
+	            END_IF;
+	        ELSE
+	            #CMD.REQ := #Data.REQ;
+	            #Step := 9;
+	        END_IF;
+	    9:  //первое устр-во успешно запущено
+	        IF "SKV_Main_DB".cnt.Work >= 1 THEN
+	            #Step := 10;
+	        END_IF;
+	END_CASE;
+	
+	//Добавление устр-ва в работу
+	CASE #Step OF
+	    10: //проверка необходимости добавления нового устр-ва
+	        IF (#CMD.REQ > #Data.REQ OR #CMD.Reload OR #CMD.Load) AND "SKV_Main_DB".cnt.Ready > 0 THEN
+	            #CMD.Select := TRUE;
+	            #CMD.Mode := TRUE;
+	            #Step := 11;
+	        END_IF;
+	    11: //проверка выбора
+	        IF NOT #CMD.Select THEN
+	            IF #Data.Status = 0 THEN
+	                #Step := 12;
+	            ELSE
+	                #Step := 10;
+	            END_IF;
+	        END_IF;
+	    12: //запуск выбранного устр-ва
+	        "SKV_Main_DB".One[#Data.N].CMD.Start_A := TRUE;
+	        IF "SKV_Main_DB".One[#Data.N].Status = "SKV_Main_DB".One[#Data.N].Mode THEN
+	            #CMD.Add := TRUE;
+	            "SKV_Main_DB".One[#Data.N].SP.Auto := "SKV_Main_DB".SP.Point;
+	            "SKV_Main_DB".One[#Data.N].Mode := 2;
+	            #Step := #Step + 1;
+	        END_IF;
+	    13: //выход на режим ввода нового устр-ва
+	        IF "SKV_Main_DB".One[#Data.N].Status = "SKV_Main_DB".One[#Data.N].Mode THEN
+	            IF (NOT #CMD.Reload AND NOT #CMD.Load AND #Data.Add_Ready) OR (#CMD.Reload OR #CMD.Load) THEN
+	                #CMD.Add := FALSE;
+	                "SKV_Main_DB".One[#Data.N].Mode := 3;
+	                #Step := #Step + 1;
+	            END_IF;
+	        END_IF;
+	    14: //выход на штатный режим работы
+	        IF NOT #CMD.Reload THEN
+	            IF #Data.REQ < #CMD.REQ THEN
+	                #Data.REQ := #Data.REQ + 1;
+	            END_IF;
+	        END_IF;
+	        #Step := 19;
+	    19: //пауза перед следующей операцией
+	        #CMD.Reload := FALSE;
+	        #CMD.Load := FALSE;
+	        #CMD.Add := FALSE;
+	        #Clock[0].Start := TRUE;
+	        IF #Clock[0]."Exit" THEN
+	            #Step := 10;
+	        END_IF;
+	END_CASE;
+	
+	//Вывод устр-ва из работы
+	CASE #Step OF
+	    10: //проверка необходимости добавления нового устр-ва
+	        IF (#CMD.REQ < #Data.REQ OR #CMD.Deload) THEN
+	            #CMD.Select := TRUE;
+	            #CMD.Mode := FALSE;
+	            #Step := 21;
+	        END_IF;
+	    21: //проверка выбора и снижение производительности устр-ва
+	        IF NOT #CMD.Select THEN
+	            "SKV_Main_DB".One[#Data.N].Mode := 5;
+	            IF "SKV_Main_DB".One[#Data.N].Status = "SKV_Main_DB".One[#Data.N].Mode THEN
+	                IF NOT #CMD.Deload THEN
+	                    #Data.REQ := #Data.REQ - 1;
+	                END_IF;
+	                #Step := 22;
+	            END_IF;
+	        END_IF;
+	    22: //отключение устр-ва
+	        "SKV_Main_DB".One[#Data.N].Mode := 6;
+	        #Step := 29;
+	    29: //пауза перед следующей операцией
+	        #CMD.Deload := FALSE;
+	        #Clock[1].Start := TRUE;
+	        IF #Clock[1]."Exit" THEN
+	            #Step := 10;
+	        END_IF;
+	END_CASE;
+	
+	//Ротация
+	CASE #Step OF
+	    10: //проверка необходимости добавления нового устр-ва
+	        IF #CMD.Rotation THEN
+	            #CMD.Select := TRUE;
+	            #CMD.Mode := TRUE;
+	            #Step := 31;
+	        END_IF;
+	    31: //выбор устр-ва для запуска
+	        IF NOT #CMD.Select THEN
+	            #Data.N_On := #Data.N;
+	            #Step := #Step + 1;
+	        END_IF;
+	    32: //выбор устр-ва для останова
+	        #CMD.Select := TRUE;
+	        #CMD.Mode := FALSE;
+	        #Step := #Step + 1;
+	    33: //выбор устр-ва для останова
+	        IF NOT #CMD.Select THEN
+	            #Data.N_Off := #Data.N;
+	            #Step := #Step + 1;
+	        END_IF;
+	    34: //выключение нового устр-ва и замедление работающего
+	        "SKV_Main_DB".One[#Data.N_On].CMD.Start_A := TRUE;
+	        "SKV_Main_DB".One[#Data.N_On].Mode := 1;
+	        IF "SKV_Main_DB".One[#Data.N_On].Status = "SKV_Main_DB".One[#Data.N_On].Mode THEN
+	            "SKV_Main_DB".One[#Data.N_Off].Mode := 5;
+	            IF "SKV_Main_DB".One[#Data.N_Off].Status = "SKV_Main_DB".One[#Data.N_Off].Mode THEN
+	                #Step := #Step + 1;
+	            END_IF;
+	        END_IF;
+	    35: //отключение и выравнивание производительности
+	        "SKV_Main_DB".One[#Data.N_Off].Mode := 6;
+	        #CMD.Add := TRUE;
+	        "SKV_Main_DB".One[#Data.N_On].SP.Auto := "SKV_Main_DB".SP.Point;
+	        "SKV_Main_DB".One[#Data.N_On].Mode := 2;
+	        IF "SKV_Main_DB".One[#Data.N_On].Status = "SKV_Main_DB".One[#Data.N_On].Mode THEN
+	            #Step := 39;
+	        END_IF;
+	    39: //пауза перед следующей операцией
+	        #CMD.Reload := FALSE;
+	        #Clock[2].Start := TRUE;
+	        IF #Clock[2]."Exit" THEN
+	            #Step := 10;
+	        END_IF;
+	END_CASE;
+	
+	//call timers
+	FOR #dev := 0 TO 4 DO
+	    #Clock[#dev]();
+	END_FOR;
+	            
+	        
+END_FUNCTION_BLOCK
+

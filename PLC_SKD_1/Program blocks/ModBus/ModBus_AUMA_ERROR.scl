@@ -1,0 +1,70 @@
+﻿FUNCTION "ModBus_AUMA_ERROR" : Void
+{ S7_Optimized_Access := 'TRUE' }
+VERSION : 0.1
+   VAR_TEMP 
+      offset : UInt;
+      "DB" : UInt;
+   END_VAR
+
+
+BEGIN
+	CASE "ModBus_DB".KP OF
+	    1:
+	        "AUMA_KP_2_1_DB".AUMA["ModBus_DB".cnt].Link := FALSE;
+	        "AUMA_KP_2_1_DB".AUMA["ModBus_DB".cnt].NoRead := TRUE;
+	    2:
+	        "AUMA_KP_2_2_DB".AUMA["ModBus_DB".cnt].Link := FALSE;
+	        "AUMA_KP_2_2_DB".AUMA["ModBus_DB".cnt].NoRead := TRUE;
+	    3:
+	        "AUMA_KP_2_3_DB".AUMA["ModBus_DB".cnt].Link := FALSE;
+	        "AUMA_KP_2_3_DB".AUMA["ModBus_DB".cnt].NoRead := TRUE;
+	    4:
+	        "AUMA_KP_2_4_DB".AUMA["ModBus_DB".cnt].Link := FALSE;
+	        "AUMA_KP_2_4_DB".AUMA["ModBus_DB".cnt].NoRead := TRUE;
+	    5:
+	        "AUMA_KP_2_5_DB".AUMA["ModBus_DB".cnt].Link := FALSE;
+	        "AUMA_KP_2_5_DB".AUMA["ModBus_DB".cnt].NoRead := TRUE;
+	    6:
+	        "AUMA_KP_2_6_DB".AUMA["ModBus_DB".cnt].Link := FALSE;
+	        "AUMA_KP_2_6_DB".AUMA["ModBus_DB".cnt].NoRead := TRUE;
+	    7:
+	        "AUMA_KP_2_7_DB".AUMA["ModBus_DB".cnt].Link := FALSE;
+	        "AUMA_KP_2_7_DB".AUMA["ModBus_DB".cnt].NoRead := TRUE;
+	    8:
+	        "AUMA_KP_2_8_DB".AUMA["ModBus_DB".cnt].Link := FALSE;
+	        "AUMA_KP_2_8_DB".AUMA["ModBus_DB".cnt].NoRead := TRUE;
+	    9:
+	        "AUMA_KP_2_9_DB".AUMA["ModBus_DB".cnt].Link := FALSE;
+	        "AUMA_KP_2_9_DB".AUMA["ModBus_DB".cnt].NoRead := TRUE;
+	    10:
+	        "AUMA_KP_2_10_DB".AUMA["ModBus_DB".cnt].Link := FALSE;
+	        "AUMA_KP_2_10_DB".AUMA["ModBus_DB".cnt].NoRead := TRUE;
+	    11:
+	        "AUMA_KP_1_DB".AUMA["ModBus_DB".cnt].Link := FALSE;
+	        "AUMA_KP_1_DB".AUMA["ModBus_DB".cnt].NoRead := TRUE;
+	    12:
+	        "AUMA_KP_2_DB".AUMA["ModBus_DB".cnt].Link := FALSE;
+	        "AUMA_KP_2_DB".AUMA["ModBus_DB".cnt].NoRead := TRUE;
+	    13:
+	        "AUMA_KP_3_DB".AUMA["ModBus_DB".cnt].Link := FALSE;
+	        "AUMA_KP_3_DB".AUMA["ModBus_DB".cnt].NoRead := TRUE;
+	    14:
+	        "AUMA_KP_4_DB".AUMA["ModBus_DB".cnt].Link := FALSE;
+	        "AUMA_KP_4_DB".AUMA["ModBus_DB".cnt].NoRead := TRUE;
+	    15:
+	        "AUMA_KP_5_DB".AUMA["ModBus_DB".cnt].Link := FALSE;
+	        "AUMA_KP_5_DB".AUMA["ModBus_DB".cnt].NoRead := TRUE;
+	    20:
+	        "FE_DB".FE["ModBus_DB".cnt].Link := FALSE;
+	        "FE_DB".FE["ModBus_DB".cnt].NoRead := TRUE;
+	    21:
+	        "LE_DB".LE["ModBus_DB".cnt].Link := FALSE;
+	        "LE_DB".LE["ModBus_DB".cnt].NoRead := TRUE;
+	    22:
+	        "PE_DB".PE["ModBus_DB".cnt].Link := FALSE;
+	        "PE_DB".PE["ModBus_DB".cnt].NoRead := TRUE;
+	END_CASE;
+	
+	
+END_FUNCTION
+

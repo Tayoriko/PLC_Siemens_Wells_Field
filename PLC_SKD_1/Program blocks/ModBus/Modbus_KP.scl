@@ -1,0 +1,136 @@
+﻿FUNCTION "Modbus_KP" : Void
+{ S7_Optimized_Access := 'TRUE' }
+VERSION : 0.1
+   VAR_INPUT 
+      KP : Int;
+      cnt : Int;
+   END_VAR
+
+   VAR_OUTPUT 
+      use : Bool;
+   END_VAR
+
+   VAR_IN_OUT 
+      IP {InstructionName := 'IP_V4'; LibVersion := '1.0'} : IP_V4;
+      Port : UInt;
+      ADDR : UInt;
+   END_VAR
+
+
+BEGIN
+	CASE #KP OF
+	    1:  //  КП2.1
+	        IF NOT "AUMA_KP_2_1_DB".AUMA[#cnt].Use THEN
+	            "AUMA_KP_2_1_DB".AUMA[#cnt].Link := FALSE;
+	            #use := FALSE;
+	        ELSE
+	            #use := TRUE;
+	            #IP := "tGw_DB".tGw["AUMA_KP_2_1_DB".AUMA[#cnt].ID].IP;
+	            #Port := "tGw_DB".tGw["AUMA_KP_2_1_DB".AUMA[#cnt].ID]."Port";
+	            #ADDR := "AUMA_KP_2_1_DB".AUMA[#cnt].ADDR;
+	        END_IF;
+	    2:  //  КП2.2
+	        IF NOT "AUMA_KP_2_2_DB".AUMA[#cnt].Use THEN
+	            "AUMA_KP_2_2_DB".AUMA[#cnt].Link := FALSE;
+	            #use := FALSE;
+	        ELSE
+	            #use := TRUE;
+	            #IP := "tGw_DB".tGw["AUMA_KP_2_2_DB".AUMA[#cnt].ID].IP;
+	            #Port := "tGw_DB".tGw["AUMA_KP_2_2_DB".AUMA[#cnt].ID]."Port";
+	            #ADDR := "AUMA_KP_2_2_DB".AUMA[#cnt].ADDR;
+	        END_IF;
+	    3:  //  КП2.3
+	        IF NOT "AUMA_KP_2_3_DB".AUMA[#cnt].Use THEN
+	            "AUMA_KP_2_3_DB".AUMA[#cnt].Link := FALSE;
+	            #use := FALSE;
+	        ELSE
+	            #use := TRUE;
+	            #IP := "tGw_DB".tGw["AUMA_KP_2_3_DB".AUMA[#cnt].ID].IP;
+	            #Port := "tGw_DB".tGw["AUMA_KP_2_3_DB".AUMA[#cnt].ID]."Port";
+	            #ADDR := "AUMA_KP_2_3_DB".AUMA[#cnt].ADDR;
+	        END_IF;
+	    4:  //  КП2.4
+	        IF NOT "AUMA_KP_2_4_DB".AUMA[#cnt].Use THEN
+	            "AUMA_KP_2_4_DB".AUMA[#cnt].Link := FALSE;
+	            #use := FALSE;
+	        ELSE
+	            #use := TRUE;
+	            #IP := "tGw_DB".tGw["AUMA_KP_2_4_DB".AUMA[#cnt].ID].IP;
+	            #Port := "tGw_DB".tGw["AUMA_KP_2_4_DB".AUMA[#cnt].ID]."Port";
+	            #ADDR := "AUMA_KP_2_4_DB".AUMA[#cnt].ADDR;
+	        END_IF;
+	    5:  //  КП2.5
+	        IF NOT "AUMA_KP_2_5_DB".AUMA[#cnt].Use THEN
+	            "AUMA_KP_2_5_DB".AUMA[#cnt].Link := FALSE;
+	            #use := FALSE;
+	        ELSE
+	            #use := TRUE;
+	            #IP := "tGw_DB".tGw["AUMA_KP_2_5_DB".AUMA[#cnt].ID].IP;
+	            #Port := "tGw_DB".tGw["AUMA_KP_2_5_DB".AUMA[#cnt].ID]."Port";
+	            #ADDR := "AUMA_KP_2_5_DB".AUMA[#cnt].ADDR;
+	        END_IF;
+	    6:  //  КП2.6
+	        IF NOT "AUMA_KP_2_6_DB".AUMA[#cnt].Use THEN
+	            "AUMA_KP_2_6_DB".AUMA[#cnt].Link := FALSE;
+	            #use := FALSE;
+	        ELSE
+	            #use := TRUE;
+	            #IP := "tGw_DB".tGw["AUMA_KP_2_6_DB".AUMA[#cnt].ID].IP;
+	            #Port := "tGw_DB".tGw["AUMA_KP_2_6_DB".AUMA[#cnt].ID]."Port";
+	            #ADDR := "AUMA_KP_2_6_DB".AUMA[#cnt].ADDR;
+	        END_IF;
+	    7:  //  КП2.7
+	        IF NOT "AUMA_KP_2_7_DB".AUMA[#cnt].Use THEN
+	            "AUMA_KP_2_7_DB".AUMA[#cnt].Link := FALSE;
+	            #use := FALSE;
+	        ELSE
+	            #use := TRUE;
+	            #IP := "tGw_DB".tGw["AUMA_KP_2_7_DB".AUMA[#cnt].ID].IP;
+	            #Port := "tGw_DB".tGw["AUMA_KP_2_7_DB".AUMA[#cnt].ID]."Port";
+	            #ADDR := "AUMA_KP_2_7_DB".AUMA[#cnt].ADDR;
+	        END_IF;
+	    8:  //  КП2.8
+	        IF NOT "AUMA_KP_2_8_DB".AUMA[#cnt].Use THEN
+	            "AUMA_KP_2_8_DB".AUMA[#cnt].Link := FALSE;
+	            #use := FALSE;
+	        ELSE
+	            #use := TRUE;
+	            #IP := "tGw_DB".tGw["AUMA_KP_2_8_DB".AUMA[#cnt].ID].IP;
+	            #Port := "tGw_DB".tGw["AUMA_KP_2_8_DB".AUMA[#cnt].ID]."Port";
+	            #ADDR := "AUMA_KP_2_8_DB".AUMA[#cnt].ADDR;
+	        END_IF;
+	    9:  //  КП2.9
+	        IF NOT "AUMA_KP_2_9_DB".AUMA[#cnt].Use THEN
+	            "AUMA_KP_2_9_DB".AUMA[#cnt].Link := FALSE;
+	            #use := FALSE;
+	        ELSE
+	            #use := TRUE;
+	            #IP := "tGw_DB".tGw["AUMA_KP_2_9_DB".AUMA[#cnt].ID].IP;
+	            #Port := "tGw_DB".tGw["AUMA_KP_2_9_DB".AUMA[#cnt].ID]."Port";
+	            #ADDR := "AUMA_KP_2_9_DB".AUMA[#cnt].ADDR;
+	        END_IF;
+	    10:  //  КП2.10
+	        IF NOT "AUMA_KP_2_10_DB".AUMA[#cnt].Use THEN
+	            "AUMA_KP_2_10_DB".AUMA[#cnt].Link := FALSE;
+	            #use := FALSE;
+	        ELSE
+	            #use := TRUE;
+	            #IP := "tGw_DB".tGw["AUMA_KP_2_10_DB".AUMA[#cnt].ID].IP;
+	            #Port := "tGw_DB".tGw["AUMA_KP_2_10_DB".AUMA[#cnt].ID]."Port";
+	            #ADDR := "AUMA_KP_2_10_DB".AUMA[#cnt].ADDR;
+	        END_IF;
+	    11:  //  КП1
+	        IF NOT "AUMA_KP_1_DB".AUMA[#cnt].Use THEN
+	            "AUMA_KP_1_DB".AUMA[#cnt].Link := FALSE;
+	            #use := FALSE;
+	        ELSE
+	            #use := TRUE;
+	            #IP := "tGw_DB".tGw["AUMA_KP_1_DB".AUMA[#cnt].ID].IP;
+	            #Port := "tGw_DB".tGw["AUMA_KP_1_DB".AUMA[#cnt].ID]."Port";
+	            #ADDR := "AUMA_KP_1_DB".AUMA[#cnt].ADDR;
+	        END_IF;
+	    ELSE
+	        #use := FALSE;
+	END_CASE;
+END_FUNCTION
+

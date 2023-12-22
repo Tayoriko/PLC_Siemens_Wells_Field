@@ -1,0 +1,38 @@
+﻿FUNCTION_BLOCK "drv_CMD"
+{ S7_Optimized_Access := 'TRUE' }
+VERSION : 0.1
+   VAR_INPUT 
+      Emergency : Bool;
+   END_VAR
+
+   VAR_IN_OUT 
+      CMD : "CMD";
+   END_VAR
+
+
+BEGIN
+	// Device mode determination
+	IF NOT #Emergency THEN
+	    //Normal mode
+	    IF NOT #CMD.Force THEN
+	        //No technological lock
+	        IF NOT #CMD.Lock AND NOT #CMD.Alarm THEN
+	            //No manual mode
+	            IF NOT #CMD.Hand THEN
+	                #CMD.Start_M := #CMD.Start_A;
+	            END_IF;
+	        ELSE
+	            //Technological lock or device alarm
+	            #CMD.Start_M := FALSE;
+	        END_IF;
+	    ELSE
+	        IF #CMD.Lock OR #CMD.Alarm THEN
+	            #CMD.Start_M := FALSE;
+	        END_IF;
+	    END_IF;
+	ELSE
+	    //Emergency stop
+	    #CMD.Start_M := FALSE;
+	END_IF;
+END_FUNCTION_BLOCK
+

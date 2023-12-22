@@ -1,0 +1,42 @@
+﻿FUNCTION "Comm_FC" : Void
+{ S7_Optimized_Access := 'TRUE' }
+VERSION : 0.1
+   VAR_TEMP 
+      x : Int;
+   END_VAR
+
+
+BEGIN
+	// Передача данных на шкафы скважин
+	FOR #x := 1 TO 11 DO
+	    "Comm_DB".SHUSKV[#x].Output.AI_LE_105_Result := "LE_105".Result;
+	    "Comm_DB".SHUSKV[#x].Output.AI_LE_106_Result := "LE_106".Result;
+	    "Comm_DB".SHUSKV[#x].Output.AI_LE_107_Result := "LE_107".Result;
+	    "Comm_DB".SHUSKV[#x].Output.AI_LE_108_Result := "LE_108".Result;
+	    "Comm_DB".SHUSKV[#x].Output.AI_TE_101_Result := "TE_101".Result;
+	    "Comm_DB".SHUSKV[#x].Output.AI_TE_102_Result := "TE_102".Result;
+	    "Comm_DB".SHUSKV[#x].Output.AI_TE_103_Result := "TE_103".Result;
+	    "Comm_DB".SHUSKV[#x].Output.AI_TE_104_Result := "TE_104".Result;
+	END_FOR;
+	
+	// Передача данных на скаду
+	"Comm_Scada".Input.LE_105_Result := "LE_105".Result;
+	"Comm_Scada".Input.LE_106_Result := "LE_106".Result;
+	"Comm_Scada".Input.LE_107_Result := "LE_107".Result;
+	"Comm_Scada".Input.LE_108_Result := "LE_108".Result;
+	"Comm_Scada".Input.TE_101_Result := "TE_101".Result;
+	"Comm_Scada".Input.TE_102_Result := "TE_102".Result;
+	"Comm_Scada".Input.TE_103_Result := "TE_103".Result;
+	"Comm_Scada".Input.TE_104_Result := "TE_104".Result;
+	"Comm_Scada".Input.LE_105_Alarm := "LE_105".Alarms;
+	"Comm_Scada".Input.LE_106_Alarm := "LE_106".Alarms;
+	"Comm_Scada".Input.LE_107_Alarm := "LE_107".Alarms;
+	"Comm_Scada".Input.LE_108_Alarm := "LE_108".Alarms;
+	"Comm_Scada".Input.TE_101_Alarm := "TE_101".Alarms;
+	"Comm_Scada".Input.TE_102_Alarm := "TE_102".Alarms;
+	"Comm_Scada".Input.TE_103_Alarm := "TE_103".Alarms;
+	"Comm_Scada".Input.TE_104_Alarm := "TE_104".Alarms;
+	
+	
+END_FUNCTION
+

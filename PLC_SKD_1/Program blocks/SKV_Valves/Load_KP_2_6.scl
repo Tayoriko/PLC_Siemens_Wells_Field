@@ -1,0 +1,76 @@
+﻿FUNCTION "Load_KP_2_6" : Void
+{ S7_Optimized_Access := 'TRUE' }
+VERSION : 0.1
+   VAR_IN_OUT 
+      ok : Bool;
+      load : Int;
+      last : Int;
+   END_VAR
+
+
+BEGIN
+	//проверка загруженных данных
+	IF #load <> #last THEN
+	    #ok := FALSE;
+	END_IF;
+	
+	//первичная загрузка данных
+	IF NOT #ok THEN
+	    "KP_2_6_DB".KP[0].CMD := "KP_2_6_DB".KP[#load].CMD;
+	    "KP_2_6_DB".KP[0].Mode := "KP_2_6_DB".KP[#load].Mode;
+	    "KP_2_6_DB".KP[0].Status := "KP_2_6_DB".KP[#load].Status;
+	    "KP_2_6_DB".KP[0].FB := "KP_2_6_DB".KP[#load].FB;
+	    "KP_2_6_DB".KP[0].Use := "KP_2_6_DB".KP[#load].Use;
+	    "KP_2_6_DB".KP[0].Alarm := "KP_2_6_DB".KP[#load].Alarm;
+	    "KP_2_6_DB".KP[0].Clock[0].SP := "KP_2_6_DB".KP[#load].Clock[0].SP;
+	    "KP_2_6_DB".KP[0].Clock[0].Now := "KP_2_6_DB".KP[#load].Clock[0].Now;
+	    "KP_2_6_DB".KP[0].Clock[1].SP := "KP_2_6_DB".KP[#load].Clock[1].SP;
+	    "KP_2_6_DB".KP[0].Clock[1].Now := "KP_2_6_DB".KP[#load].Clock[1].Now;
+	    "KP_2_6_DB".KP[0].Clock[2].SP := "KP_2_6_DB".KP[#load].Clock[2].SP;
+	    "KP_2_6_DB".KP[0].Clock[2].Now := "KP_2_6_DB".KP[#load].Clock[2].Now;
+	    "KP_2_6_DB".KP[0].Clock[3].SP := "KP_2_6_DB".KP[#load].Clock[3].SP;
+	    "KP_2_6_DB".KP[0].Clock[3].Now := "KP_2_6_DB".KP[#load].Clock[3].Now;
+	    "KP_2_6_DB".KP[0].Clock[4].SP := "KP_2_6_DB".KP[#load].Clock[4].SP;
+	    "KP_2_6_DB".KP[0].Clock[4].Now := "KP_2_6_DB".KP[#load].Clock[4].Now;
+	    "KP_2_6_DB".KP[0].CodeID := "KP_2_6_DB".KP[#load].CodeID;
+	    "KP_2_6_DB".KP[0].Position := "KP_2_6_DB".KP[#load].Position;
+	    "KP_2_6_DB".KP[0].Speed := "KP_2_6_DB".KP[#load].Speed;
+	    "KP_2_6_DB".KP[0].Name := "KP_2_6_DB".KP[#load].Name;
+	    #ok := true;
+	    #last := #load;
+	END_IF;
+	
+	//управление с панели
+	IF #ok THEN
+	    "KP_2_6_DB".KP[#load].CMD.Hand := "KP_2_6_DB".KP[0].CMD.Hand;
+	    "KP_2_6_DB".KP[#load].CMD.Force := "KP_2_6_DB".KP[0].CMD.Force;
+	    "KP_2_6_DB".KP[#load].CMD.Start_M := "KP_2_6_DB".KP[0].CMD.Start_M;
+	    "KP_2_6_DB".KP[#load].CMD.Reset := "KP_2_6_DB".KP[0].CMD.Reset;
+	    "KP_2_6_DB".KP[#load].Use := "KP_2_6_DB".KP[0].Use;
+	    "KP_2_6_DB".KP[#load].Clock[0].SP := "KP_2_6_DB".KP[0].Clock[0].SP;
+	    "KP_2_6_DB".KP[#load].Clock[1].SP := "KP_2_6_DB".KP[0].Clock[1].SP;
+	    "KP_2_6_DB".KP[#load].Clock[2].SP := "KP_2_6_DB".KP[0].Clock[2].SP;
+	    "KP_2_6_DB".KP[#load].Clock[3].SP := "KP_2_6_DB".KP[0].Clock[3].SP;
+	    "KP_2_6_DB".KP[#load].Clock[4].SP := "KP_2_6_DB".KP[0].Clock[4].SP;
+	    "KP_2_6_DB".KP[#load].CodeID := "KP_2_6_DB".KP[0].CodeID;
+	    "KP_2_6_DB".KP[#load].Speed := "KP_2_6_DB".KP[0].Speed;
+	    "KP_2_6_DB".KP[0].CMD.Local := "KP_2_6_DB".KP[#load].CMD.Local;
+	    "KP_2_6_DB".KP[0].CMD.Lock := "KP_2_6_DB".KP[#load].CMD.Lock;
+	    "KP_2_6_DB".KP[0].Mode := "KP_2_6_DB".KP[#load].Mode;
+	    "KP_2_6_DB".KP[0].Status := "KP_2_6_DB".KP[#load].Status;
+	    "KP_2_6_DB".KP[0].FB := "KP_2_6_DB".KP[#load].FB;
+	    "KP_2_6_DB".KP[0].Alarm := "KP_2_6_DB".KP[#load].Alarm;
+	    "KP_2_6_DB".KP[0].Clock[0].Now := "KP_2_6_DB".KP[#load].Clock[0].Now;
+	    "KP_2_6_DB".KP[0].Clock[1].Now := "KP_2_6_DB".KP[#load].Clock[1].Now;
+	    "KP_2_6_DB".KP[0].Clock[2].Now := "KP_2_6_DB".KP[#load].Clock[2].Now;
+	    "KP_2_6_DB".KP[0].Clock[3].Now := "KP_2_6_DB".KP[#load].Clock[3].Now;
+	    "KP_2_6_DB".KP[0].Clock[4].Now := "KP_2_6_DB".KP[#load].Clock[4].Now;
+	    "KP_2_6_DB".KP[0].Position := "KP_2_6_DB".KP[#load].Position;
+	    IF "KP_2_6_DB".KP[0].CMD.Reset THEN
+	        "KP_2_6_DB".KP[0].CMD.Reset := FALSE;
+	    END_IF;
+	END_IF;
+	
+	    
+END_FUNCTION
+

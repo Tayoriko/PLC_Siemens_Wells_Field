@@ -1,0 +1,36 @@
+﻿FUNCTION "ModBus_AUMA_WRITE" : Void
+{ S7_Optimized_Access := 'TRUE' }
+VERSION : 0.1
+   VAR_TEMP 
+      offset : UInt;
+      "DB" : UInt;
+   END_VAR
+
+   VAR CONSTANT 
+      I : Byte := 16#81;   // Input
+      Q : Byte := 16#82;   // Output
+      M : Byte := 16#83;   // Bit Memory
+      D : Byte := 16#84;   // Data Block
+      PIW : Byte := 16#1;   // S7-1500 Only
+      zero : Byte;
+   END_VAR
+
+
+BEGIN
+	IF "ModBus_DB".cnt > 0 THEN
+	    #offset := ("ModBus_DB".cnt * 40);
+	ELSE
+	    #offset := 0;
+	END_IF;
+	
+	#DB := 410 + "ModBus_DB".KP;
+	
+	//запись команды и уставки в коммуникацию
+	"Indirect_MOVE"(
+	                Length := 2,
+	                Source_DB := #DB,
+	                Source_OFFSET := #offset + 14,
+	                Target_DB := 40,
+	                Target_OFFSET := 0);
+END_FUNCTION
+

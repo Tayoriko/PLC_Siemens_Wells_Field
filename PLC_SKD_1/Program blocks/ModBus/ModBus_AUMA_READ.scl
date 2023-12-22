@@ -1,0 +1,74 @@
+﻿FUNCTION "ModBus_AUMA_READ" : Void
+{ S7_Optimized_Access := 'TRUE' }
+VERSION : 0.1
+   VAR_TEMP 
+      offset : UInt;
+      "DB" : UInt;
+   END_VAR
+
+
+BEGIN
+	IF "ModBus_DB".cnt > 0 THEN
+	    #offset := ("ModBus_DB".cnt * 40);
+	ELSE
+	    #offset := 0;
+	END_IF;
+	
+	#DB := 410 + "ModBus_DB".KP;
+	
+	CASE "ModBus_DB".KP OF
+	    1:
+	        "AUMA_KP_2_1_DB".AUMA["ModBus_DB".cnt].Link := TRUE;
+	        "ModBus_DB".update := "AUMA_KP_2_1_DB".AUMA["ModBus_DB".cnt].Update;
+	    2:
+	        "AUMA_KP_2_2_DB".AUMA["ModBus_DB".cnt].Link := TRUE;
+	        "ModBus_DB".update := "AUMA_KP_2_2_DB".AUMA["ModBus_DB".cnt].Update;
+	    3:
+	        "AUMA_KP_2_3_DB".AUMA["ModBus_DB".cnt].Link := TRUE;
+	        "ModBus_DB".update := "AUMA_KP_2_3_DB".AUMA["ModBus_DB".cnt].Update;
+	    4:
+	        "AUMA_KP_2_4_DB".AUMA["ModBus_DB".cnt].Link := TRUE;
+	        "ModBus_DB".update := "AUMA_KP_2_4_DB".AUMA["ModBus_DB".cnt].Update;
+	    5:
+	        "AUMA_KP_2_5_DB".AUMA["ModBus_DB".cnt].Link := TRUE;
+	        "ModBus_DB".update := "AUMA_KP_2_5_DB".AUMA["ModBus_DB".cnt].Update;
+	    6:
+	        "AUMA_KP_2_6_DB".AUMA["ModBus_DB".cnt].Link := TRUE;
+	        "ModBus_DB".update := "AUMA_KP_2_6_DB".AUMA["ModBus_DB".cnt].Update;
+	    7:
+	        "AUMA_KP_2_7_DB".AUMA["ModBus_DB".cnt].Link := TRUE;
+	        "ModBus_DB".update := "AUMA_KP_2_7_DB".AUMA["ModBus_DB".cnt].Update;
+	    8:
+	        "AUMA_KP_2_8_DB".AUMA["ModBus_DB".cnt].Link := TRUE;
+	        "ModBus_DB".update := "AUMA_KP_2_8_DB".AUMA["ModBus_DB".cnt].Update;
+	    9:
+	        "AUMA_KP_2_9_DB".AUMA["ModBus_DB".cnt].Link := TRUE;
+	        "ModBus_DB".update := "AUMA_KP_2_9_DB".AUMA["ModBus_DB".cnt].Update;
+	    10:
+	        "AUMA_KP_2_10_DB".AUMA["ModBus_DB".cnt].Link := TRUE;
+	        "ModBus_DB".update := "AUMA_KP_2_10_DB".AUMA["ModBus_DB".cnt].Update;
+	    11:
+	        "AUMA_KP_1_DB".AUMA["ModBus_DB".cnt].Link := TRUE;
+	        "ModBus_DB".update := "AUMA_KP_1_DB".AUMA["ModBus_DB".cnt].Update;
+	    12:
+	        "AUMA_KP_2_DB".AUMA["ModBus_DB".cnt].Link := TRUE;
+	        "ModBus_DB".update := "AUMA_KP_2_DB".AUMA["ModBus_DB".cnt].Update;
+	    13:
+	        "AUMA_KP_3_DB".AUMA["ModBus_DB".cnt].Link := TRUE;
+	        "ModBus_DB".update := "AUMA_KP_3_DB".AUMA["ModBus_DB".cnt].Update;
+	    14:
+	        "AUMA_KP_4_DB".AUMA["ModBus_DB".cnt].Link := TRUE;
+	        "ModBus_DB".update := "AUMA_KP_4_DB".AUMA["ModBus_DB".cnt].Update;
+	    15:
+	        "AUMA_KP_5_DB".AUMA["ModBus_DB".cnt].Link := TRUE;
+	        "ModBus_DB".update := "AUMA_KP_5_DB".AUMA["ModBus_DB".cnt].Update;
+	END_CASE;
+	
+	"Indirect_MOVE"(
+	                Length := 4,
+	                Source_DB := 40,
+	                Source_OFFSET := 0,
+	                Target_DB := #DB,
+	                Target_OFFSET := #offset);
+END_FUNCTION
+

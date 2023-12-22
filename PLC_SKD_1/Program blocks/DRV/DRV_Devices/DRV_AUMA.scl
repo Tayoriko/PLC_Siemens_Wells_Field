@@ -1,0 +1,324 @@
+﻿FUNCTION_BLOCK "DRV_AUMA"
+{ S7_Optimized_Access := 'FALSE' }
+VERSION : 0.1
+   VAR 
+      CMD { S7_SetPoint := 'False'} : "CMD";   // Блок команд
+      Mode : Int;   // Режим работы
+      Status : Int;   // Статус устройства
+      "FB" : Struct   // Функционал
+         QF : Bool;   // Защитный автомат
+         KM_Open : Bool;   // Пускатель - открыть
+         KM_Close : Bool;   // Пускатель - закрыть
+         Open : Bool;   // ОС - открыто
+         Close : Bool;   // ОС - закрыто
+         Reserv : Bool;
+         Local_Open : Bool;   // Локальное открытие
+         Local_Close : Bool;   // Локальное закрытие
+      END_STRUCT;
+      Use : Struct   // Функционал
+         QF { S7_SetPoint := 'True'} : Bool;   // Защитный автомат
+         KM_Open { S7_SetPoint := 'True'} : Bool;   // Пускатель - открыть
+         KM_Close { S7_SetPoint := 'True'} : Bool;   // Пускатель - закрыть
+         Open { S7_SetPoint := 'True'} : Bool := true;   // ОС - открыто
+         Close { S7_SetPoint := 'True'} : Bool := true;   // ОС - закрыто
+         One_KM { S7_SetPoint := 'True'} : Bool;   // Общий пускатель
+         Air { S7_SetPoint := 'True'} : Bool;   // пневматика - давить всегда
+         Cross { S7_SetPoint := 'True'} : Bool;   // Кросс-замена датчиков
+         CMD_Open { S7_SetPoint := 'True'} : Bool := true;
+         CMD_Close { S7_SetPoint := 'True'} : Bool;
+         CMD_Reset : Bool;
+         Local_Keys { S7_SetPoint := 'True'} : Bool;
+         Local_EndPoint : Bool := true;
+         Enable : Bool;
+         CWF { S7_SetPoint := 'True'} : Bool;   // не закрывать при аварии
+         Duo : Bool;
+      END_STRUCT;
+      Alarm : Struct   // Список аварий
+         Block : Bool;   // Аварийная остановка
+         QF : Bool;   // Выбило защитный автомат
+         KM_Open : Bool;   // Не сработал пускатель - открыть
+         KM_Close : Bool;   // Не сработал пускатель - закрыть
+         Two_S : Bool;   // Две ОС
+         Open : Bool;   // Не сработал концевик - открыто
+         Close : Bool;   // Не сработал концевик - закрыто
+         OpTime : Bool;
+         Link : Bool;   // Нет связи
+      END_STRUCT;
+      support : Word;   // Слово аварий
+      CMD_Open : Bool;
+      CMD_Close : Bool;
+      xON : Bool;
+      xOFF : Bool;
+      Clock : Array[0..4] of "Time_S";   // Блок таймеров
+      CodeID { S7_SetPoint := 'True'} : Int;
+      Position : Real;
+      Speed { S7_SetPoint := 'True'} : Byte;
+      "Name" : String[4];
+      PT {InstructionName := 'R_TRIG'; LibVersion := '1.0'; S7_SetPoint := 'False'} : Array[0..1] of R_TRIG;
+      NT {InstructionName := 'F_TRIG'; LibVersion := '1.0'; S7_SetPoint := 'False'} : Array[0..1] of F_TRIG;
+   END_VAR
+
+   VAR_TEMP 
+      dev : Int;
+   END_VAR
+
+
+BEGIN
+	//VALVES
+	//control of typical air and electrical valves
+	// - doors
+	// - dampers
+	// - valves
+	// - etc
+	
+	//global commands
+	//auto mode
+	(*
+	IF "Reset_Hand" THEN
+	    #CMD.Hand := FALSE;
+	END_IF;*)
+	
+	//simulation mode
+	#NT[0](CLK := "Sim_All");
+	#NT[0](CLK := "Sim_All");
+	IF #NT[0].Q THEN
+	    #CMD.Sim := TRUE;
+	END_IF;
+	IF #NT[0].Q THEN
+	    #CMD.Sim := FALSE;
+	END_IF;
+	//global reset
+	IF "Reset_All" THEN
+	    #CMD.Reset := TRUE;
+	END_IF;
+	
+	//QF control
+	IF #FB.QF THEN
+	    #Alarm.QF := TRUE;
+	END_IF;
+	(*
+	//KM control
+	IF (#CMD_Open AND NOT #xON AND NOT #FB.KM_Open) OR (#CMD_Close AND NOT #xOFF AND NOT #FB.KM_Close) THEN
+	    #Clock[0].Start := TRUE;
+	    IF #Clock[0]."Exit" AND #CMD_Open THEN
+	        #Alarm.KM_Open := TRUE;
+	    END_IF;
+	    IF #Clock[0]."Exit" AND #CMD_Close THEN
+	        #Alarm.KM_Close := TRUE;
+	    END_IF;
+	ELSE
+	    #Clock[0].Start := FALSE;
+	END_IF;*)
+	
+	
+	//device control
+	"drv_Mode"(CMD := #CMD,
+	           All_Block := "All_Block",
+	           Mode => #Mode);
+	//Hand mode flag
+	IF #CMD.Hand THEN
+	    "Hand_VD2" := TRUE;
+	END_IF;
+	
+	//delay turn on
+	IF #Clock[1].SP > 0 AND NOT #CMD.Hand THEN
+	    IF #CMD.Start_M THEN
+	        #Clock[1].Start := TRUE;
+	        #Clock[2].Start := FALSE;
+	        IF #Clock[1]."Exit" THEN
+	            #support.%X1 := TRUE;
+	        END_IF;
+	    ELSE
+	        #Clock[1].Start := FALSE;
+	    END_IF;
+	ELSE
+	    #support.%X1 := #CMD.Start_M;
+	END_IF;
+	
+	//delay turn off
+	IF #Clock[2].SP > 0 AND NOT #CMD.Hand THEN
+	    IF NOT #CMD.Start_M THEN
+	        #Clock[1].Start := FALSE;
+	        #Clock[2].Start := TRUE;
+	        IF #Clock[2]."Exit" THEN
+	            #support.%X1 := FALSE;
+	        END_IF;
+	    ELSE
+	        #Clock[2].Start := FALSE;
+	    END_IF;
+	ELSE
+	    #support.%X1 := #CMD.Start_M;
+	END_IF;
+	
+	//Opening
+	IF #support.%X1 AND NOT #CMD.Alarm AND NOT #CMD.Sim THEN
+	    #support.%X3 := FALSE;
+	    IF NOT #FB.Open THEN
+	        #support.%X2 := TRUE;
+	        #Clock[3].Start := TRUE;
+	        #Clock[3].Pause := FALSE;
+	    END_IF;
+	    #support.%X3 := FALSE;
+	    #Clock[4].Start := FALSE;
+	    
+	    //opening in progress
+	    IF NOT #Clock[3]."Exit" AND NOT #FB.Open THEN
+	        #Status := 2;
+	    END_IF;
+	    //opening in fault
+	    IF #Clock[3]."Exit" AND NOT #Alarm.Link THEN
+	        IF NOT #FB.Open AND NOT #FB.Close THEN
+	            #Status := 5;
+	        END_IF;
+	        IF NOT #FB.Open AND #FB.Close THEN
+	            #Status := 7;
+	        END_IF;
+	        #Alarm.Open := TRUE;
+	    END_IF;
+	    //opening complieted
+	    IF #FB.Open THEN
+	        #Status := 1;
+	        #Clock[3].Pause := TRUE;
+	        #support.%X2 := FALSE;
+	        IF #CMD.Alarm THEN
+	            #Status := 6;
+	            #support.%X2 := FALSE;
+	        END_IF;
+	    END_IF;
+	    
+	END_IF;
+	
+	//Closing
+	IF NOT #support.%X1 AND NOT #CMD.Sim THEN
+	    #support.%X2 := FALSE;
+	    IF NOT #FB.Close THEN
+	        #support.%X3 := TRUE;
+	        #Clock[4].Start := TRUE;
+	        #Clock[4].Pause := FALSE;
+	    END_IF;
+	    #Clock[3].Start := FALSE;
+	    
+	    
+	    //closing in progress
+	    IF NOT #Clock[4]."Exit" AND NOT #FB.Close THEN
+	        #Status := 3;
+	    END_IF;
+	    //closing in fault
+	    IF #Clock[4]."Exit" AND NOT #Alarm.Link THEN
+	        IF NOT #FB.Close AND NOT #FB.Open THEN
+	            #Status := 5;
+	        END_IF;
+	        IF NOT #FB.Close AND #FB.Open THEN
+	            #Status := 6;
+	        END_IF;
+	        #Alarm.Close := TRUE;
+	    END_IF;
+	    //closing complieted
+	    IF #FB.Close THEN
+	        #Status := 0;
+	        #Clock[4].Pause := TRUE;
+	        #support.%X3 := FALSE;
+	        IF #CMD.Alarm THEN
+	            #Status := 7;
+	            #support.%X3 := FALSE;
+	        END_IF;
+	    END_IF;
+	    
+	END_IF;
+	
+	//alarm control
+	IF (#Alarm.Open OR #Alarm.Close OR #Alarm.KM_Close OR #Alarm.KM_Open OR #Alarm.QF(* OR #Alarm.Link*)) AND NOT #CMD.Sim THEN
+	    #CMD.Alarm := TRUE;
+	    "Alm_VD2" := TRUE;
+	END_IF;
+	
+	//disable close while alarm
+	IF #CMD.Alarm THEN
+	    #support.%X2 := FALSE;
+	    #support.%X3 := FALSE;
+	END_IF;
+	
+	//Simulation
+	IF #CMD.Sim THEN
+	    IF #support.%X1 THEN
+	        #Status := 1;
+	    ELSE
+	        #Status := 0;
+	    END_IF;
+	END_IF;
+	
+	//Local mode
+	IF #CMD.Local THEN
+	    IF #FB.Open AND NOT #FB.Close THEN
+	        #Status := 1;
+	    ELSIF NOT #FB.Open AND #FB.Close THEN
+	        #Status := 0;
+	    ELSE
+	        #Status := 2;
+	    END_IF;
+	    #CMD.Reset := TRUE;
+	END_IF;
+	
+	//ON & OFF
+	IF (#FB.Open AND (#CMD.Start_M OR #CMD.Sim)) AND NOT #CMD.Alarm THEN
+	    #xON := TRUE;
+	    #xOFF := FALSE;
+	END_IF;
+	IF (#FB.Close AND (NOT #CMD.Start_M OR #CMD.Sim)) AND NOT #CMD.Alarm THEN
+	    #xON := FALSE;
+	    #xOFF := TRUE;
+	END_IF;
+	IF (NOT #FB.Close AND NOT #FB.Open) OR #CMD.Alarm THEN
+	    #xON := FALSE;
+	    #xOFF := FALSE;
+	END_IF;
+	
+	//commands
+	//turn on
+	IF #support.%X2 THEN
+	    #CMD_Open := TRUE;
+	    #CMD_Close := FALSE;
+	END_IF;
+	//turn off
+	IF #support.%X3 THEN
+	    IF NOT #Use.Duo THEN
+	        #CMD_Open := FALSE;
+	        #CMD_Close := TRUE;
+	    ELSE
+	        #CMD_Open := TRUE;
+	        #CMD_Close := TRUE;
+	    END_IF;
+	END_IF;
+	
+	//shutdown
+	IF (NOT #support.%X2 AND NOT #support.%X3) OR #CMD.Sim THEN
+	    #CMD_Open := FALSE;
+	    #CMD_Close := FALSE;
+	END_IF;
+	
+	//status no connection
+	IF #Alarm.Link THEN
+	    #Status := 4;
+	END_IF;
+	
+	//reset
+	IF #CMD.Reset THEN
+	    #Alarm.QF := FALSE;
+	    #Alarm.KM_Close := FALSE;
+	    #Alarm.KM_Open := FALSE;
+	    #Alarm.Close := FALSE;
+	    #Alarm.Open := FALSE;
+	    #Alarm.Link := FALSE;
+	    FOR #dev := 0 TO 4 DO
+	        #Clock[#dev].Reset := TRUE;
+	    END_FOR;
+	    #CMD.Alarm := FALSE;
+	    #CMD.Reset := FALSE;
+	END_IF;
+	
+	//call timers
+	FOR #dev := 0 TO 4 DO
+	    #Clock[#dev]();
+	END_FOR;
+END_FUNCTION_BLOCK
+

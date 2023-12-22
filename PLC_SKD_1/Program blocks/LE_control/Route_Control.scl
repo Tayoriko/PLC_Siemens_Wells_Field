@@ -1,0 +1,235 @@
+﻿FUNCTION_BLOCK "Route_Control"
+{ S7_Optimized_Access := 'TRUE' }
+VERSION : 0.1
+
+BEGIN
+	//Общие компоненты - открыть
+	IF "SKV_Logic_DB".Start THEN
+	    "KP_REQ".KP_2_1[1] := TRUE;
+	    "KP_REQ".KP_2_1[2] := TRUE;
+	    "KP_REQ".KP_2_2[1] := TRUE;
+	END_IF;
+	
+	//Общие компоненты - закрыть
+	IF NOT "SKV_Logic_DB".Start
+	    AND NOT ("Comm_SKV_1".From_SKV.Status = 1)
+	    AND NOT ("Comm_SKV_2".From_SKV.Status = 1)
+	    AND NOT ("Comm_SKV_3".From_SKV.Status = 1)
+	    AND NOT ("Comm_SKV_13".From_SKV.Status = 1)
+	    AND NOT ("Comm_SKV_14".From_SKV.Status = 1)
+	    AND NOT ("Comm_SKV_15".From_SKV.Status = 1)
+	    AND NOT ("Comm_SKV_20".From_SKV.Status = 1)
+	    AND NOT ("Comm_SKV_21".From_SKV.Status = 1)
+	    AND NOT ("Comm_SKV_22".From_SKV.Status = 1)
+	    AND NOT ("Comm_SKV_23".From_SKV.Status = 1)
+	THEN
+	    "KP_REQ".KP_2_1[1] := FALSE;
+	    "KP_REQ".KP_2_1[2] := FALSE;
+	    "KP_REQ".KP_2_2[1] := FALSE;
+	    "KP_REQ".KP_2_3[1] := FALSE;
+	    "KP_REQ".KP_2_3[2] := FALSE;
+	    "KP_REQ".KP_2_4[1] := FALSE;
+	    "KP_REQ".KP_2_4[2] := FALSE;
+	    "KP_REQ".KP_2_5[1] := FALSE;
+	    "KP_REQ".KP_2_5[2] := FALSE;
+	    "KP_REQ".KP_2_5[3] := FALSE;
+	    "KP_REQ".KP_2_6[1] := FALSE;
+	    "KP_REQ".KP_2_6[2] := FALSE;
+	    "KP_REQ".KP_2_6[3] := FALSE;
+	    "KP_REQ".KP_2_6[4] := FALSE;
+	    "KP_REQ".KP_2_6[5] := FALSE;
+	    "KP_REQ".KP_2_6[6] := FALSE;
+	    "KP_REQ".KP_2_7[1] := FALSE;
+	    "KP_REQ".KP_2_7[2] := FALSE;
+	    "KP_REQ".KP_2_7[3] := FALSE;
+	    "KP_REQ".KP_2_7[4] := FALSE;
+	    "KP_REQ".KP_2_7[5] := FALSE;
+	    "KP_REQ".KP_2_7[6] := FALSE;
+	    "KP_REQ".KP_2_7[7] := FALSE;
+	    "KP_REQ".KP_2_7[8] := FALSE;
+	    "KP_REQ".KP_2_8[1] := FALSE;
+	    "KP_REQ".KP_2_9[1] := FALSE;
+	    "KP_REQ".KP_2_9[2] := FALSE;
+	    "KP_REQ".KP_2_10[1] := FALSE;
+	    "KP_REQ".KP_2_10[2] := FALSE;
+	END_IF;
+	    
+	// СКВ-3 - Сборка маршрута
+	IF "SKV_Logic_DB".Start AND "Comm_SKV_3".To_SKV.CMD.REQ THEN
+	        "KP_REQ".KP_2_8[1] := TRUE;
+	END_IF;
+	//разборка маршрута
+	IF NOT "SKV_Logic_DB".Start OR (NOT ("Comm_SKV_3".From_SKV.Status = 1) AND NOT "Comm_SKV_3".To_SKV.CMD.REQ) THEN
+	    "KP_REQ".KP_2_8[1] := FALSE;
+	END_IF;
+	
+	// СКВ-23 - Сборка маршрута
+	IF "SKV_Logic_DB".Start AND "Comm_SKV_23".To_SKV.CMD.REQ THEN
+	    "KP_REQ".KP_2_10[1] := TRUE;
+	    "KP_REQ".KP_2_9[2] := TRUE;
+	    "KP_REQ".KP_2_7[2] := TRUE;
+	    "KP_REQ".KP_2_7[1] := TRUE;
+	END_IF;
+	//разборка маршрута
+	IF NOT "SKV_Logic_DB".Start OR (NOT ("Comm_SKV_23".From_SKV.Status = 1) AND NOT "Comm_SKV_23".To_SKV.CMD.REQ) THEN
+	    "KP_REQ".KP_2_10[1] := FALSE;
+	END_IF;
+	
+	// СКВ-15 - Сборка маршрута
+	IF "SKV_Logic_DB".Start AND "Comm_SKV_15".To_SKV.CMD.REQ THEN
+	    "KP_REQ".KP_2_10[2] := TRUE;
+	    "KP_REQ".KP_2_9[2] := TRUE;
+	    "KP_REQ".KP_2_7[2] := TRUE;
+	    "KP_REQ".KP_2_7[1] := TRUE;
+	END_IF;
+	//разборка маршрута
+	IF NOT "SKV_Logic_DB".Start OR (NOT ("Comm_SKV_15".From_SKV.Status = 1) AND NOT "Comm_SKV_15".To_SKV.CMD.REQ) THEN
+	    "KP_REQ".KP_2_10[2] := FALSE;
+	END_IF;
+	
+	//Общий участок СКВ-23 и СКВ-15
+	IF NOT "SKV_Logic_DB".Start OR ((NOT ("Comm_SKV_23".From_SKV.Status = 1) AND NOT "Comm_SKV_23".To_SKV.CMD.REQ)
+	    AND (NOT ("Comm_SKV_15".From_SKV.Status = 1) AND NOT "Comm_SKV_15".To_SKV.CMD.REQ)) THEN
+	    "KP_REQ".KP_2_9[2] := TRUE;
+	END_IF;
+	
+	// СКВ-12 - Сборка маршрута
+	IF "SKV_Logic_DB".Start AND "Comm_SKV_12".To_SKV.CMD.REQ THEN
+	    "KP_REQ".KP_2_9[1] := TRUE;
+	    "KP_REQ".KP_2_7[2] := TRUE;
+	    "KP_REQ".KP_2_7[1] := TRUE;
+	END_IF;
+	//разборка маршрута
+	IF NOT "SKV_Logic_DB".Start OR (NOT ("Comm_SKV_12".From_SKV.Status = 1) AND NOT "Comm_SKV_12".To_SKV.CMD.REQ) THEN
+	    "KP_REQ".KP_2_9[1] := FALSE;
+	END_IF;
+	
+	//Общий участок СКВ-23, СКВ-15 и СКВ-12
+	IF NOT "SKV_Logic_DB".Start OR ((NOT ("Comm_SKV_23".From_SKV.Status = 1) AND NOT "Comm_SKV_23".To_SKV.CMD.REQ)
+	    AND (NOT ("Comm_SKV_15".From_SKV.Status = 1) AND NOT "Comm_SKV_15".To_SKV.CMD.REQ)
+	    AND (NOT ("Comm_SKV_12".From_SKV.Status = 1) AND NOT "Comm_SKV_12".To_SKV.CMD.REQ))
+	THEN
+	    "KP_REQ".KP_2_7[2] := FALSE;
+	END_IF;
+	
+	
+	// СКВ-13 - Сборка маршрута
+	IF "SKV_Logic_DB".Start AND "Comm_SKV_23".To_SKV.CMD.REQ THEN
+	    "KP_REQ".KP_2_7[6] := TRUE;
+	    "KP_REQ".KP_2_7[3] := TRUE;
+	    "KP_REQ".KP_2_7[4] := TRUE;
+	    "KP_REQ".KP_2_7[5] := TRUE;
+	    "KP_REQ".KP_2_7[1] := TRUE;
+	END_IF;
+	//разборка маршрута
+	IF NOT "SKV_Logic_DB".Start OR (NOT ("Comm_SKV_13".From_SKV.Status = 1) AND NOT "Comm_SKV_13".To_SKV.CMD.REQ) THEN
+	    "KP_REQ".KP_2_7[6] := FALSE;
+	END_IF;
+	
+	// СКВ-14 - Сборка маршрута
+	IF "SKV_Logic_DB".Start AND "Comm_SKV_14".To_SKV.CMD.REQ THEN
+	    "KP_REQ".KP_2_6[1] := TRUE;
+	    
+	    "KP_REQ".KP_2_6[3] := TRUE;
+	    
+	    "KP_REQ".KP_2_7[8] := TRUE;
+	    "KP_REQ".KP_2_7[3] := TRUE;
+	    "KP_REQ".KP_2_7[4] := TRUE;
+	    "KP_REQ".KP_2_7[5] := TRUE;
+	END_IF;
+	//разборка маршрута
+	IF NOT "SKV_Logic_DB".Start OR (NOT ("Comm_SKV_14".From_SKV.Status = 1) AND NOT "Comm_SKV_14".To_SKV.CMD.REQ) THEN
+	    "KP_REQ".KP_2_6[1] := FALSE;
+	END_IF;
+	
+	// СКВ-1 - сборка маршрута
+	IF "SKV_Logic_DB".Start AND "Comm_SKV_1".To_SKV.CMD.REQ THEN
+	    "KP_REQ".KP_2_3[1] := TRUE;
+	    "KP_REQ".KP_2_4[1] := TRUE;
+	    "KP_REQ".KP_2_5[1] := TRUE;
+	    
+	    "KP_REQ".KP_2_6[2] := TRUE;
+	    "KP_REQ".KP_2_6[3] := TRUE;
+	    
+	    "KP_REQ".KP_2_7[8] := TRUE;
+	    "KP_REQ".KP_2_7[3] := TRUE;
+	    "KP_REQ".KP_2_7[4] := TRUE;
+	    "KP_REQ".KP_2_7[5] := TRUE;
+	END_IF;
+	//разборка маршрута
+	IF NOT "SKV_Logic_DB".Start OR (NOT ("Comm_SKV_1".From_SKV.Status = 1) AND NOT "Comm_SKV_1".To_SKV.CMD.REQ) THEN
+	    "KP_REQ".KP_2_3[1] := FALSE;
+	END_IF;
+	
+	// СКВ-20 - сборка маршрута
+	IF "SKV_Logic_DB".Start AND "Comm_SKV_20".To_SKV.CMD.REQ THEN
+	    "KP_REQ".KP_2_3[2] := TRUE;
+	    "KP_REQ".KP_2_4[1] := TRUE;
+	    "KP_REQ".KP_2_5[1] := TRUE;
+	    
+	    "KP_REQ".KP_2_6[2] := TRUE;
+	    "KP_REQ".KP_2_6[3] := TRUE;
+	    
+	    "KP_REQ".KP_2_7[8] := TRUE;
+	    "KP_REQ".KP_2_7[3] := TRUE;
+	    "KP_REQ".KP_2_7[4] := TRUE;
+	    "KP_REQ".KP_2_7[5] := TRUE;
+	END_IF;
+	//разборка маршрута
+	IF NOT "SKV_Logic_DB".Start OR (NOT ("Comm_SKV_20".From_SKV.Status = 1) AND NOT "Comm_SKV_20".To_SKV.CMD.REQ) THEN
+	    "KP_REQ".KP_2_3[1] := FALSE;
+	END_IF;
+	
+	//Общий участок
+	IF NOT "SKV_Logic_DB".Start OR ((NOT ("Comm_SKV_1".From_SKV.Status = 1) AND NOT "Comm_SKV_1".To_SKV.CMD.REQ)
+	    AND (NOT ("Comm_SKV_20".From_SKV.Status = 1) AND NOT "Comm_SKV_20".To_SKV.CMD.REQ))
+	THEN
+	    "KP_REQ".KP_2_4[1] := FALSE;
+	END_IF;
+	
+	// СКВ-21 - сборка маршрута
+	IF "SKV_Logic_DB".Start AND "Comm_SKV_21".To_SKV.CMD.REQ THEN
+	    "KP_REQ".KP_2_4[2] := TRUE;
+	    "KP_REQ".KP_2_5[1] := TRUE;
+	    
+	    "KP_REQ".KP_2_6[2] := TRUE;
+	    "KP_REQ".KP_2_6[3] := TRUE;
+	    
+	    "KP_REQ".KP_2_7[8] := TRUE;
+	    "KP_REQ".KP_2_7[3] := TRUE;
+	    "KP_REQ".KP_2_7[4] := TRUE;
+	    "KP_REQ".KP_2_7[5] := TRUE;
+	END_IF;
+	//разборка маршрута
+	IF NOT "SKV_Logic_DB".Start OR (NOT ("Comm_SKV_21".From_SKV.Status = 1) AND NOT "Comm_SKV_21".To_SKV.CMD.REQ) THEN
+	    "KP_REQ".KP_2_4[2] := FALSE;
+	END_IF;
+	
+	//Общий участок
+	IF NOT "SKV_Logic_DB".Start OR ((NOT ("Comm_SKV_1".From_SKV.Status = 1) AND NOT "Comm_SKV_1".To_SKV.CMD.REQ)
+	    AND (NOT ("Comm_SKV_20".From_SKV.Status = 1) AND NOT "Comm_SKV_20".To_SKV.CMD.REQ)
+	    AND (NOT ("Comm_SKV_21".From_SKV.Status = 1) AND NOT "Comm_SKV_21".To_SKV.CMD.REQ))
+	THEN
+	    "KP_REQ".KP_2_5[1] := FALSE;
+	END_IF;
+	
+	
+	// СКВ-22 - сборка маршрута
+	IF "SKV_Logic_DB".Start AND "Comm_SKV_22".To_SKV.CMD.REQ THEN
+	    "KP_REQ".KP_2_5[2] := TRUE;
+	    
+	    "KP_REQ".KP_2_6[2] := TRUE;
+	    "KP_REQ".KP_2_6[3] := TRUE;
+	    
+	    "KP_REQ".KP_2_7[8] := TRUE;
+	    "KP_REQ".KP_2_7[3] := TRUE;
+	    "KP_REQ".KP_2_7[4] := TRUE;
+	    "KP_REQ".KP_2_7[5] := TRUE;
+	END_IF;
+	//разборка маршрута
+	IF NOT "SKV_Logic_DB".Start OR (NOT ("Comm_SKV_22".From_SKV.Status = 1) AND NOT "Comm_SKV_22".To_SKV.CMD.REQ) THEN
+	    "KP_REQ".KP_2_5[3] := FALSE;
+	END_IF;
+	
+END_FUNCTION_BLOCK
+

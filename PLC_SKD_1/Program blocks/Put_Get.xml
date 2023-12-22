@@ -1,0 +1,2980 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Document>
+  <Engineering version="V17" />
+  <DocumentInfo>
+    <Created>2023-12-22T15:02:59.0767996Z</Created>
+    <ExportSetting>WithDefaults</ExportSetting>
+    <InstalledProducts>
+      <Product>
+        <DisplayName>Totally Integrated Automation Portal</DisplayName>
+        <DisplayVersion>V17</DisplayVersion>
+      </Product>
+      <OptionPackage>
+        <DisplayName>TIA Portal Openness</DisplayName>
+        <DisplayVersion>V17</DisplayVersion>
+      </OptionPackage>
+      <OptionPackage>
+        <DisplayName>TIA Portal Version Control Interface</DisplayName>
+        <DisplayVersion>V17</DisplayVersion>
+      </OptionPackage>
+      <Product>
+        <DisplayName>STEP 7 Professional</DisplayName>
+        <DisplayVersion>V17</DisplayVersion>
+      </Product>
+      <OptionPackage>
+        <DisplayName>STEP 7 Safety</DisplayName>
+        <DisplayVersion>V17</DisplayVersion>
+      </OptionPackage>
+      <Product>
+        <DisplayName>WinCC Advanced</DisplayName>
+        <DisplayVersion>V17</DisplayVersion>
+      </Product>
+    </InstalledProducts>
+  </DocumentInfo>
+  <SW.Blocks.FB ID="0">
+    <AttributeList>
+      <AutoNumber>true</AutoNumber>
+      <HeaderAuthor />
+      <HeaderFamily />
+      <HeaderName />
+      <HeaderVersion>0.1</HeaderVersion>
+      <Interface><Sections xmlns="http://www.siemens.com/automation/Openness/SW/Interface/v5">
+  <Section Name="Input" />
+  <Section Name="Output" />
+  <Section Name="InOut" />
+  <Section Name="Static">
+    <Member Name="GET_SKV_1" Datatype="GET" Version="1.3" Accessibility="Public"><AttributeList><BooleanAttribute Name="ExternalAccessible" SystemDefined="true">true</BooleanAttribute><BooleanAttribute Name="ExternalVisible" SystemDefined="true">true</BooleanAttribute><BooleanAttribute Name="ExternalWritable" SystemDefined="true">true</BooleanAttribute><BooleanAttribute Name="SetPoint" SystemDefined="true">true</BooleanAttribute></AttributeList><Sections><Section Name="Input"><Member Name="REQ" Datatype="Bool" /><Member Name="ID" Datatype="Word" /></Section><Section Name="Output"><Member Name="NDR" Datatype="Bool" /><Member Name="ERROR" Datatype="Bool" /><Member Name="STATUS" Datatype="Word" /></Section><Section Name="InOut"><Member Name="ADDR_1" Datatype="Remote" /><Member Name="ADDR_2" Datatype="Remote" /><Member Name="ADDR_3" Datatype="Remote" /><Member Name="ADDR_4" Datatype="Remote" /><Member Name="RD_1" Datatype="Variant" /><Member Name="RD_2" Datatype="Variant" /><Member Name="RD_3" Datatype="Variant" /><Member Name="RD_4" Datatype="Variant" /></Section><Section Name="Static" /></Sections></Member>
+    <Member Name="GET_SKV_2" Datatype="GET" Version="1.3" Accessibility="Public"><AttributeList><BooleanAttribute Name="ExternalAccessible" SystemDefined="true">true</BooleanAttribute><BooleanAttribute Name="ExternalVisible" SystemDefined="true">true</BooleanAttribute><BooleanAttribute Name="ExternalWritable" SystemDefined="true">true</BooleanAttribute><BooleanAttribute Name="SetPoint" SystemDefined="true">true</BooleanAttribute></AttributeList><Sections><Section Name="Input"><Member Name="REQ" Datatype="Bool" /><Member Name="ID" Datatype="Word" /></Section><Section Name="Output"><Member Name="NDR" Datatype="Bool" /><Member Name="ERROR" Datatype="Bool" /><Member Name="STATUS" Datatype="Word" /></Section><Section Name="InOut"><Member Name="ADDR_1" Datatype="Remote" /><Member Name="ADDR_2" Datatype="Remote" /><Member Name="ADDR_3" Datatype="Remote" /><Member Name="ADDR_4" Datatype="Remote" /><Member Name="RD_1" Datatype="Variant" /><Member Name="RD_2" Datatype="Variant" /><Member Name="RD_3" Datatype="Variant" /><Member Name="RD_4" Datatype="Variant" /></Section><Section Name="Static" /></Sections></Member>
+    <Member Name="GET_SKV_3" Datatype="GET" Version="1.3" Accessibility="Public"><AttributeList><BooleanAttribute Name="ExternalAccessible" SystemDefined="true">true</BooleanAttribute><BooleanAttribute Name="ExternalVisible" SystemDefined="true">true</BooleanAttribute><BooleanAttribute Name="ExternalWritable" SystemDefined="true">true</BooleanAttribute><BooleanAttribute Name="SetPoint" SystemDefined="true">true</BooleanAttribute></AttributeList><Sections><Section Name="Input"><Member Name="REQ" Datatype="Bool" /><Member Name="ID" Datatype="Word" /></Section><Section Name="Output"><Member Name="NDR" Datatype="Bool" /><Member Name="ERROR" Datatype="Bool" /><Member Name="STATUS" Datatype="Word" /></Section><Section Name="InOut"><Member Name="ADDR_1" Datatype="Remote" /><Member Name="ADDR_2" Datatype="Remote" /><Member Name="ADDR_3" Datatype="Remote" /><Member Name="ADDR_4" Datatype="Remote" /><Member Name="RD_1" Datatype="Variant" /><Member Name="RD_2" Datatype="Variant" /><Member Name="RD_3" Datatype="Variant" /><Member Name="RD_4" Datatype="Variant" /></Section><Section Name="Static" /></Sections></Member>
+    <Member Name="GET_SKV_12" Datatype="GET" Version="1.3" Accessibility="Public"><AttributeList><BooleanAttribute Name="ExternalAccessible" SystemDefined="true">true</BooleanAttribute><BooleanAttribute Name="ExternalVisible" SystemDefined="true">true</BooleanAttribute><BooleanAttribute Name="ExternalWritable" SystemDefined="true">true</BooleanAttribute><BooleanAttribute Name="SetPoint" SystemDefined="true">true</BooleanAttribute></AttributeList><Sections><Section Name="Input"><Member Name="REQ" Datatype="Bool" /><Member Name="ID" Datatype="Word" /></Section><Section Name="Output"><Member Name="NDR" Datatype="Bool" /><Member Name="ERROR" Datatype="Bool" /><Member Name="STATUS" Datatype="Word" /></Section><Section Name="InOut"><Member Name="ADDR_1" Datatype="Remote" /><Member Name="ADDR_2" Datatype="Remote" /><Member Name="ADDR_3" Datatype="Remote" /><Member Name="ADDR_4" Datatype="Remote" /><Member Name="RD_1" Datatype="Variant" /><Member Name="RD_2" Datatype="Variant" /><Member Name="RD_3" Datatype="Variant" /><Member Name="RD_4" Datatype="Variant" /></Section><Section Name="Static" /></Sections></Member>
+    <Member Name="GET_SKV_13" Datatype="GET" Version="1.3" Accessibility="Public"><AttributeList><BooleanAttribute Name="ExternalAccessible" SystemDefined="true">true</BooleanAttribute><BooleanAttribute Name="ExternalVisible" SystemDefined="true">true</BooleanAttribute><BooleanAttribute Name="ExternalWritable" SystemDefined="true">true</BooleanAttribute><BooleanAttribute Name="SetPoint" SystemDefined="true">true</BooleanAttribute></AttributeList><Sections><Section Name="Input"><Member Name="REQ" Datatype="Bool" /><Member Name="ID" Datatype="Word" /></Section><Section Name="Output"><Member Name="NDR" Datatype="Bool" /><Member Name="ERROR" Datatype="Bool" /><Member Name="STATUS" Datatype="Word" /></Section><Section Name="InOut"><Member Name="ADDR_1" Datatype="Remote" /><Member Name="ADDR_2" Datatype="Remote" /><Member Name="ADDR_3" Datatype="Remote" /><Member Name="ADDR_4" Datatype="Remote" /><Member Name="RD_1" Datatype="Variant" /><Member Name="RD_2" Datatype="Variant" /><Member Name="RD_3" Datatype="Variant" /><Member Name="RD_4" Datatype="Variant" /></Section><Section Name="Static" /></Sections></Member>
+    <Member Name="GET_SKV_14" Datatype="GET" Version="1.3" Accessibility="Public"><AttributeList><BooleanAttribute Name="ExternalAccessible" SystemDefined="true">true</BooleanAttribute><BooleanAttribute Name="ExternalVisible" SystemDefined="true">true</BooleanAttribute><BooleanAttribute Name="ExternalWritable" SystemDefined="true">true</BooleanAttribute><BooleanAttribute Name="SetPoint" SystemDefined="true">true</BooleanAttribute></AttributeList><Sections><Section Name="Input"><Member Name="REQ" Datatype="Bool" /><Member Name="ID" Datatype="Word" /></Section><Section Name="Output"><Member Name="NDR" Datatype="Bool" /><Member Name="ERROR" Datatype="Bool" /><Member Name="STATUS" Datatype="Word" /></Section><Section Name="InOut"><Member Name="ADDR_1" Datatype="Remote" /><Member Name="ADDR_2" Datatype="Remote" /><Member Name="ADDR_3" Datatype="Remote" /><Member Name="ADDR_4" Datatype="Remote" /><Member Name="RD_1" Datatype="Variant" /><Member Name="RD_2" Datatype="Variant" /><Member Name="RD_3" Datatype="Variant" /><Member Name="RD_4" Datatype="Variant" /></Section><Section Name="Static" /></Sections></Member>
+    <Member Name="GET_SKV_15" Datatype="GET" Version="1.3" Accessibility="Public"><AttributeList><BooleanAttribute Name="ExternalAccessible" SystemDefined="true">true</BooleanAttribute><BooleanAttribute Name="ExternalVisible" SystemDefined="true">true</BooleanAttribute><BooleanAttribute Name="ExternalWritable" SystemDefined="true">true</BooleanAttribute><BooleanAttribute Name="SetPoint" SystemDefined="true">true</BooleanAttribute></AttributeList><Sections><Section Name="Input"><Member Name="REQ" Datatype="Bool" /><Member Name="ID" Datatype="Word" /></Section><Section Name="Output"><Member Name="NDR" Datatype="Bool" /><Member Name="ERROR" Datatype="Bool" /><Member Name="STATUS" Datatype="Word" /></Section><Section Name="InOut"><Member Name="ADDR_1" Datatype="Remote" /><Member Name="ADDR_2" Datatype="Remote" /><Member Name="ADDR_3" Datatype="Remote" /><Member Name="ADDR_4" Datatype="Remote" /><Member Name="RD_1" Datatype="Variant" /><Member Name="RD_2" Datatype="Variant" /><Member Name="RD_3" Datatype="Variant" /><Member Name="RD_4" Datatype="Variant" /></Section><Section Name="Static" /></Sections></Member>
+    <Member Name="GET_SKV_20" Datatype="GET" Version="1.3" Accessibility="Public"><AttributeList><BooleanAttribute Name="ExternalAccessible" SystemDefined="true">true</BooleanAttribute><BooleanAttribute Name="ExternalVisible" SystemDefined="true">true</BooleanAttribute><BooleanAttribute Name="ExternalWritable" SystemDefined="true">true</BooleanAttribute><BooleanAttribute Name="SetPoint" SystemDefined="true">true</BooleanAttribute></AttributeList><Sections><Section Name="Input"><Member Name="REQ" Datatype="Bool" /><Member Name="ID" Datatype="Word" /></Section><Section Name="Output"><Member Name="NDR" Datatype="Bool" /><Member Name="ERROR" Datatype="Bool" /><Member Name="STATUS" Datatype="Word" /></Section><Section Name="InOut"><Member Name="ADDR_1" Datatype="Remote" /><Member Name="ADDR_2" Datatype="Remote" /><Member Name="ADDR_3" Datatype="Remote" /><Member Name="ADDR_4" Datatype="Remote" /><Member Name="RD_1" Datatype="Variant" /><Member Name="RD_2" Datatype="Variant" /><Member Name="RD_3" Datatype="Variant" /><Member Name="RD_4" Datatype="Variant" /></Section><Section Name="Static" /></Sections></Member>
+    <Member Name="GET_SKV_21" Datatype="GET" Version="1.3" Accessibility="Public"><AttributeList><BooleanAttribute Name="ExternalAccessible" SystemDefined="true">true</BooleanAttribute><BooleanAttribute Name="ExternalVisible" SystemDefined="true">true</BooleanAttribute><BooleanAttribute Name="ExternalWritable" SystemDefined="true">true</BooleanAttribute><BooleanAttribute Name="SetPoint" SystemDefined="true">true</BooleanAttribute></AttributeList><Sections><Section Name="Input"><Member Name="REQ" Datatype="Bool" /><Member Name="ID" Datatype="Word" /></Section><Section Name="Output"><Member Name="NDR" Datatype="Bool" /><Member Name="ERROR" Datatype="Bool" /><Member Name="STATUS" Datatype="Word" /></Section><Section Name="InOut"><Member Name="ADDR_1" Datatype="Remote" /><Member Name="ADDR_2" Datatype="Remote" /><Member Name="ADDR_3" Datatype="Remote" /><Member Name="ADDR_4" Datatype="Remote" /><Member Name="RD_1" Datatype="Variant" /><Member Name="RD_2" Datatype="Variant" /><Member Name="RD_3" Datatype="Variant" /><Member Name="RD_4" Datatype="Variant" /></Section><Section Name="Static" /></Sections></Member>
+    <Member Name="GET_SKV_22" Datatype="GET" Version="1.3" Accessibility="Public"><AttributeList><BooleanAttribute Name="ExternalAccessible" SystemDefined="true">true</BooleanAttribute><BooleanAttribute Name="ExternalVisible" SystemDefined="true">true</BooleanAttribute><BooleanAttribute Name="ExternalWritable" SystemDefined="true">true</BooleanAttribute><BooleanAttribute Name="SetPoint" SystemDefined="true">true</BooleanAttribute></AttributeList><Sections><Section Name="Input"><Member Name="REQ" Datatype="Bool" /><Member Name="ID" Datatype="Word" /></Section><Section Name="Output"><Member Name="NDR" Datatype="Bool" /><Member Name="ERROR" Datatype="Bool" /><Member Name="STATUS" Datatype="Word" /></Section><Section Name="InOut"><Member Name="ADDR_1" Datatype="Remote" /><Member Name="ADDR_2" Datatype="Remote" /><Member Name="ADDR_3" Datatype="Remote" /><Member Name="ADDR_4" Datatype="Remote" /><Member Name="RD_1" Datatype="Variant" /><Member Name="RD_2" Datatype="Variant" /><Member Name="RD_3" Datatype="Variant" /><Member Name="RD_4" Datatype="Variant" /></Section><Section Name="Static" /></Sections></Member>
+    <Member Name="GET_SKV_23" Datatype="GET" Version="1.3" Accessibility="Public"><AttributeList><BooleanAttribute Name="ExternalAccessible" SystemDefined="true">true</BooleanAttribute><BooleanAttribute Name="ExternalVisible" SystemDefined="true">true</BooleanAttribute><BooleanAttribute Name="ExternalWritable" SystemDefined="true">true</BooleanAttribute><BooleanAttribute Name="SetPoint" SystemDefined="true">true</BooleanAttribute></AttributeList><Sections><Section Name="Input"><Member Name="REQ" Datatype="Bool" /><Member Name="ID" Datatype="Word" /></Section><Section Name="Output"><Member Name="NDR" Datatype="Bool" /><Member Name="ERROR" Datatype="Bool" /><Member Name="STATUS" Datatype="Word" /></Section><Section Name="InOut"><Member Name="ADDR_1" Datatype="Remote" /><Member Name="ADDR_2" Datatype="Remote" /><Member Name="ADDR_3" Datatype="Remote" /><Member Name="ADDR_4" Datatype="Remote" /><Member Name="RD_1" Datatype="Variant" /><Member Name="RD_2" Datatype="Variant" /><Member Name="RD_3" Datatype="Variant" /><Member Name="RD_4" Datatype="Variant" /></Section><Section Name="Static" /></Sections></Member>
+    <Member Name="PUT_SKV_1" Datatype="PUT" Version="1.3" Accessibility="Public"><AttributeList><BooleanAttribute Name="ExternalAccessible" SystemDefined="true">true</BooleanAttribute><BooleanAttribute Name="ExternalVisible" SystemDefined="true">true</BooleanAttribute><BooleanAttribute Name="ExternalWritable" SystemDefined="true">true</BooleanAttribute><BooleanAttribute Name="SetPoint" SystemDefined="true">true</BooleanAttribute></AttributeList><Sections><Section Name="Input"><Member Name="REQ" Datatype="Bool" /><Member Name="ID" Datatype="Word" /></Section><Section Name="Output"><Member Name="DONE" Datatype="Bool" /><Member Name="ERROR" Datatype="Bool" /><Member Name="STATUS" Datatype="Word" /></Section><Section Name="InOut"><Member Name="ADDR_1" Datatype="Remote" /><Member Name="ADDR_2" Datatype="Remote" /><Member Name="ADDR_3" Datatype="Remote" /><Member Name="ADDR_4" Datatype="Remote" /><Member Name="SD_1" Datatype="Variant" /><Member Name="SD_2" Datatype="Variant" /><Member Name="SD_3" Datatype="Variant" /><Member Name="SD_4" Datatype="Variant" /></Section><Section Name="Static" /></Sections></Member>
+    <Member Name="PUT_SKV_2" Datatype="PUT" Version="1.3" Accessibility="Public"><AttributeList><BooleanAttribute Name="ExternalAccessible" SystemDefined="true">true</BooleanAttribute><BooleanAttribute Name="ExternalVisible" SystemDefined="true">true</BooleanAttribute><BooleanAttribute Name="ExternalWritable" SystemDefined="true">true</BooleanAttribute><BooleanAttribute Name="SetPoint" SystemDefined="true">true</BooleanAttribute></AttributeList><Sections><Section Name="Input"><Member Name="REQ" Datatype="Bool" /><Member Name="ID" Datatype="Word" /></Section><Section Name="Output"><Member Name="DONE" Datatype="Bool" /><Member Name="ERROR" Datatype="Bool" /><Member Name="STATUS" Datatype="Word" /></Section><Section Name="InOut"><Member Name="ADDR_1" Datatype="Remote" /><Member Name="ADDR_2" Datatype="Remote" /><Member Name="ADDR_3" Datatype="Remote" /><Member Name="ADDR_4" Datatype="Remote" /><Member Name="SD_1" Datatype="Variant" /><Member Name="SD_2" Datatype="Variant" /><Member Name="SD_3" Datatype="Variant" /><Member Name="SD_4" Datatype="Variant" /></Section><Section Name="Static" /></Sections></Member>
+    <Member Name="PUT_SKV_3" Datatype="PUT" Version="1.3" Accessibility="Public"><AttributeList><BooleanAttribute Name="ExternalAccessible" SystemDefined="true">true</BooleanAttribute><BooleanAttribute Name="ExternalVisible" SystemDefined="true">true</BooleanAttribute><BooleanAttribute Name="ExternalWritable" SystemDefined="true">true</BooleanAttribute><BooleanAttribute Name="SetPoint" SystemDefined="true">true</BooleanAttribute></AttributeList><Sections><Section Name="Input"><Member Name="REQ" Datatype="Bool" /><Member Name="ID" Datatype="Word" /></Section><Section Name="Output"><Member Name="DONE" Datatype="Bool" /><Member Name="ERROR" Datatype="Bool" /><Member Name="STATUS" Datatype="Word" /></Section><Section Name="InOut"><Member Name="ADDR_1" Datatype="Remote" /><Member Name="ADDR_2" Datatype="Remote" /><Member Name="ADDR_3" Datatype="Remote" /><Member Name="ADDR_4" Datatype="Remote" /><Member Name="SD_1" Datatype="Variant" /><Member Name="SD_2" Datatype="Variant" /><Member Name="SD_3" Datatype="Variant" /><Member Name="SD_4" Datatype="Variant" /></Section><Section Name="Static" /></Sections></Member>
+    <Member Name="PUT_SKV_12" Datatype="PUT" Version="1.3" Accessibility="Public"><AttributeList><BooleanAttribute Name="ExternalAccessible" SystemDefined="true">true</BooleanAttribute><BooleanAttribute Name="ExternalVisible" SystemDefined="true">true</BooleanAttribute><BooleanAttribute Name="ExternalWritable" SystemDefined="true">true</BooleanAttribute><BooleanAttribute Name="SetPoint" SystemDefined="true">true</BooleanAttribute></AttributeList><Sections><Section Name="Input"><Member Name="REQ" Datatype="Bool" /><Member Name="ID" Datatype="Word" /></Section><Section Name="Output"><Member Name="DONE" Datatype="Bool" /><Member Name="ERROR" Datatype="Bool" /><Member Name="STATUS" Datatype="Word" /></Section><Section Name="InOut"><Member Name="ADDR_1" Datatype="Remote" /><Member Name="ADDR_2" Datatype="Remote" /><Member Name="ADDR_3" Datatype="Remote" /><Member Name="ADDR_4" Datatype="Remote" /><Member Name="SD_1" Datatype="Variant" /><Member Name="SD_2" Datatype="Variant" /><Member Name="SD_3" Datatype="Variant" /><Member Name="SD_4" Datatype="Variant" /></Section><Section Name="Static" /></Sections></Member>
+    <Member Name="PUT_SKV_13" Datatype="PUT" Version="1.3" Accessibility="Public"><AttributeList><BooleanAttribute Name="ExternalAccessible" SystemDefined="true">true</BooleanAttribute><BooleanAttribute Name="ExternalVisible" SystemDefined="true">true</BooleanAttribute><BooleanAttribute Name="ExternalWritable" SystemDefined="true">true</BooleanAttribute><BooleanAttribute Name="SetPoint" SystemDefined="true">true</BooleanAttribute></AttributeList><Sections><Section Name="Input"><Member Name="REQ" Datatype="Bool" /><Member Name="ID" Datatype="Word" /></Section><Section Name="Output"><Member Name="DONE" Datatype="Bool" /><Member Name="ERROR" Datatype="Bool" /><Member Name="STATUS" Datatype="Word" /></Section><Section Name="InOut"><Member Name="ADDR_1" Datatype="Remote" /><Member Name="ADDR_2" Datatype="Remote" /><Member Name="ADDR_3" Datatype="Remote" /><Member Name="ADDR_4" Datatype="Remote" /><Member Name="SD_1" Datatype="Variant" /><Member Name="SD_2" Datatype="Variant" /><Member Name="SD_3" Datatype="Variant" /><Member Name="SD_4" Datatype="Variant" /></Section><Section Name="Static" /></Sections></Member>
+    <Member Name="PUT_SKV_14" Datatype="PUT" Version="1.3" Accessibility="Public"><AttributeList><BooleanAttribute Name="ExternalAccessible" SystemDefined="true">true</BooleanAttribute><BooleanAttribute Name="ExternalVisible" SystemDefined="true">true</BooleanAttribute><BooleanAttribute Name="ExternalWritable" SystemDefined="true">true</BooleanAttribute><BooleanAttribute Name="SetPoint" SystemDefined="true">true</BooleanAttribute></AttributeList><Sections><Section Name="Input"><Member Name="REQ" Datatype="Bool" /><Member Name="ID" Datatype="Word" /></Section><Section Name="Output"><Member Name="DONE" Datatype="Bool" /><Member Name="ERROR" Datatype="Bool" /><Member Name="STATUS" Datatype="Word" /></Section><Section Name="InOut"><Member Name="ADDR_1" Datatype="Remote" /><Member Name="ADDR_2" Datatype="Remote" /><Member Name="ADDR_3" Datatype="Remote" /><Member Name="ADDR_4" Datatype="Remote" /><Member Name="SD_1" Datatype="Variant" /><Member Name="SD_2" Datatype="Variant" /><Member Name="SD_3" Datatype="Variant" /><Member Name="SD_4" Datatype="Variant" /></Section><Section Name="Static" /></Sections></Member>
+    <Member Name="PUT_SKV_15" Datatype="PUT" Version="1.3" Accessibility="Public"><AttributeList><BooleanAttribute Name="ExternalAccessible" SystemDefined="true">true</BooleanAttribute><BooleanAttribute Name="ExternalVisible" SystemDefined="true">true</BooleanAttribute><BooleanAttribute Name="ExternalWritable" SystemDefined="true">true</BooleanAttribute><BooleanAttribute Name="SetPoint" SystemDefined="true">true</BooleanAttribute></AttributeList><Sections><Section Name="Input"><Member Name="REQ" Datatype="Bool" /><Member Name="ID" Datatype="Word" /></Section><Section Name="Output"><Member Name="DONE" Datatype="Bool" /><Member Name="ERROR" Datatype="Bool" /><Member Name="STATUS" Datatype="Word" /></Section><Section Name="InOut"><Member Name="ADDR_1" Datatype="Remote" /><Member Name="ADDR_2" Datatype="Remote" /><Member Name="ADDR_3" Datatype="Remote" /><Member Name="ADDR_4" Datatype="Remote" /><Member Name="SD_1" Datatype="Variant" /><Member Name="SD_2" Datatype="Variant" /><Member Name="SD_3" Datatype="Variant" /><Member Name="SD_4" Datatype="Variant" /></Section><Section Name="Static" /></Sections></Member>
+    <Member Name="PUT_SKV_20" Datatype="PUT" Version="1.3" Accessibility="Public"><AttributeList><BooleanAttribute Name="ExternalAccessible" SystemDefined="true">true</BooleanAttribute><BooleanAttribute Name="ExternalVisible" SystemDefined="true">true</BooleanAttribute><BooleanAttribute Name="ExternalWritable" SystemDefined="true">true</BooleanAttribute><BooleanAttribute Name="SetPoint" SystemDefined="true">true</BooleanAttribute></AttributeList><Sections><Section Name="Input"><Member Name="REQ" Datatype="Bool" /><Member Name="ID" Datatype="Word" /></Section><Section Name="Output"><Member Name="DONE" Datatype="Bool" /><Member Name="ERROR" Datatype="Bool" /><Member Name="STATUS" Datatype="Word" /></Section><Section Name="InOut"><Member Name="ADDR_1" Datatype="Remote" /><Member Name="ADDR_2" Datatype="Remote" /><Member Name="ADDR_3" Datatype="Remote" /><Member Name="ADDR_4" Datatype="Remote" /><Member Name="SD_1" Datatype="Variant" /><Member Name="SD_2" Datatype="Variant" /><Member Name="SD_3" Datatype="Variant" /><Member Name="SD_4" Datatype="Variant" /></Section><Section Name="Static" /></Sections></Member>
+    <Member Name="PUT_SKV_21" Datatype="PUT" Version="1.3" Accessibility="Public"><AttributeList><BooleanAttribute Name="ExternalAccessible" SystemDefined="true">true</BooleanAttribute><BooleanAttribute Name="ExternalVisible" SystemDefined="true">true</BooleanAttribute><BooleanAttribute Name="ExternalWritable" SystemDefined="true">true</BooleanAttribute><BooleanAttribute Name="SetPoint" SystemDefined="true">true</BooleanAttribute></AttributeList><Sections><Section Name="Input"><Member Name="REQ" Datatype="Bool" /><Member Name="ID" Datatype="Word" /></Section><Section Name="Output"><Member Name="DONE" Datatype="Bool" /><Member Name="ERROR" Datatype="Bool" /><Member Name="STATUS" Datatype="Word" /></Section><Section Name="InOut"><Member Name="ADDR_1" Datatype="Remote" /><Member Name="ADDR_2" Datatype="Remote" /><Member Name="ADDR_3" Datatype="Remote" /><Member Name="ADDR_4" Datatype="Remote" /><Member Name="SD_1" Datatype="Variant" /><Member Name="SD_2" Datatype="Variant" /><Member Name="SD_3" Datatype="Variant" /><Member Name="SD_4" Datatype="Variant" /></Section><Section Name="Static" /></Sections></Member>
+    <Member Name="PUT_SKV_22" Datatype="PUT" Version="1.3" Accessibility="Public"><AttributeList><BooleanAttribute Name="ExternalAccessible" SystemDefined="true">true</BooleanAttribute><BooleanAttribute Name="ExternalVisible" SystemDefined="true">true</BooleanAttribute><BooleanAttribute Name="ExternalWritable" SystemDefined="true">true</BooleanAttribute><BooleanAttribute Name="SetPoint" SystemDefined="true">true</BooleanAttribute></AttributeList><Sections><Section Name="Input"><Member Name="REQ" Datatype="Bool" /><Member Name="ID" Datatype="Word" /></Section><Section Name="Output"><Member Name="DONE" Datatype="Bool" /><Member Name="ERROR" Datatype="Bool" /><Member Name="STATUS" Datatype="Word" /></Section><Section Name="InOut"><Member Name="ADDR_1" Datatype="Remote" /><Member Name="ADDR_2" Datatype="Remote" /><Member Name="ADDR_3" Datatype="Remote" /><Member Name="ADDR_4" Datatype="Remote" /><Member Name="SD_1" Datatype="Variant" /><Member Name="SD_2" Datatype="Variant" /><Member Name="SD_3" Datatype="Variant" /><Member Name="SD_4" Datatype="Variant" /></Section><Section Name="Static" /></Sections></Member>
+    <Member Name="PUT_SKV_23" Datatype="PUT" Version="1.3" Accessibility="Public"><AttributeList><BooleanAttribute Name="ExternalAccessible" SystemDefined="true">true</BooleanAttribute><BooleanAttribute Name="ExternalVisible" SystemDefined="true">true</BooleanAttribute><BooleanAttribute Name="ExternalWritable" SystemDefined="true">true</BooleanAttribute><BooleanAttribute Name="SetPoint" SystemDefined="true">true</BooleanAttribute></AttributeList><Sections><Section Name="Input"><Member Name="REQ" Datatype="Bool" /><Member Name="ID" Datatype="Word" /></Section><Section Name="Output"><Member Name="DONE" Datatype="Bool" /><Member Name="ERROR" Datatype="Bool" /><Member Name="STATUS" Datatype="Word" /></Section><Section Name="InOut"><Member Name="ADDR_1" Datatype="Remote" /><Member Name="ADDR_2" Datatype="Remote" /><Member Name="ADDR_3" Datatype="Remote" /><Member Name="ADDR_4" Datatype="Remote" /><Member Name="SD_1" Datatype="Variant" /><Member Name="SD_2" Datatype="Variant" /><Member Name="SD_3" Datatype="Variant" /><Member Name="SD_4" Datatype="Variant" /></Section><Section Name="Static" /></Sections></Member>
+    <Member Name="GET_SKD2" Datatype="GET" Version="1.3" Accessibility="Public"><AttributeList><BooleanAttribute Name="ExternalAccessible" SystemDefined="true">true</BooleanAttribute><BooleanAttribute Name="ExternalVisible" SystemDefined="true">true</BooleanAttribute><BooleanAttribute Name="ExternalWritable" SystemDefined="true">true</BooleanAttribute><BooleanAttribute Name="SetPoint" SystemDefined="true">true</BooleanAttribute></AttributeList><Sections><Section Name="Input"><Member Name="REQ" Datatype="Bool" /><Member Name="ID" Datatype="Word" /></Section><Section Name="Output"><Member Name="NDR" Datatype="Bool" /><Member Name="ERROR" Datatype="Bool" /><Member Name="STATUS" Datatype="Word" /></Section><Section Name="InOut"><Member Name="ADDR_1" Datatype="Remote" /><Member Name="ADDR_2" Datatype="Remote" /><Member Name="ADDR_3" Datatype="Remote" /><Member Name="ADDR_4" Datatype="Remote" /><Member Name="RD_1" Datatype="Variant" /><Member Name="RD_2" Datatype="Variant" /><Member Name="RD_3" Datatype="Variant" /><Member Name="RD_4" Datatype="Variant" /></Section><Section Name="Static" /></Sections></Member>
+    <Member Name="PUT_SKD2" Datatype="PUT" Version="1.3" Accessibility="Public"><AttributeList><BooleanAttribute Name="ExternalAccessible" SystemDefined="true">true</BooleanAttribute><BooleanAttribute Name="ExternalVisible" SystemDefined="true">true</BooleanAttribute><BooleanAttribute Name="ExternalWritable" SystemDefined="true">true</BooleanAttribute><BooleanAttribute Name="SetPoint" SystemDefined="true">true</BooleanAttribute></AttributeList><Sections><Section Name="Input"><Member Name="REQ" Datatype="Bool" /><Member Name="ID" Datatype="Word" /></Section><Section Name="Output"><Member Name="DONE" Datatype="Bool" /><Member Name="ERROR" Datatype="Bool" /><Member Name="STATUS" Datatype="Word" /></Section><Section Name="InOut"><Member Name="ADDR_1" Datatype="Remote" /><Member Name="ADDR_2" Datatype="Remote" /><Member Name="ADDR_3" Datatype="Remote" /><Member Name="ADDR_4" Datatype="Remote" /><Member Name="SD_1" Datatype="Variant" /><Member Name="SD_2" Datatype="Variant" /><Member Name="SD_3" Datatype="Variant" /><Member Name="SD_4" Datatype="Variant" /></Section><Section Name="Static" /></Sections></Member>
+  </Section>
+  <Section Name="Temp" />
+  <Section Name="Constant" />
+</Sections></Interface>
+      <IsIECCheckEnabled>false</IsIECCheckEnabled>
+      <IsRetainMemResEnabled>false</IsRetainMemResEnabled>
+      <MemoryLayout>Optimized</MemoryLayout>
+      <MemoryReserve>100</MemoryReserve>
+      <Name>Put_Get</Name>
+      <Number>2</Number>
+      <ProgrammingLanguage>LAD</ProgrammingLanguage>
+      <SetENOAutomatically>false</SetENOAutomatically>
+      <UDABlockProperties />
+      <UDAEnableTagReadback>false</UDAEnableTagReadback>
+    </AttributeList>
+    <ObjectList>
+      <MultilingualText ID="1" CompositionName="Comment">
+        <ObjectList>
+          <MultilingualTextItem ID="2" CompositionName="Items">
+            <AttributeList>
+              <Culture>en-US</Culture>
+              <Text>RD - блок в этом PLC</Text>
+            </AttributeList>
+          </MultilingualTextItem>
+          <MultilingualTextItem ID="3" CompositionName="Items">
+            <AttributeList>
+              <Culture>de-DE</Culture>
+              <Text />
+            </AttributeList>
+          </MultilingualTextItem>
+          <MultilingualTextItem ID="4" CompositionName="Items">
+            <AttributeList>
+              <Culture>ru-RU</Culture>
+              <Text />
+            </AttributeList>
+          </MultilingualTextItem>
+        </ObjectList>
+      </MultilingualText>
+      <SW.Blocks.CompileUnit ID="5" CompositionName="CompileUnits">
+        <AttributeList>
+          <NetworkSource><FlgNet xmlns="http://www.siemens.com/automation/Openness/SW/NetworkSource/FlgNet/v4">
+  <Parts>
+    <Access Scope="GlobalVariable" UId="21">
+      <Symbol>
+        <Component Name="pulse_1s" />
+      </Symbol>
+    </Access>
+    <Access Scope="TypedConstant" UId="22">
+      <Constant>
+        <ConstantValue>W#16#100</ConstantValue>
+      </Constant>
+    </Access>
+    <Access Scope="LiteralConstant" UId="23">
+      <Constant>
+        <ConstantType>Remote</ConstantType>
+        <ConstantValue>P#DB10.DBX60.0 BYTE 32</ConstantValue>
+      </Constant>
+    </Access>
+    <Access Scope="LiteralConstant" UId="24">
+      <Constant>
+        <ConstantType>Any</ConstantType>
+        <ConstantValue>P#DB1001.DBX60.0 BYTE 32</ConstantValue>
+      </Constant>
+    </Access>
+    <Access Scope="GlobalVariable" UId="25">
+      <Symbol>
+        <Component Name="pulse_1s" />
+      </Symbol>
+    </Access>
+    <Access Scope="TypedConstant" UId="26">
+      <Constant>
+        <ConstantValue>W#16#100</ConstantValue>
+      </Constant>
+    </Access>
+    <Access Scope="LiteralConstant" UId="27">
+      <Constant>
+        <ConstantType>Remote</ConstantType>
+        <ConstantValue>P#DB10.DBX0.0 BYTE 60</ConstantValue>
+      </Constant>
+    </Access>
+    <Access Scope="LiteralConstant" UId="28">
+      <Constant>
+        <ConstantType>Any</ConstantType>
+        <ConstantValue>P#DB1001.DBX0.0 BYTE 60</ConstantValue>
+      </Constant>
+    </Access>
+    <Call UId="29">
+      <CallInfo Name="Comm_SKV" BlockType="FB">
+        <Instance Scope="GlobalVariable" UId="30">
+          <Component Name="Comm_SKV_1" />
+        </Instance>
+      </CallInfo>
+    </Call>
+    <Part Name="GET" Version="1.3" UId="31">
+      <Instance Scope="LocalVariable" UId="32">
+        <Component Name="GET_SKV_1" />
+      </Instance>
+      <TemplateValue Name="remote_type" Type="Type">Remote</TemplateValue>
+      <TemplateValue Name="local_type" Type="Type">Variant</TemplateValue>
+    </Part>
+    <Part Name="PUT" Version="1.3" UId="33">
+      <Instance Scope="LocalVariable" UId="34">
+        <Component Name="PUT_SKV_1" />
+      </Instance>
+      <TemplateValue Name="remote_type" Type="Type">Remote</TemplateValue>
+      <TemplateValue Name="local_type" Type="Type">Variant</TemplateValue>
+    </Part>
+  </Parts>
+  <Wires>
+    <Wire UId="53">
+      <Powerrail />
+      <NameCon UId="29" Name="en" />
+    </Wire>
+    <Wire UId="54">
+      <NameCon UId="29" Name="eno" />
+      <NameCon UId="31" Name="en" />
+    </Wire>
+    <Wire UId="55">
+      <IdentCon UId="21" />
+      <NameCon UId="31" Name="REQ" />
+    </Wire>
+    <Wire UId="56">
+      <IdentCon UId="22" />
+      <NameCon UId="31" Name="ID" />
+    </Wire>
+    <Wire UId="57">
+      <IdentCon UId="23" />
+      <NameCon UId="31" Name="ADDR_1" />
+    </Wire>
+    <Wire UId="58">
+      <OpenCon UId="35" />
+      <NameCon UId="31" Name="ADDR_2" />
+    </Wire>
+    <Wire UId="59">
+      <OpenCon UId="36" />
+      <NameCon UId="31" Name="ADDR_3" />
+    </Wire>
+    <Wire UId="60">
+      <OpenCon UId="37" />
+      <NameCon UId="31" Name="ADDR_4" />
+    </Wire>
+    <Wire UId="61">
+      <IdentCon UId="24" />
+      <NameCon UId="31" Name="RD_1" />
+    </Wire>
+    <Wire UId="62">
+      <OpenCon UId="38" />
+      <NameCon UId="31" Name="RD_2" />
+    </Wire>
+    <Wire UId="63">
+      <OpenCon UId="39" />
+      <NameCon UId="31" Name="RD_3" />
+    </Wire>
+    <Wire UId="64">
+      <OpenCon UId="40" />
+      <NameCon UId="31" Name="RD_4" />
+    </Wire>
+    <Wire UId="65">
+      <NameCon UId="31" Name="eno" />
+      <NameCon UId="33" Name="en" />
+    </Wire>
+    <Wire UId="66">
+      <NameCon UId="31" Name="NDR" />
+      <OpenCon UId="41" />
+    </Wire>
+    <Wire UId="67">
+      <NameCon UId="31" Name="ERROR" />
+      <OpenCon UId="42" />
+    </Wire>
+    <Wire UId="68">
+      <NameCon UId="31" Name="STATUS" />
+      <OpenCon UId="43" />
+    </Wire>
+    <Wire UId="69">
+      <IdentCon UId="25" />
+      <NameCon UId="33" Name="REQ" />
+    </Wire>
+    <Wire UId="70">
+      <IdentCon UId="26" />
+      <NameCon UId="33" Name="ID" />
+    </Wire>
+    <Wire UId="71">
+      <IdentCon UId="27" />
+      <NameCon UId="33" Name="ADDR_1" />
+    </Wire>
+    <Wire UId="72">
+      <OpenCon UId="44" />
+      <NameCon UId="33" Name="ADDR_2" />
+    </Wire>
+    <Wire UId="73">
+      <OpenCon UId="45" />
+      <NameCon UId="33" Name="ADDR_3" />
+    </Wire>
+    <Wire UId="74">
+      <OpenCon UId="46" />
+      <NameCon UId="33" Name="ADDR_4" />
+    </Wire>
+    <Wire UId="75">
+      <IdentCon UId="28" />
+      <NameCon UId="33" Name="SD_1" />
+    </Wire>
+    <Wire UId="76">
+      <OpenCon UId="47" />
+      <NameCon UId="33" Name="SD_2" />
+    </Wire>
+    <Wire UId="77">
+      <OpenCon UId="48" />
+      <NameCon UId="33" Name="SD_3" />
+    </Wire>
+    <Wire UId="78">
+      <OpenCon UId="49" />
+      <NameCon UId="33" Name="SD_4" />
+    </Wire>
+    <Wire UId="79">
+      <NameCon UId="33" Name="DONE" />
+      <OpenCon UId="50" />
+    </Wire>
+    <Wire UId="80">
+      <NameCon UId="33" Name="ERROR" />
+      <OpenCon UId="51" />
+    </Wire>
+    <Wire UId="81">
+      <NameCon UId="33" Name="STATUS" />
+      <OpenCon UId="52" />
+    </Wire>
+  </Wires>
+</FlgNet></NetworkSource>
+          <ProgrammingLanguage>LAD</ProgrammingLanguage>
+        </AttributeList>
+        <ObjectList>
+          <MultilingualText ID="6" CompositionName="Comment">
+            <ObjectList>
+              <MultilingualTextItem ID="7" CompositionName="Items">
+                <AttributeList>
+                  <Culture>en-US</Culture>
+                  <Text />
+                </AttributeList>
+              </MultilingualTextItem>
+              <MultilingualTextItem ID="8" CompositionName="Items">
+                <AttributeList>
+                  <Culture>de-DE</Culture>
+                  <Text />
+                </AttributeList>
+              </MultilingualTextItem>
+              <MultilingualTextItem ID="9" CompositionName="Items">
+                <AttributeList>
+                  <Culture>ru-RU</Culture>
+                  <Text />
+                </AttributeList>
+              </MultilingualTextItem>
+            </ObjectList>
+          </MultilingualText>
+          <MultilingualText ID="A" CompositionName="Title">
+            <ObjectList>
+              <MultilingualTextItem ID="B" CompositionName="Items">
+                <AttributeList>
+                  <Culture>en-US</Culture>
+                  <Text>SKV 1</Text>
+                </AttributeList>
+              </MultilingualTextItem>
+              <MultilingualTextItem ID="C" CompositionName="Items">
+                <AttributeList>
+                  <Culture>de-DE</Culture>
+                  <Text />
+                </AttributeList>
+              </MultilingualTextItem>
+              <MultilingualTextItem ID="D" CompositionName="Items">
+                <AttributeList>
+                  <Culture>ru-RU</Culture>
+                  <Text />
+                </AttributeList>
+              </MultilingualTextItem>
+            </ObjectList>
+          </MultilingualText>
+        </ObjectList>
+      </SW.Blocks.CompileUnit>
+      <SW.Blocks.CompileUnit ID="E" CompositionName="CompileUnits">
+        <AttributeList>
+          <NetworkSource><FlgNet xmlns="http://www.siemens.com/automation/Openness/SW/NetworkSource/FlgNet/v4">
+  <Parts>
+    <Access Scope="GlobalVariable" UId="21">
+      <Symbol>
+        <Component Name="pulse_1s" />
+      </Symbol>
+    </Access>
+    <Access Scope="TypedConstant" UId="22">
+      <Constant>
+        <ConstantValue>W#16#101</ConstantValue>
+      </Constant>
+    </Access>
+    <Access Scope="LiteralConstant" UId="23">
+      <Constant>
+        <ConstantType>Remote</ConstantType>
+        <ConstantValue>P#DB10.DBX60.0 BYTE 32</ConstantValue>
+      </Constant>
+    </Access>
+    <Access Scope="LiteralConstant" UId="24">
+      <Constant>
+        <ConstantType>Any</ConstantType>
+        <ConstantValue>P#DB1002.DBX60.0 BYTE 32</ConstantValue>
+      </Constant>
+    </Access>
+    <Access Scope="GlobalVariable" UId="25">
+      <Symbol>
+        <Component Name="pulse_1s" />
+      </Symbol>
+    </Access>
+    <Access Scope="TypedConstant" UId="26">
+      <Constant>
+        <ConstantValue>W#16#101</ConstantValue>
+      </Constant>
+    </Access>
+    <Access Scope="LiteralConstant" UId="27">
+      <Constant>
+        <ConstantType>Remote</ConstantType>
+        <ConstantValue>P#DB10.DBX0.0 BYTE 60</ConstantValue>
+      </Constant>
+    </Access>
+    <Access Scope="LiteralConstant" UId="28">
+      <Constant>
+        <ConstantType>Any</ConstantType>
+        <ConstantValue>P#DB1002.DBX0.0 BYTE 60</ConstantValue>
+      </Constant>
+    </Access>
+    <Call UId="29">
+      <CallInfo Name="Comm_SKV" BlockType="FB">
+        <Instance Scope="GlobalVariable" UId="30">
+          <Component Name="Comm_SKV_2" />
+        </Instance>
+      </CallInfo>
+    </Call>
+    <Part Name="GET" Version="1.3" UId="31">
+      <Instance Scope="LocalVariable" UId="32">
+        <Component Name="GET_SKV_2" />
+      </Instance>
+      <TemplateValue Name="remote_type" Type="Type">Remote</TemplateValue>
+      <TemplateValue Name="local_type" Type="Type">Variant</TemplateValue>
+    </Part>
+    <Part Name="PUT" Version="1.3" UId="33">
+      <Instance Scope="LocalVariable" UId="34">
+        <Component Name="PUT_SKV_2" />
+      </Instance>
+      <TemplateValue Name="remote_type" Type="Type">Remote</TemplateValue>
+      <TemplateValue Name="local_type" Type="Type">Variant</TemplateValue>
+    </Part>
+  </Parts>
+  <Wires>
+    <Wire UId="53">
+      <Powerrail />
+      <NameCon UId="29" Name="en" />
+    </Wire>
+    <Wire UId="54">
+      <NameCon UId="29" Name="eno" />
+      <NameCon UId="31" Name="en" />
+    </Wire>
+    <Wire UId="55">
+      <IdentCon UId="21" />
+      <NameCon UId="31" Name="REQ" />
+    </Wire>
+    <Wire UId="56">
+      <IdentCon UId="22" />
+      <NameCon UId="31" Name="ID" />
+    </Wire>
+    <Wire UId="57">
+      <IdentCon UId="23" />
+      <NameCon UId="31" Name="ADDR_1" />
+    </Wire>
+    <Wire UId="58">
+      <OpenCon UId="35" />
+      <NameCon UId="31" Name="ADDR_2" />
+    </Wire>
+    <Wire UId="59">
+      <OpenCon UId="36" />
+      <NameCon UId="31" Name="ADDR_3" />
+    </Wire>
+    <Wire UId="60">
+      <OpenCon UId="37" />
+      <NameCon UId="31" Name="ADDR_4" />
+    </Wire>
+    <Wire UId="61">
+      <IdentCon UId="24" />
+      <NameCon UId="31" Name="RD_1" />
+    </Wire>
+    <Wire UId="62">
+      <OpenCon UId="38" />
+      <NameCon UId="31" Name="RD_2" />
+    </Wire>
+    <Wire UId="63">
+      <OpenCon UId="39" />
+      <NameCon UId="31" Name="RD_3" />
+    </Wire>
+    <Wire UId="64">
+      <OpenCon UId="40" />
+      <NameCon UId="31" Name="RD_4" />
+    </Wire>
+    <Wire UId="65">
+      <NameCon UId="31" Name="eno" />
+      <NameCon UId="33" Name="en" />
+    </Wire>
+    <Wire UId="66">
+      <NameCon UId="31" Name="NDR" />
+      <OpenCon UId="41" />
+    </Wire>
+    <Wire UId="67">
+      <NameCon UId="31" Name="ERROR" />
+      <OpenCon UId="42" />
+    </Wire>
+    <Wire UId="68">
+      <NameCon UId="31" Name="STATUS" />
+      <OpenCon UId="43" />
+    </Wire>
+    <Wire UId="69">
+      <IdentCon UId="25" />
+      <NameCon UId="33" Name="REQ" />
+    </Wire>
+    <Wire UId="70">
+      <IdentCon UId="26" />
+      <NameCon UId="33" Name="ID" />
+    </Wire>
+    <Wire UId="71">
+      <IdentCon UId="27" />
+      <NameCon UId="33" Name="ADDR_1" />
+    </Wire>
+    <Wire UId="72">
+      <OpenCon UId="44" />
+      <NameCon UId="33" Name="ADDR_2" />
+    </Wire>
+    <Wire UId="73">
+      <OpenCon UId="45" />
+      <NameCon UId="33" Name="ADDR_3" />
+    </Wire>
+    <Wire UId="74">
+      <OpenCon UId="46" />
+      <NameCon UId="33" Name="ADDR_4" />
+    </Wire>
+    <Wire UId="75">
+      <IdentCon UId="28" />
+      <NameCon UId="33" Name="SD_1" />
+    </Wire>
+    <Wire UId="76">
+      <OpenCon UId="47" />
+      <NameCon UId="33" Name="SD_2" />
+    </Wire>
+    <Wire UId="77">
+      <OpenCon UId="48" />
+      <NameCon UId="33" Name="SD_3" />
+    </Wire>
+    <Wire UId="78">
+      <OpenCon UId="49" />
+      <NameCon UId="33" Name="SD_4" />
+    </Wire>
+    <Wire UId="79">
+      <NameCon UId="33" Name="DONE" />
+      <OpenCon UId="50" />
+    </Wire>
+    <Wire UId="80">
+      <NameCon UId="33" Name="ERROR" />
+      <OpenCon UId="51" />
+    </Wire>
+    <Wire UId="81">
+      <NameCon UId="33" Name="STATUS" />
+      <OpenCon UId="52" />
+    </Wire>
+  </Wires>
+</FlgNet></NetworkSource>
+          <ProgrammingLanguage>LAD</ProgrammingLanguage>
+        </AttributeList>
+        <ObjectList>
+          <MultilingualText ID="F" CompositionName="Comment">
+            <ObjectList>
+              <MultilingualTextItem ID="10" CompositionName="Items">
+                <AttributeList>
+                  <Culture>en-US</Culture>
+                  <Text />
+                </AttributeList>
+              </MultilingualTextItem>
+              <MultilingualTextItem ID="11" CompositionName="Items">
+                <AttributeList>
+                  <Culture>de-DE</Culture>
+                  <Text />
+                </AttributeList>
+              </MultilingualTextItem>
+              <MultilingualTextItem ID="12" CompositionName="Items">
+                <AttributeList>
+                  <Culture>ru-RU</Culture>
+                  <Text />
+                </AttributeList>
+              </MultilingualTextItem>
+            </ObjectList>
+          </MultilingualText>
+          <MultilingualText ID="13" CompositionName="Title">
+            <ObjectList>
+              <MultilingualTextItem ID="14" CompositionName="Items">
+                <AttributeList>
+                  <Culture>en-US</Culture>
+                  <Text>SKV 2</Text>
+                </AttributeList>
+              </MultilingualTextItem>
+              <MultilingualTextItem ID="15" CompositionName="Items">
+                <AttributeList>
+                  <Culture>de-DE</Culture>
+                  <Text />
+                </AttributeList>
+              </MultilingualTextItem>
+              <MultilingualTextItem ID="16" CompositionName="Items">
+                <AttributeList>
+                  <Culture>ru-RU</Culture>
+                  <Text />
+                </AttributeList>
+              </MultilingualTextItem>
+            </ObjectList>
+          </MultilingualText>
+        </ObjectList>
+      </SW.Blocks.CompileUnit>
+      <SW.Blocks.CompileUnit ID="17" CompositionName="CompileUnits">
+        <AttributeList>
+          <NetworkSource><FlgNet xmlns="http://www.siemens.com/automation/Openness/SW/NetworkSource/FlgNet/v4">
+  <Parts>
+    <Access Scope="GlobalVariable" UId="21">
+      <Symbol>
+        <Component Name="pulse_1s" />
+      </Symbol>
+    </Access>
+    <Access Scope="TypedConstant" UId="22">
+      <Constant>
+        <ConstantValue>W#16#102</ConstantValue>
+      </Constant>
+    </Access>
+    <Access Scope="LiteralConstant" UId="23">
+      <Constant>
+        <ConstantType>Remote</ConstantType>
+        <ConstantValue>P#DB10.DBX60.0 BYTE 32</ConstantValue>
+      </Constant>
+    </Access>
+    <Access Scope="LiteralConstant" UId="24">
+      <Constant>
+        <ConstantType>Any</ConstantType>
+        <ConstantValue>P#DB1003.DBX60.0 BYTE 32</ConstantValue>
+      </Constant>
+    </Access>
+    <Access Scope="GlobalVariable" UId="25">
+      <Symbol>
+        <Component Name="pulse_1s" />
+      </Symbol>
+    </Access>
+    <Access Scope="TypedConstant" UId="26">
+      <Constant>
+        <ConstantValue>W#16#102</ConstantValue>
+      </Constant>
+    </Access>
+    <Access Scope="LiteralConstant" UId="27">
+      <Constant>
+        <ConstantType>Remote</ConstantType>
+        <ConstantValue>P#DB10.DBX0.0 BYTE 60</ConstantValue>
+      </Constant>
+    </Access>
+    <Access Scope="LiteralConstant" UId="28">
+      <Constant>
+        <ConstantType>Any</ConstantType>
+        <ConstantValue>P#DB1003.DBX0.0 BYTE 60</ConstantValue>
+      </Constant>
+    </Access>
+    <Call UId="29">
+      <CallInfo Name="Comm_SKV" BlockType="FB">
+        <Instance Scope="GlobalVariable" UId="30">
+          <Component Name="Comm_SKV_3" />
+        </Instance>
+      </CallInfo>
+    </Call>
+    <Part Name="GET" Version="1.3" UId="31">
+      <Instance Scope="LocalVariable" UId="32">
+        <Component Name="GET_SKV_3" />
+      </Instance>
+      <TemplateValue Name="remote_type" Type="Type">Remote</TemplateValue>
+      <TemplateValue Name="local_type" Type="Type">Variant</TemplateValue>
+    </Part>
+    <Part Name="PUT" Version="1.3" UId="33">
+      <Instance Scope="LocalVariable" UId="34">
+        <Component Name="PUT_SKV_3" />
+      </Instance>
+      <TemplateValue Name="remote_type" Type="Type">Remote</TemplateValue>
+      <TemplateValue Name="local_type" Type="Type">Variant</TemplateValue>
+    </Part>
+  </Parts>
+  <Wires>
+    <Wire UId="53">
+      <Powerrail />
+      <NameCon UId="29" Name="en" />
+    </Wire>
+    <Wire UId="54">
+      <NameCon UId="29" Name="eno" />
+      <NameCon UId="31" Name="en" />
+    </Wire>
+    <Wire UId="55">
+      <IdentCon UId="21" />
+      <NameCon UId="31" Name="REQ" />
+    </Wire>
+    <Wire UId="56">
+      <IdentCon UId="22" />
+      <NameCon UId="31" Name="ID" />
+    </Wire>
+    <Wire UId="57">
+      <IdentCon UId="23" />
+      <NameCon UId="31" Name="ADDR_1" />
+    </Wire>
+    <Wire UId="58">
+      <OpenCon UId="35" />
+      <NameCon UId="31" Name="ADDR_2" />
+    </Wire>
+    <Wire UId="59">
+      <OpenCon UId="36" />
+      <NameCon UId="31" Name="ADDR_3" />
+    </Wire>
+    <Wire UId="60">
+      <OpenCon UId="37" />
+      <NameCon UId="31" Name="ADDR_4" />
+    </Wire>
+    <Wire UId="61">
+      <IdentCon UId="24" />
+      <NameCon UId="31" Name="RD_1" />
+    </Wire>
+    <Wire UId="62">
+      <OpenCon UId="38" />
+      <NameCon UId="31" Name="RD_2" />
+    </Wire>
+    <Wire UId="63">
+      <OpenCon UId="39" />
+      <NameCon UId="31" Name="RD_3" />
+    </Wire>
+    <Wire UId="64">
+      <OpenCon UId="40" />
+      <NameCon UId="31" Name="RD_4" />
+    </Wire>
+    <Wire UId="65">
+      <NameCon UId="31" Name="eno" />
+      <NameCon UId="33" Name="en" />
+    </Wire>
+    <Wire UId="66">
+      <NameCon UId="31" Name="NDR" />
+      <OpenCon UId="41" />
+    </Wire>
+    <Wire UId="67">
+      <NameCon UId="31" Name="ERROR" />
+      <OpenCon UId="42" />
+    </Wire>
+    <Wire UId="68">
+      <NameCon UId="31" Name="STATUS" />
+      <OpenCon UId="43" />
+    </Wire>
+    <Wire UId="69">
+      <IdentCon UId="25" />
+      <NameCon UId="33" Name="REQ" />
+    </Wire>
+    <Wire UId="70">
+      <IdentCon UId="26" />
+      <NameCon UId="33" Name="ID" />
+    </Wire>
+    <Wire UId="71">
+      <IdentCon UId="27" />
+      <NameCon UId="33" Name="ADDR_1" />
+    </Wire>
+    <Wire UId="72">
+      <OpenCon UId="44" />
+      <NameCon UId="33" Name="ADDR_2" />
+    </Wire>
+    <Wire UId="73">
+      <OpenCon UId="45" />
+      <NameCon UId="33" Name="ADDR_3" />
+    </Wire>
+    <Wire UId="74">
+      <OpenCon UId="46" />
+      <NameCon UId="33" Name="ADDR_4" />
+    </Wire>
+    <Wire UId="75">
+      <IdentCon UId="28" />
+      <NameCon UId="33" Name="SD_1" />
+    </Wire>
+    <Wire UId="76">
+      <OpenCon UId="47" />
+      <NameCon UId="33" Name="SD_2" />
+    </Wire>
+    <Wire UId="77">
+      <OpenCon UId="48" />
+      <NameCon UId="33" Name="SD_3" />
+    </Wire>
+    <Wire UId="78">
+      <OpenCon UId="49" />
+      <NameCon UId="33" Name="SD_4" />
+    </Wire>
+    <Wire UId="79">
+      <NameCon UId="33" Name="DONE" />
+      <OpenCon UId="50" />
+    </Wire>
+    <Wire UId="80">
+      <NameCon UId="33" Name="ERROR" />
+      <OpenCon UId="51" />
+    </Wire>
+    <Wire UId="81">
+      <NameCon UId="33" Name="STATUS" />
+      <OpenCon UId="52" />
+    </Wire>
+  </Wires>
+</FlgNet></NetworkSource>
+          <ProgrammingLanguage>LAD</ProgrammingLanguage>
+        </AttributeList>
+        <ObjectList>
+          <MultilingualText ID="18" CompositionName="Comment">
+            <ObjectList>
+              <MultilingualTextItem ID="19" CompositionName="Items">
+                <AttributeList>
+                  <Culture>en-US</Culture>
+                  <Text />
+                </AttributeList>
+              </MultilingualTextItem>
+              <MultilingualTextItem ID="1A" CompositionName="Items">
+                <AttributeList>
+                  <Culture>de-DE</Culture>
+                  <Text />
+                </AttributeList>
+              </MultilingualTextItem>
+              <MultilingualTextItem ID="1B" CompositionName="Items">
+                <AttributeList>
+                  <Culture>ru-RU</Culture>
+                  <Text />
+                </AttributeList>
+              </MultilingualTextItem>
+            </ObjectList>
+          </MultilingualText>
+          <MultilingualText ID="1C" CompositionName="Title">
+            <ObjectList>
+              <MultilingualTextItem ID="1D" CompositionName="Items">
+                <AttributeList>
+                  <Culture>en-US</Culture>
+                  <Text>SKV 3</Text>
+                </AttributeList>
+              </MultilingualTextItem>
+              <MultilingualTextItem ID="1E" CompositionName="Items">
+                <AttributeList>
+                  <Culture>de-DE</Culture>
+                  <Text />
+                </AttributeList>
+              </MultilingualTextItem>
+              <MultilingualTextItem ID="1F" CompositionName="Items">
+                <AttributeList>
+                  <Culture>ru-RU</Culture>
+                  <Text />
+                </AttributeList>
+              </MultilingualTextItem>
+            </ObjectList>
+          </MultilingualText>
+        </ObjectList>
+      </SW.Blocks.CompileUnit>
+      <SW.Blocks.CompileUnit ID="20" CompositionName="CompileUnits">
+        <AttributeList>
+          <NetworkSource><FlgNet xmlns="http://www.siemens.com/automation/Openness/SW/NetworkSource/FlgNet/v4">
+  <Parts>
+    <Access Scope="GlobalVariable" UId="21">
+      <Symbol>
+        <Component Name="pulse_1s" />
+      </Symbol>
+    </Access>
+    <Access Scope="TypedConstant" UId="22">
+      <Constant>
+        <ConstantValue>W#16#103</ConstantValue>
+      </Constant>
+    </Access>
+    <Access Scope="LiteralConstant" UId="23">
+      <Constant>
+        <ConstantType>Remote</ConstantType>
+        <ConstantValue>P#DB10.DBX60.0 BYTE 32</ConstantValue>
+      </Constant>
+    </Access>
+    <Access Scope="LiteralConstant" UId="24">
+      <Constant>
+        <ConstantType>Any</ConstantType>
+        <ConstantValue>P#DB1012.DBX60.0 BYTE 32</ConstantValue>
+      </Constant>
+    </Access>
+    <Access Scope="GlobalVariable" UId="25">
+      <Symbol>
+        <Component Name="pulse_1s" />
+      </Symbol>
+    </Access>
+    <Access Scope="TypedConstant" UId="26">
+      <Constant>
+        <ConstantValue>W#16#103</ConstantValue>
+      </Constant>
+    </Access>
+    <Access Scope="LiteralConstant" UId="27">
+      <Constant>
+        <ConstantType>Remote</ConstantType>
+        <ConstantValue>P#DB10.DBX0.0 BYTE 60</ConstantValue>
+      </Constant>
+    </Access>
+    <Access Scope="LiteralConstant" UId="28">
+      <Constant>
+        <ConstantType>Any</ConstantType>
+        <ConstantValue>P#DB1012.DBX0.0 BYTE 60</ConstantValue>
+      </Constant>
+    </Access>
+    <Call UId="29">
+      <CallInfo Name="Comm_SKV" BlockType="FB">
+        <Instance Scope="GlobalVariable" UId="30">
+          <Component Name="Comm_SKV_12" />
+        </Instance>
+      </CallInfo>
+    </Call>
+    <Part Name="GET" Version="1.3" UId="31">
+      <Instance Scope="LocalVariable" UId="32">
+        <Component Name="GET_SKV_12" />
+      </Instance>
+      <TemplateValue Name="remote_type" Type="Type">Remote</TemplateValue>
+      <TemplateValue Name="local_type" Type="Type">Variant</TemplateValue>
+    </Part>
+    <Part Name="PUT" Version="1.3" UId="33">
+      <Instance Scope="LocalVariable" UId="34">
+        <Component Name="PUT_SKV_12" />
+      </Instance>
+      <TemplateValue Name="remote_type" Type="Type">Remote</TemplateValue>
+      <TemplateValue Name="local_type" Type="Type">Variant</TemplateValue>
+    </Part>
+  </Parts>
+  <Wires>
+    <Wire UId="53">
+      <Powerrail />
+      <NameCon UId="29" Name="en" />
+    </Wire>
+    <Wire UId="54">
+      <NameCon UId="29" Name="eno" />
+      <NameCon UId="31" Name="en" />
+    </Wire>
+    <Wire UId="55">
+      <IdentCon UId="21" />
+      <NameCon UId="31" Name="REQ" />
+    </Wire>
+    <Wire UId="56">
+      <IdentCon UId="22" />
+      <NameCon UId="31" Name="ID" />
+    </Wire>
+    <Wire UId="57">
+      <IdentCon UId="23" />
+      <NameCon UId="31" Name="ADDR_1" />
+    </Wire>
+    <Wire UId="58">
+      <OpenCon UId="35" />
+      <NameCon UId="31" Name="ADDR_2" />
+    </Wire>
+    <Wire UId="59">
+      <OpenCon UId="36" />
+      <NameCon UId="31" Name="ADDR_3" />
+    </Wire>
+    <Wire UId="60">
+      <OpenCon UId="37" />
+      <NameCon UId="31" Name="ADDR_4" />
+    </Wire>
+    <Wire UId="61">
+      <IdentCon UId="24" />
+      <NameCon UId="31" Name="RD_1" />
+    </Wire>
+    <Wire UId="62">
+      <OpenCon UId="38" />
+      <NameCon UId="31" Name="RD_2" />
+    </Wire>
+    <Wire UId="63">
+      <OpenCon UId="39" />
+      <NameCon UId="31" Name="RD_3" />
+    </Wire>
+    <Wire UId="64">
+      <OpenCon UId="40" />
+      <NameCon UId="31" Name="RD_4" />
+    </Wire>
+    <Wire UId="65">
+      <NameCon UId="31" Name="eno" />
+      <NameCon UId="33" Name="en" />
+    </Wire>
+    <Wire UId="66">
+      <NameCon UId="31" Name="NDR" />
+      <OpenCon UId="41" />
+    </Wire>
+    <Wire UId="67">
+      <NameCon UId="31" Name="ERROR" />
+      <OpenCon UId="42" />
+    </Wire>
+    <Wire UId="68">
+      <NameCon UId="31" Name="STATUS" />
+      <OpenCon UId="43" />
+    </Wire>
+    <Wire UId="69">
+      <IdentCon UId="25" />
+      <NameCon UId="33" Name="REQ" />
+    </Wire>
+    <Wire UId="70">
+      <IdentCon UId="26" />
+      <NameCon UId="33" Name="ID" />
+    </Wire>
+    <Wire UId="71">
+      <IdentCon UId="27" />
+      <NameCon UId="33" Name="ADDR_1" />
+    </Wire>
+    <Wire UId="72">
+      <OpenCon UId="44" />
+      <NameCon UId="33" Name="ADDR_2" />
+    </Wire>
+    <Wire UId="73">
+      <OpenCon UId="45" />
+      <NameCon UId="33" Name="ADDR_3" />
+    </Wire>
+    <Wire UId="74">
+      <OpenCon UId="46" />
+      <NameCon UId="33" Name="ADDR_4" />
+    </Wire>
+    <Wire UId="75">
+      <IdentCon UId="28" />
+      <NameCon UId="33" Name="SD_1" />
+    </Wire>
+    <Wire UId="76">
+      <OpenCon UId="47" />
+      <NameCon UId="33" Name="SD_2" />
+    </Wire>
+    <Wire UId="77">
+      <OpenCon UId="48" />
+      <NameCon UId="33" Name="SD_3" />
+    </Wire>
+    <Wire UId="78">
+      <OpenCon UId="49" />
+      <NameCon UId="33" Name="SD_4" />
+    </Wire>
+    <Wire UId="79">
+      <NameCon UId="33" Name="DONE" />
+      <OpenCon UId="50" />
+    </Wire>
+    <Wire UId="80">
+      <NameCon UId="33" Name="ERROR" />
+      <OpenCon UId="51" />
+    </Wire>
+    <Wire UId="81">
+      <NameCon UId="33" Name="STATUS" />
+      <OpenCon UId="52" />
+    </Wire>
+  </Wires>
+</FlgNet></NetworkSource>
+          <ProgrammingLanguage>LAD</ProgrammingLanguage>
+        </AttributeList>
+        <ObjectList>
+          <MultilingualText ID="21" CompositionName="Comment">
+            <ObjectList>
+              <MultilingualTextItem ID="22" CompositionName="Items">
+                <AttributeList>
+                  <Culture>en-US</Culture>
+                  <Text />
+                </AttributeList>
+              </MultilingualTextItem>
+              <MultilingualTextItem ID="23" CompositionName="Items">
+                <AttributeList>
+                  <Culture>de-DE</Culture>
+                  <Text />
+                </AttributeList>
+              </MultilingualTextItem>
+              <MultilingualTextItem ID="24" CompositionName="Items">
+                <AttributeList>
+                  <Culture>ru-RU</Culture>
+                  <Text />
+                </AttributeList>
+              </MultilingualTextItem>
+            </ObjectList>
+          </MultilingualText>
+          <MultilingualText ID="25" CompositionName="Title">
+            <ObjectList>
+              <MultilingualTextItem ID="26" CompositionName="Items">
+                <AttributeList>
+                  <Culture>en-US</Culture>
+                  <Text>SKV 4</Text>
+                </AttributeList>
+              </MultilingualTextItem>
+              <MultilingualTextItem ID="27" CompositionName="Items">
+                <AttributeList>
+                  <Culture>de-DE</Culture>
+                  <Text />
+                </AttributeList>
+              </MultilingualTextItem>
+              <MultilingualTextItem ID="28" CompositionName="Items">
+                <AttributeList>
+                  <Culture>ru-RU</Culture>
+                  <Text />
+                </AttributeList>
+              </MultilingualTextItem>
+            </ObjectList>
+          </MultilingualText>
+        </ObjectList>
+      </SW.Blocks.CompileUnit>
+      <SW.Blocks.CompileUnit ID="29" CompositionName="CompileUnits">
+        <AttributeList>
+          <NetworkSource><FlgNet xmlns="http://www.siemens.com/automation/Openness/SW/NetworkSource/FlgNet/v4">
+  <Parts>
+    <Access Scope="GlobalVariable" UId="21">
+      <Symbol>
+        <Component Name="pulse_1s" />
+      </Symbol>
+    </Access>
+    <Access Scope="TypedConstant" UId="22">
+      <Constant>
+        <ConstantValue>W#16#104</ConstantValue>
+      </Constant>
+    </Access>
+    <Access Scope="LiteralConstant" UId="23">
+      <Constant>
+        <ConstantType>Remote</ConstantType>
+        <ConstantValue>P#DB10.DBX60.0 BYTE 32</ConstantValue>
+      </Constant>
+    </Access>
+    <Access Scope="LiteralConstant" UId="24">
+      <Constant>
+        <ConstantType>Any</ConstantType>
+        <ConstantValue>P#DB1013.DBX60.0 BYTE 32</ConstantValue>
+      </Constant>
+    </Access>
+    <Access Scope="GlobalVariable" UId="25">
+      <Symbol>
+        <Component Name="pulse_1s" />
+      </Symbol>
+    </Access>
+    <Access Scope="TypedConstant" UId="26">
+      <Constant>
+        <ConstantValue>W#16#104</ConstantValue>
+      </Constant>
+    </Access>
+    <Access Scope="LiteralConstant" UId="27">
+      <Constant>
+        <ConstantType>Remote</ConstantType>
+        <ConstantValue>P#DB10.DBX0.0 BYTE 60</ConstantValue>
+      </Constant>
+    </Access>
+    <Access Scope="LiteralConstant" UId="28">
+      <Constant>
+        <ConstantType>Any</ConstantType>
+        <ConstantValue>P#DB1013.DBX0.0 BYTE 60</ConstantValue>
+      </Constant>
+    </Access>
+    <Call UId="29">
+      <CallInfo Name="Comm_SKV" BlockType="FB">
+        <Instance Scope="GlobalVariable" UId="30">
+          <Component Name="Comm_SKV_13" />
+        </Instance>
+      </CallInfo>
+    </Call>
+    <Part Name="GET" Version="1.3" UId="31">
+      <Instance Scope="LocalVariable" UId="32">
+        <Component Name="GET_SKV_13" />
+      </Instance>
+      <TemplateValue Name="remote_type" Type="Type">Remote</TemplateValue>
+      <TemplateValue Name="local_type" Type="Type">Variant</TemplateValue>
+    </Part>
+    <Part Name="PUT" Version="1.3" UId="33">
+      <Instance Scope="LocalVariable" UId="34">
+        <Component Name="PUT_SKV_13" />
+      </Instance>
+      <TemplateValue Name="remote_type" Type="Type">Remote</TemplateValue>
+      <TemplateValue Name="local_type" Type="Type">Variant</TemplateValue>
+    </Part>
+  </Parts>
+  <Wires>
+    <Wire UId="53">
+      <Powerrail />
+      <NameCon UId="29" Name="en" />
+    </Wire>
+    <Wire UId="54">
+      <NameCon UId="29" Name="eno" />
+      <NameCon UId="31" Name="en" />
+    </Wire>
+    <Wire UId="55">
+      <IdentCon UId="21" />
+      <NameCon UId="31" Name="REQ" />
+    </Wire>
+    <Wire UId="56">
+      <IdentCon UId="22" />
+      <NameCon UId="31" Name="ID" />
+    </Wire>
+    <Wire UId="57">
+      <IdentCon UId="23" />
+      <NameCon UId="31" Name="ADDR_1" />
+    </Wire>
+    <Wire UId="58">
+      <OpenCon UId="35" />
+      <NameCon UId="31" Name="ADDR_2" />
+    </Wire>
+    <Wire UId="59">
+      <OpenCon UId="36" />
+      <NameCon UId="31" Name="ADDR_3" />
+    </Wire>
+    <Wire UId="60">
+      <OpenCon UId="37" />
+      <NameCon UId="31" Name="ADDR_4" />
+    </Wire>
+    <Wire UId="61">
+      <IdentCon UId="24" />
+      <NameCon UId="31" Name="RD_1" />
+    </Wire>
+    <Wire UId="62">
+      <OpenCon UId="38" />
+      <NameCon UId="31" Name="RD_2" />
+    </Wire>
+    <Wire UId="63">
+      <OpenCon UId="39" />
+      <NameCon UId="31" Name="RD_3" />
+    </Wire>
+    <Wire UId="64">
+      <OpenCon UId="40" />
+      <NameCon UId="31" Name="RD_4" />
+    </Wire>
+    <Wire UId="65">
+      <NameCon UId="31" Name="eno" />
+      <NameCon UId="33" Name="en" />
+    </Wire>
+    <Wire UId="66">
+      <NameCon UId="31" Name="NDR" />
+      <OpenCon UId="41" />
+    </Wire>
+    <Wire UId="67">
+      <NameCon UId="31" Name="ERROR" />
+      <OpenCon UId="42" />
+    </Wire>
+    <Wire UId="68">
+      <NameCon UId="31" Name="STATUS" />
+      <OpenCon UId="43" />
+    </Wire>
+    <Wire UId="69">
+      <IdentCon UId="25" />
+      <NameCon UId="33" Name="REQ" />
+    </Wire>
+    <Wire UId="70">
+      <IdentCon UId="26" />
+      <NameCon UId="33" Name="ID" />
+    </Wire>
+    <Wire UId="71">
+      <IdentCon UId="27" />
+      <NameCon UId="33" Name="ADDR_1" />
+    </Wire>
+    <Wire UId="72">
+      <OpenCon UId="44" />
+      <NameCon UId="33" Name="ADDR_2" />
+    </Wire>
+    <Wire UId="73">
+      <OpenCon UId="45" />
+      <NameCon UId="33" Name="ADDR_3" />
+    </Wire>
+    <Wire UId="74">
+      <OpenCon UId="46" />
+      <NameCon UId="33" Name="ADDR_4" />
+    </Wire>
+    <Wire UId="75">
+      <IdentCon UId="28" />
+      <NameCon UId="33" Name="SD_1" />
+    </Wire>
+    <Wire UId="76">
+      <OpenCon UId="47" />
+      <NameCon UId="33" Name="SD_2" />
+    </Wire>
+    <Wire UId="77">
+      <OpenCon UId="48" />
+      <NameCon UId="33" Name="SD_3" />
+    </Wire>
+    <Wire UId="78">
+      <OpenCon UId="49" />
+      <NameCon UId="33" Name="SD_4" />
+    </Wire>
+    <Wire UId="79">
+      <NameCon UId="33" Name="DONE" />
+      <OpenCon UId="50" />
+    </Wire>
+    <Wire UId="80">
+      <NameCon UId="33" Name="ERROR" />
+      <OpenCon UId="51" />
+    </Wire>
+    <Wire UId="81">
+      <NameCon UId="33" Name="STATUS" />
+      <OpenCon UId="52" />
+    </Wire>
+  </Wires>
+</FlgNet></NetworkSource>
+          <ProgrammingLanguage>LAD</ProgrammingLanguage>
+        </AttributeList>
+        <ObjectList>
+          <MultilingualText ID="2A" CompositionName="Comment">
+            <ObjectList>
+              <MultilingualTextItem ID="2B" CompositionName="Items">
+                <AttributeList>
+                  <Culture>en-US</Culture>
+                  <Text />
+                </AttributeList>
+              </MultilingualTextItem>
+              <MultilingualTextItem ID="2C" CompositionName="Items">
+                <AttributeList>
+                  <Culture>de-DE</Culture>
+                  <Text />
+                </AttributeList>
+              </MultilingualTextItem>
+              <MultilingualTextItem ID="2D" CompositionName="Items">
+                <AttributeList>
+                  <Culture>ru-RU</Culture>
+                  <Text />
+                </AttributeList>
+              </MultilingualTextItem>
+            </ObjectList>
+          </MultilingualText>
+          <MultilingualText ID="2E" CompositionName="Title">
+            <ObjectList>
+              <MultilingualTextItem ID="2F" CompositionName="Items">
+                <AttributeList>
+                  <Culture>en-US</Culture>
+                  <Text>SKV 5</Text>
+                </AttributeList>
+              </MultilingualTextItem>
+              <MultilingualTextItem ID="30" CompositionName="Items">
+                <AttributeList>
+                  <Culture>de-DE</Culture>
+                  <Text />
+                </AttributeList>
+              </MultilingualTextItem>
+              <MultilingualTextItem ID="31" CompositionName="Items">
+                <AttributeList>
+                  <Culture>ru-RU</Culture>
+                  <Text />
+                </AttributeList>
+              </MultilingualTextItem>
+            </ObjectList>
+          </MultilingualText>
+        </ObjectList>
+      </SW.Blocks.CompileUnit>
+      <SW.Blocks.CompileUnit ID="32" CompositionName="CompileUnits">
+        <AttributeList>
+          <NetworkSource><FlgNet xmlns="http://www.siemens.com/automation/Openness/SW/NetworkSource/FlgNet/v4">
+  <Parts>
+    <Access Scope="GlobalVariable" UId="21">
+      <Symbol>
+        <Component Name="pulse_1s" />
+      </Symbol>
+    </Access>
+    <Access Scope="TypedConstant" UId="22">
+      <Constant>
+        <ConstantValue>W#16#105</ConstantValue>
+      </Constant>
+    </Access>
+    <Access Scope="LiteralConstant" UId="23">
+      <Constant>
+        <ConstantType>Remote</ConstantType>
+        <ConstantValue>P#DB10.DBX60.0 BYTE 32</ConstantValue>
+      </Constant>
+    </Access>
+    <Access Scope="LiteralConstant" UId="24">
+      <Constant>
+        <ConstantType>Any</ConstantType>
+        <ConstantValue>P#DB1014.DBX60.0 BYTE 32</ConstantValue>
+      </Constant>
+    </Access>
+    <Access Scope="GlobalVariable" UId="25">
+      <Symbol>
+        <Component Name="pulse_1s" />
+      </Symbol>
+    </Access>
+    <Access Scope="TypedConstant" UId="26">
+      <Constant>
+        <ConstantValue>W#16#105</ConstantValue>
+      </Constant>
+    </Access>
+    <Access Scope="LiteralConstant" UId="27">
+      <Constant>
+        <ConstantType>Remote</ConstantType>
+        <ConstantValue>P#DB10.DBX0.0 BYTE 60</ConstantValue>
+      </Constant>
+    </Access>
+    <Access Scope="LiteralConstant" UId="28">
+      <Constant>
+        <ConstantType>Any</ConstantType>
+        <ConstantValue>P#DB1014.DBX0.0 BYTE 60</ConstantValue>
+      </Constant>
+    </Access>
+    <Call UId="29">
+      <CallInfo Name="Comm_SKV" BlockType="FB">
+        <Instance Scope="GlobalVariable" UId="30">
+          <Component Name="Comm_SKV_14" />
+        </Instance>
+      </CallInfo>
+    </Call>
+    <Part Name="GET" Version="1.3" UId="31">
+      <Instance Scope="LocalVariable" UId="32">
+        <Component Name="GET_SKV_14" />
+      </Instance>
+      <TemplateValue Name="remote_type" Type="Type">Remote</TemplateValue>
+      <TemplateValue Name="local_type" Type="Type">Variant</TemplateValue>
+    </Part>
+    <Part Name="PUT" Version="1.3" UId="33">
+      <Instance Scope="LocalVariable" UId="34">
+        <Component Name="PUT_SKV_14" />
+      </Instance>
+      <TemplateValue Name="remote_type" Type="Type">Remote</TemplateValue>
+      <TemplateValue Name="local_type" Type="Type">Variant</TemplateValue>
+    </Part>
+  </Parts>
+  <Wires>
+    <Wire UId="53">
+      <Powerrail />
+      <NameCon UId="29" Name="en" />
+    </Wire>
+    <Wire UId="54">
+      <NameCon UId="29" Name="eno" />
+      <NameCon UId="31" Name="en" />
+    </Wire>
+    <Wire UId="55">
+      <IdentCon UId="21" />
+      <NameCon UId="31" Name="REQ" />
+    </Wire>
+    <Wire UId="56">
+      <IdentCon UId="22" />
+      <NameCon UId="31" Name="ID" />
+    </Wire>
+    <Wire UId="57">
+      <IdentCon UId="23" />
+      <NameCon UId="31" Name="ADDR_1" />
+    </Wire>
+    <Wire UId="58">
+      <OpenCon UId="35" />
+      <NameCon UId="31" Name="ADDR_2" />
+    </Wire>
+    <Wire UId="59">
+      <OpenCon UId="36" />
+      <NameCon UId="31" Name="ADDR_3" />
+    </Wire>
+    <Wire UId="60">
+      <OpenCon UId="37" />
+      <NameCon UId="31" Name="ADDR_4" />
+    </Wire>
+    <Wire UId="61">
+      <IdentCon UId="24" />
+      <NameCon UId="31" Name="RD_1" />
+    </Wire>
+    <Wire UId="62">
+      <OpenCon UId="38" />
+      <NameCon UId="31" Name="RD_2" />
+    </Wire>
+    <Wire UId="63">
+      <OpenCon UId="39" />
+      <NameCon UId="31" Name="RD_3" />
+    </Wire>
+    <Wire UId="64">
+      <OpenCon UId="40" />
+      <NameCon UId="31" Name="RD_4" />
+    </Wire>
+    <Wire UId="65">
+      <NameCon UId="31" Name="eno" />
+      <NameCon UId="33" Name="en" />
+    </Wire>
+    <Wire UId="66">
+      <NameCon UId="31" Name="NDR" />
+      <OpenCon UId="41" />
+    </Wire>
+    <Wire UId="67">
+      <NameCon UId="31" Name="ERROR" />
+      <OpenCon UId="42" />
+    </Wire>
+    <Wire UId="68">
+      <NameCon UId="31" Name="STATUS" />
+      <OpenCon UId="43" />
+    </Wire>
+    <Wire UId="69">
+      <IdentCon UId="25" />
+      <NameCon UId="33" Name="REQ" />
+    </Wire>
+    <Wire UId="70">
+      <IdentCon UId="26" />
+      <NameCon UId="33" Name="ID" />
+    </Wire>
+    <Wire UId="71">
+      <IdentCon UId="27" />
+      <NameCon UId="33" Name="ADDR_1" />
+    </Wire>
+    <Wire UId="72">
+      <OpenCon UId="44" />
+      <NameCon UId="33" Name="ADDR_2" />
+    </Wire>
+    <Wire UId="73">
+      <OpenCon UId="45" />
+      <NameCon UId="33" Name="ADDR_3" />
+    </Wire>
+    <Wire UId="74">
+      <OpenCon UId="46" />
+      <NameCon UId="33" Name="ADDR_4" />
+    </Wire>
+    <Wire UId="75">
+      <IdentCon UId="28" />
+      <NameCon UId="33" Name="SD_1" />
+    </Wire>
+    <Wire UId="76">
+      <OpenCon UId="47" />
+      <NameCon UId="33" Name="SD_2" />
+    </Wire>
+    <Wire UId="77">
+      <OpenCon UId="48" />
+      <NameCon UId="33" Name="SD_3" />
+    </Wire>
+    <Wire UId="78">
+      <OpenCon UId="49" />
+      <NameCon UId="33" Name="SD_4" />
+    </Wire>
+    <Wire UId="79">
+      <NameCon UId="33" Name="DONE" />
+      <OpenCon UId="50" />
+    </Wire>
+    <Wire UId="80">
+      <NameCon UId="33" Name="ERROR" />
+      <OpenCon UId="51" />
+    </Wire>
+    <Wire UId="81">
+      <NameCon UId="33" Name="STATUS" />
+      <OpenCon UId="52" />
+    </Wire>
+  </Wires>
+</FlgNet></NetworkSource>
+          <ProgrammingLanguage>LAD</ProgrammingLanguage>
+        </AttributeList>
+        <ObjectList>
+          <MultilingualText ID="33" CompositionName="Comment">
+            <ObjectList>
+              <MultilingualTextItem ID="34" CompositionName="Items">
+                <AttributeList>
+                  <Culture>en-US</Culture>
+                  <Text />
+                </AttributeList>
+              </MultilingualTextItem>
+              <MultilingualTextItem ID="35" CompositionName="Items">
+                <AttributeList>
+                  <Culture>de-DE</Culture>
+                  <Text />
+                </AttributeList>
+              </MultilingualTextItem>
+              <MultilingualTextItem ID="36" CompositionName="Items">
+                <AttributeList>
+                  <Culture>ru-RU</Culture>
+                  <Text />
+                </AttributeList>
+              </MultilingualTextItem>
+            </ObjectList>
+          </MultilingualText>
+          <MultilingualText ID="37" CompositionName="Title">
+            <ObjectList>
+              <MultilingualTextItem ID="38" CompositionName="Items">
+                <AttributeList>
+                  <Culture>en-US</Culture>
+                  <Text>SKV 6</Text>
+                </AttributeList>
+              </MultilingualTextItem>
+              <MultilingualTextItem ID="39" CompositionName="Items">
+                <AttributeList>
+                  <Culture>de-DE</Culture>
+                  <Text />
+                </AttributeList>
+              </MultilingualTextItem>
+              <MultilingualTextItem ID="3A" CompositionName="Items">
+                <AttributeList>
+                  <Culture>ru-RU</Culture>
+                  <Text />
+                </AttributeList>
+              </MultilingualTextItem>
+            </ObjectList>
+          </MultilingualText>
+        </ObjectList>
+      </SW.Blocks.CompileUnit>
+      <SW.Blocks.CompileUnit ID="3B" CompositionName="CompileUnits">
+        <AttributeList>
+          <NetworkSource><FlgNet xmlns="http://www.siemens.com/automation/Openness/SW/NetworkSource/FlgNet/v4">
+  <Parts>
+    <Access Scope="GlobalVariable" UId="21">
+      <Symbol>
+        <Component Name="pulse_1s" />
+      </Symbol>
+    </Access>
+    <Access Scope="TypedConstant" UId="22">
+      <Constant>
+        <ConstantValue>W#16#106</ConstantValue>
+      </Constant>
+    </Access>
+    <Access Scope="LiteralConstant" UId="23">
+      <Constant>
+        <ConstantType>Remote</ConstantType>
+        <ConstantValue>P#DB10.DBX60.0 BYTE 32</ConstantValue>
+      </Constant>
+    </Access>
+    <Access Scope="LiteralConstant" UId="24">
+      <Constant>
+        <ConstantType>Any</ConstantType>
+        <ConstantValue>P#DB1015.DBX60.0 BYTE 32</ConstantValue>
+      </Constant>
+    </Access>
+    <Access Scope="GlobalVariable" UId="25">
+      <Symbol>
+        <Component Name="pulse_1s" />
+      </Symbol>
+    </Access>
+    <Access Scope="TypedConstant" UId="26">
+      <Constant>
+        <ConstantValue>W#16#106</ConstantValue>
+      </Constant>
+    </Access>
+    <Access Scope="LiteralConstant" UId="27">
+      <Constant>
+        <ConstantType>Remote</ConstantType>
+        <ConstantValue>P#DB10.DBX0.0 BYTE 60</ConstantValue>
+      </Constant>
+    </Access>
+    <Access Scope="LiteralConstant" UId="28">
+      <Constant>
+        <ConstantType>Any</ConstantType>
+        <ConstantValue>P#DB1015.DBX0.0 BYTE 60</ConstantValue>
+      </Constant>
+    </Access>
+    <Call UId="29">
+      <CallInfo Name="Comm_SKV" BlockType="FB">
+        <Instance Scope="GlobalVariable" UId="30">
+          <Component Name="Comm_SKV_15" />
+        </Instance>
+      </CallInfo>
+    </Call>
+    <Part Name="GET" Version="1.3" UId="31">
+      <Instance Scope="LocalVariable" UId="32">
+        <Component Name="GET_SKV_15" />
+      </Instance>
+      <TemplateValue Name="remote_type" Type="Type">Remote</TemplateValue>
+      <TemplateValue Name="local_type" Type="Type">Variant</TemplateValue>
+    </Part>
+    <Part Name="PUT" Version="1.3" UId="33">
+      <Instance Scope="LocalVariable" UId="34">
+        <Component Name="PUT_SKV_15" />
+      </Instance>
+      <TemplateValue Name="remote_type" Type="Type">Remote</TemplateValue>
+      <TemplateValue Name="local_type" Type="Type">Variant</TemplateValue>
+    </Part>
+  </Parts>
+  <Wires>
+    <Wire UId="53">
+      <Powerrail />
+      <NameCon UId="29" Name="en" />
+    </Wire>
+    <Wire UId="54">
+      <NameCon UId="29" Name="eno" />
+      <NameCon UId="31" Name="en" />
+    </Wire>
+    <Wire UId="55">
+      <IdentCon UId="21" />
+      <NameCon UId="31" Name="REQ" />
+    </Wire>
+    <Wire UId="56">
+      <IdentCon UId="22" />
+      <NameCon UId="31" Name="ID" />
+    </Wire>
+    <Wire UId="57">
+      <IdentCon UId="23" />
+      <NameCon UId="31" Name="ADDR_1" />
+    </Wire>
+    <Wire UId="58">
+      <OpenCon UId="35" />
+      <NameCon UId="31" Name="ADDR_2" />
+    </Wire>
+    <Wire UId="59">
+      <OpenCon UId="36" />
+      <NameCon UId="31" Name="ADDR_3" />
+    </Wire>
+    <Wire UId="60">
+      <OpenCon UId="37" />
+      <NameCon UId="31" Name="ADDR_4" />
+    </Wire>
+    <Wire UId="61">
+      <IdentCon UId="24" />
+      <NameCon UId="31" Name="RD_1" />
+    </Wire>
+    <Wire UId="62">
+      <OpenCon UId="38" />
+      <NameCon UId="31" Name="RD_2" />
+    </Wire>
+    <Wire UId="63">
+      <OpenCon UId="39" />
+      <NameCon UId="31" Name="RD_3" />
+    </Wire>
+    <Wire UId="64">
+      <OpenCon UId="40" />
+      <NameCon UId="31" Name="RD_4" />
+    </Wire>
+    <Wire UId="65">
+      <NameCon UId="31" Name="eno" />
+      <NameCon UId="33" Name="en" />
+    </Wire>
+    <Wire UId="66">
+      <NameCon UId="31" Name="NDR" />
+      <OpenCon UId="41" />
+    </Wire>
+    <Wire UId="67">
+      <NameCon UId="31" Name="ERROR" />
+      <OpenCon UId="42" />
+    </Wire>
+    <Wire UId="68">
+      <NameCon UId="31" Name="STATUS" />
+      <OpenCon UId="43" />
+    </Wire>
+    <Wire UId="69">
+      <IdentCon UId="25" />
+      <NameCon UId="33" Name="REQ" />
+    </Wire>
+    <Wire UId="70">
+      <IdentCon UId="26" />
+      <NameCon UId="33" Name="ID" />
+    </Wire>
+    <Wire UId="71">
+      <IdentCon UId="27" />
+      <NameCon UId="33" Name="ADDR_1" />
+    </Wire>
+    <Wire UId="72">
+      <OpenCon UId="44" />
+      <NameCon UId="33" Name="ADDR_2" />
+    </Wire>
+    <Wire UId="73">
+      <OpenCon UId="45" />
+      <NameCon UId="33" Name="ADDR_3" />
+    </Wire>
+    <Wire UId="74">
+      <OpenCon UId="46" />
+      <NameCon UId="33" Name="ADDR_4" />
+    </Wire>
+    <Wire UId="75">
+      <IdentCon UId="28" />
+      <NameCon UId="33" Name="SD_1" />
+    </Wire>
+    <Wire UId="76">
+      <OpenCon UId="47" />
+      <NameCon UId="33" Name="SD_2" />
+    </Wire>
+    <Wire UId="77">
+      <OpenCon UId="48" />
+      <NameCon UId="33" Name="SD_3" />
+    </Wire>
+    <Wire UId="78">
+      <OpenCon UId="49" />
+      <NameCon UId="33" Name="SD_4" />
+    </Wire>
+    <Wire UId="79">
+      <NameCon UId="33" Name="DONE" />
+      <OpenCon UId="50" />
+    </Wire>
+    <Wire UId="80">
+      <NameCon UId="33" Name="ERROR" />
+      <OpenCon UId="51" />
+    </Wire>
+    <Wire UId="81">
+      <NameCon UId="33" Name="STATUS" />
+      <OpenCon UId="52" />
+    </Wire>
+  </Wires>
+</FlgNet></NetworkSource>
+          <ProgrammingLanguage>LAD</ProgrammingLanguage>
+        </AttributeList>
+        <ObjectList>
+          <MultilingualText ID="3C" CompositionName="Comment">
+            <ObjectList>
+              <MultilingualTextItem ID="3D" CompositionName="Items">
+                <AttributeList>
+                  <Culture>en-US</Culture>
+                  <Text />
+                </AttributeList>
+              </MultilingualTextItem>
+              <MultilingualTextItem ID="3E" CompositionName="Items">
+                <AttributeList>
+                  <Culture>de-DE</Culture>
+                  <Text />
+                </AttributeList>
+              </MultilingualTextItem>
+              <MultilingualTextItem ID="3F" CompositionName="Items">
+                <AttributeList>
+                  <Culture>ru-RU</Culture>
+                  <Text />
+                </AttributeList>
+              </MultilingualTextItem>
+            </ObjectList>
+          </MultilingualText>
+          <MultilingualText ID="40" CompositionName="Title">
+            <ObjectList>
+              <MultilingualTextItem ID="41" CompositionName="Items">
+                <AttributeList>
+                  <Culture>en-US</Culture>
+                  <Text>SKV 7</Text>
+                </AttributeList>
+              </MultilingualTextItem>
+              <MultilingualTextItem ID="42" CompositionName="Items">
+                <AttributeList>
+                  <Culture>de-DE</Culture>
+                  <Text />
+                </AttributeList>
+              </MultilingualTextItem>
+              <MultilingualTextItem ID="43" CompositionName="Items">
+                <AttributeList>
+                  <Culture>ru-RU</Culture>
+                  <Text />
+                </AttributeList>
+              </MultilingualTextItem>
+            </ObjectList>
+          </MultilingualText>
+        </ObjectList>
+      </SW.Blocks.CompileUnit>
+      <SW.Blocks.CompileUnit ID="44" CompositionName="CompileUnits">
+        <AttributeList>
+          <NetworkSource><FlgNet xmlns="http://www.siemens.com/automation/Openness/SW/NetworkSource/FlgNet/v4">
+  <Parts>
+    <Access Scope="GlobalVariable" UId="21">
+      <Symbol>
+        <Component Name="pulse_1s" />
+      </Symbol>
+    </Access>
+    <Access Scope="TypedConstant" UId="22">
+      <Constant>
+        <ConstantValue>W#16#107</ConstantValue>
+      </Constant>
+    </Access>
+    <Access Scope="LiteralConstant" UId="23">
+      <Constant>
+        <ConstantType>Remote</ConstantType>
+        <ConstantValue>P#DB10.DBX60.0 BYTE 32</ConstantValue>
+      </Constant>
+    </Access>
+    <Access Scope="LiteralConstant" UId="24">
+      <Constant>
+        <ConstantType>Any</ConstantType>
+        <ConstantValue>P#DB1020.DBX60.0 BYTE 32</ConstantValue>
+      </Constant>
+    </Access>
+    <Access Scope="GlobalVariable" UId="25">
+      <Symbol>
+        <Component Name="pulse_1s" />
+      </Symbol>
+    </Access>
+    <Access Scope="TypedConstant" UId="26">
+      <Constant>
+        <ConstantValue>W#16#107</ConstantValue>
+      </Constant>
+    </Access>
+    <Access Scope="LiteralConstant" UId="27">
+      <Constant>
+        <ConstantType>Remote</ConstantType>
+        <ConstantValue>P#DB10.DBX0.0 BYTE 60</ConstantValue>
+      </Constant>
+    </Access>
+    <Access Scope="LiteralConstant" UId="28">
+      <Constant>
+        <ConstantType>Any</ConstantType>
+        <ConstantValue>P#DB1020.DBX0.0 BYTE 60</ConstantValue>
+      </Constant>
+    </Access>
+    <Call UId="29">
+      <CallInfo Name="Comm_SKV" BlockType="FB">
+        <Instance Scope="GlobalVariable" UId="30">
+          <Component Name="Comm_SKV_20" />
+        </Instance>
+      </CallInfo>
+    </Call>
+    <Part Name="GET" Version="1.3" UId="31">
+      <Instance Scope="LocalVariable" UId="32">
+        <Component Name="GET_SKV_20" />
+      </Instance>
+      <TemplateValue Name="remote_type" Type="Type">Remote</TemplateValue>
+      <TemplateValue Name="local_type" Type="Type">Variant</TemplateValue>
+    </Part>
+    <Part Name="PUT" Version="1.3" UId="33">
+      <Instance Scope="LocalVariable" UId="34">
+        <Component Name="PUT_SKV_20" />
+      </Instance>
+      <TemplateValue Name="remote_type" Type="Type">Remote</TemplateValue>
+      <TemplateValue Name="local_type" Type="Type">Variant</TemplateValue>
+    </Part>
+  </Parts>
+  <Wires>
+    <Wire UId="53">
+      <Powerrail />
+      <NameCon UId="29" Name="en" />
+    </Wire>
+    <Wire UId="54">
+      <NameCon UId="29" Name="eno" />
+      <NameCon UId="31" Name="en" />
+    </Wire>
+    <Wire UId="55">
+      <IdentCon UId="21" />
+      <NameCon UId="31" Name="REQ" />
+    </Wire>
+    <Wire UId="56">
+      <IdentCon UId="22" />
+      <NameCon UId="31" Name="ID" />
+    </Wire>
+    <Wire UId="57">
+      <IdentCon UId="23" />
+      <NameCon UId="31" Name="ADDR_1" />
+    </Wire>
+    <Wire UId="58">
+      <OpenCon UId="35" />
+      <NameCon UId="31" Name="ADDR_2" />
+    </Wire>
+    <Wire UId="59">
+      <OpenCon UId="36" />
+      <NameCon UId="31" Name="ADDR_3" />
+    </Wire>
+    <Wire UId="60">
+      <OpenCon UId="37" />
+      <NameCon UId="31" Name="ADDR_4" />
+    </Wire>
+    <Wire UId="61">
+      <IdentCon UId="24" />
+      <NameCon UId="31" Name="RD_1" />
+    </Wire>
+    <Wire UId="62">
+      <OpenCon UId="38" />
+      <NameCon UId="31" Name="RD_2" />
+    </Wire>
+    <Wire UId="63">
+      <OpenCon UId="39" />
+      <NameCon UId="31" Name="RD_3" />
+    </Wire>
+    <Wire UId="64">
+      <OpenCon UId="40" />
+      <NameCon UId="31" Name="RD_4" />
+    </Wire>
+    <Wire UId="65">
+      <NameCon UId="31" Name="eno" />
+      <NameCon UId="33" Name="en" />
+    </Wire>
+    <Wire UId="66">
+      <NameCon UId="31" Name="NDR" />
+      <OpenCon UId="41" />
+    </Wire>
+    <Wire UId="67">
+      <NameCon UId="31" Name="ERROR" />
+      <OpenCon UId="42" />
+    </Wire>
+    <Wire UId="68">
+      <NameCon UId="31" Name="STATUS" />
+      <OpenCon UId="43" />
+    </Wire>
+    <Wire UId="69">
+      <IdentCon UId="25" />
+      <NameCon UId="33" Name="REQ" />
+    </Wire>
+    <Wire UId="70">
+      <IdentCon UId="26" />
+      <NameCon UId="33" Name="ID" />
+    </Wire>
+    <Wire UId="71">
+      <IdentCon UId="27" />
+      <NameCon UId="33" Name="ADDR_1" />
+    </Wire>
+    <Wire UId="72">
+      <OpenCon UId="44" />
+      <NameCon UId="33" Name="ADDR_2" />
+    </Wire>
+    <Wire UId="73">
+      <OpenCon UId="45" />
+      <NameCon UId="33" Name="ADDR_3" />
+    </Wire>
+    <Wire UId="74">
+      <OpenCon UId="46" />
+      <NameCon UId="33" Name="ADDR_4" />
+    </Wire>
+    <Wire UId="75">
+      <IdentCon UId="28" />
+      <NameCon UId="33" Name="SD_1" />
+    </Wire>
+    <Wire UId="76">
+      <OpenCon UId="47" />
+      <NameCon UId="33" Name="SD_2" />
+    </Wire>
+    <Wire UId="77">
+      <OpenCon UId="48" />
+      <NameCon UId="33" Name="SD_3" />
+    </Wire>
+    <Wire UId="78">
+      <OpenCon UId="49" />
+      <NameCon UId="33" Name="SD_4" />
+    </Wire>
+    <Wire UId="79">
+      <NameCon UId="33" Name="DONE" />
+      <OpenCon UId="50" />
+    </Wire>
+    <Wire UId="80">
+      <NameCon UId="33" Name="ERROR" />
+      <OpenCon UId="51" />
+    </Wire>
+    <Wire UId="81">
+      <NameCon UId="33" Name="STATUS" />
+      <OpenCon UId="52" />
+    </Wire>
+  </Wires>
+</FlgNet></NetworkSource>
+          <ProgrammingLanguage>LAD</ProgrammingLanguage>
+        </AttributeList>
+        <ObjectList>
+          <MultilingualText ID="45" CompositionName="Comment">
+            <ObjectList>
+              <MultilingualTextItem ID="46" CompositionName="Items">
+                <AttributeList>
+                  <Culture>en-US</Culture>
+                  <Text />
+                </AttributeList>
+              </MultilingualTextItem>
+              <MultilingualTextItem ID="47" CompositionName="Items">
+                <AttributeList>
+                  <Culture>de-DE</Culture>
+                  <Text />
+                </AttributeList>
+              </MultilingualTextItem>
+              <MultilingualTextItem ID="48" CompositionName="Items">
+                <AttributeList>
+                  <Culture>ru-RU</Culture>
+                  <Text />
+                </AttributeList>
+              </MultilingualTextItem>
+            </ObjectList>
+          </MultilingualText>
+          <MultilingualText ID="49" CompositionName="Title">
+            <ObjectList>
+              <MultilingualTextItem ID="4A" CompositionName="Items">
+                <AttributeList>
+                  <Culture>en-US</Culture>
+                  <Text>SKV 8</Text>
+                </AttributeList>
+              </MultilingualTextItem>
+              <MultilingualTextItem ID="4B" CompositionName="Items">
+                <AttributeList>
+                  <Culture>de-DE</Culture>
+                  <Text />
+                </AttributeList>
+              </MultilingualTextItem>
+              <MultilingualTextItem ID="4C" CompositionName="Items">
+                <AttributeList>
+                  <Culture>ru-RU</Culture>
+                  <Text />
+                </AttributeList>
+              </MultilingualTextItem>
+            </ObjectList>
+          </MultilingualText>
+        </ObjectList>
+      </SW.Blocks.CompileUnit>
+      <SW.Blocks.CompileUnit ID="4D" CompositionName="CompileUnits">
+        <AttributeList>
+          <NetworkSource><FlgNet xmlns="http://www.siemens.com/automation/Openness/SW/NetworkSource/FlgNet/v4">
+  <Parts>
+    <Access Scope="GlobalVariable" UId="21">
+      <Symbol>
+        <Component Name="pulse_1s" />
+      </Symbol>
+    </Access>
+    <Access Scope="TypedConstant" UId="22">
+      <Constant>
+        <ConstantValue>W#16#108</ConstantValue>
+      </Constant>
+    </Access>
+    <Access Scope="LiteralConstant" UId="23">
+      <Constant>
+        <ConstantType>Remote</ConstantType>
+        <ConstantValue>P#DB10.DBX60.0 BYTE 32</ConstantValue>
+      </Constant>
+    </Access>
+    <Access Scope="LiteralConstant" UId="24">
+      <Constant>
+        <ConstantType>Any</ConstantType>
+        <ConstantValue>P#DB1021.DBX60.0 BYTE 32</ConstantValue>
+      </Constant>
+    </Access>
+    <Access Scope="GlobalVariable" UId="25">
+      <Symbol>
+        <Component Name="pulse_1s" />
+      </Symbol>
+    </Access>
+    <Access Scope="TypedConstant" UId="26">
+      <Constant>
+        <ConstantValue>W#16#108</ConstantValue>
+      </Constant>
+    </Access>
+    <Access Scope="LiteralConstant" UId="27">
+      <Constant>
+        <ConstantType>Remote</ConstantType>
+        <ConstantValue>P#DB10.DBX0.0 BYTE 60</ConstantValue>
+      </Constant>
+    </Access>
+    <Access Scope="LiteralConstant" UId="28">
+      <Constant>
+        <ConstantType>Any</ConstantType>
+        <ConstantValue>P#DB1021.DBX0.0 BYTE 60</ConstantValue>
+      </Constant>
+    </Access>
+    <Call UId="29">
+      <CallInfo Name="Comm_SKV" BlockType="FB">
+        <Instance Scope="GlobalVariable" UId="30">
+          <Component Name="Comm_SKV_21" />
+        </Instance>
+      </CallInfo>
+    </Call>
+    <Part Name="GET" Version="1.3" UId="31">
+      <Instance Scope="LocalVariable" UId="32">
+        <Component Name="GET_SKV_21" />
+      </Instance>
+      <TemplateValue Name="remote_type" Type="Type">Remote</TemplateValue>
+      <TemplateValue Name="local_type" Type="Type">Variant</TemplateValue>
+    </Part>
+    <Part Name="PUT" Version="1.3" UId="33">
+      <Instance Scope="LocalVariable" UId="34">
+        <Component Name="PUT_SKV_21" />
+      </Instance>
+      <TemplateValue Name="remote_type" Type="Type">Remote</TemplateValue>
+      <TemplateValue Name="local_type" Type="Type">Variant</TemplateValue>
+    </Part>
+  </Parts>
+  <Wires>
+    <Wire UId="53">
+      <Powerrail />
+      <NameCon UId="29" Name="en" />
+    </Wire>
+    <Wire UId="54">
+      <NameCon UId="29" Name="eno" />
+      <NameCon UId="31" Name="en" />
+    </Wire>
+    <Wire UId="55">
+      <IdentCon UId="21" />
+      <NameCon UId="31" Name="REQ" />
+    </Wire>
+    <Wire UId="56">
+      <IdentCon UId="22" />
+      <NameCon UId="31" Name="ID" />
+    </Wire>
+    <Wire UId="57">
+      <IdentCon UId="23" />
+      <NameCon UId="31" Name="ADDR_1" />
+    </Wire>
+    <Wire UId="58">
+      <OpenCon UId="35" />
+      <NameCon UId="31" Name="ADDR_2" />
+    </Wire>
+    <Wire UId="59">
+      <OpenCon UId="36" />
+      <NameCon UId="31" Name="ADDR_3" />
+    </Wire>
+    <Wire UId="60">
+      <OpenCon UId="37" />
+      <NameCon UId="31" Name="ADDR_4" />
+    </Wire>
+    <Wire UId="61">
+      <IdentCon UId="24" />
+      <NameCon UId="31" Name="RD_1" />
+    </Wire>
+    <Wire UId="62">
+      <OpenCon UId="38" />
+      <NameCon UId="31" Name="RD_2" />
+    </Wire>
+    <Wire UId="63">
+      <OpenCon UId="39" />
+      <NameCon UId="31" Name="RD_3" />
+    </Wire>
+    <Wire UId="64">
+      <OpenCon UId="40" />
+      <NameCon UId="31" Name="RD_4" />
+    </Wire>
+    <Wire UId="65">
+      <NameCon UId="31" Name="eno" />
+      <NameCon UId="33" Name="en" />
+    </Wire>
+    <Wire UId="66">
+      <NameCon UId="31" Name="NDR" />
+      <OpenCon UId="41" />
+    </Wire>
+    <Wire UId="67">
+      <NameCon UId="31" Name="ERROR" />
+      <OpenCon UId="42" />
+    </Wire>
+    <Wire UId="68">
+      <NameCon UId="31" Name="STATUS" />
+      <OpenCon UId="43" />
+    </Wire>
+    <Wire UId="69">
+      <IdentCon UId="25" />
+      <NameCon UId="33" Name="REQ" />
+    </Wire>
+    <Wire UId="70">
+      <IdentCon UId="26" />
+      <NameCon UId="33" Name="ID" />
+    </Wire>
+    <Wire UId="71">
+      <IdentCon UId="27" />
+      <NameCon UId="33" Name="ADDR_1" />
+    </Wire>
+    <Wire UId="72">
+      <OpenCon UId="44" />
+      <NameCon UId="33" Name="ADDR_2" />
+    </Wire>
+    <Wire UId="73">
+      <OpenCon UId="45" />
+      <NameCon UId="33" Name="ADDR_3" />
+    </Wire>
+    <Wire UId="74">
+      <OpenCon UId="46" />
+      <NameCon UId="33" Name="ADDR_4" />
+    </Wire>
+    <Wire UId="75">
+      <IdentCon UId="28" />
+      <NameCon UId="33" Name="SD_1" />
+    </Wire>
+    <Wire UId="76">
+      <OpenCon UId="47" />
+      <NameCon UId="33" Name="SD_2" />
+    </Wire>
+    <Wire UId="77">
+      <OpenCon UId="48" />
+      <NameCon UId="33" Name="SD_3" />
+    </Wire>
+    <Wire UId="78">
+      <OpenCon UId="49" />
+      <NameCon UId="33" Name="SD_4" />
+    </Wire>
+    <Wire UId="79">
+      <NameCon UId="33" Name="DONE" />
+      <OpenCon UId="50" />
+    </Wire>
+    <Wire UId="80">
+      <NameCon UId="33" Name="ERROR" />
+      <OpenCon UId="51" />
+    </Wire>
+    <Wire UId="81">
+      <NameCon UId="33" Name="STATUS" />
+      <OpenCon UId="52" />
+    </Wire>
+  </Wires>
+</FlgNet></NetworkSource>
+          <ProgrammingLanguage>LAD</ProgrammingLanguage>
+        </AttributeList>
+        <ObjectList>
+          <MultilingualText ID="4E" CompositionName="Comment">
+            <ObjectList>
+              <MultilingualTextItem ID="4F" CompositionName="Items">
+                <AttributeList>
+                  <Culture>en-US</Culture>
+                  <Text />
+                </AttributeList>
+              </MultilingualTextItem>
+              <MultilingualTextItem ID="50" CompositionName="Items">
+                <AttributeList>
+                  <Culture>de-DE</Culture>
+                  <Text />
+                </AttributeList>
+              </MultilingualTextItem>
+              <MultilingualTextItem ID="51" CompositionName="Items">
+                <AttributeList>
+                  <Culture>ru-RU</Culture>
+                  <Text />
+                </AttributeList>
+              </MultilingualTextItem>
+            </ObjectList>
+          </MultilingualText>
+          <MultilingualText ID="52" CompositionName="Title">
+            <ObjectList>
+              <MultilingualTextItem ID="53" CompositionName="Items">
+                <AttributeList>
+                  <Culture>en-US</Culture>
+                  <Text>SKV 9</Text>
+                </AttributeList>
+              </MultilingualTextItem>
+              <MultilingualTextItem ID="54" CompositionName="Items">
+                <AttributeList>
+                  <Culture>de-DE</Culture>
+                  <Text />
+                </AttributeList>
+              </MultilingualTextItem>
+              <MultilingualTextItem ID="55" CompositionName="Items">
+                <AttributeList>
+                  <Culture>ru-RU</Culture>
+                  <Text />
+                </AttributeList>
+              </MultilingualTextItem>
+            </ObjectList>
+          </MultilingualText>
+        </ObjectList>
+      </SW.Blocks.CompileUnit>
+      <SW.Blocks.CompileUnit ID="56" CompositionName="CompileUnits">
+        <AttributeList>
+          <NetworkSource><FlgNet xmlns="http://www.siemens.com/automation/Openness/SW/NetworkSource/FlgNet/v4">
+  <Parts>
+    <Access Scope="GlobalVariable" UId="21">
+      <Symbol>
+        <Component Name="pulse_1s" />
+      </Symbol>
+    </Access>
+    <Access Scope="TypedConstant" UId="22">
+      <Constant>
+        <ConstantValue>W#16#109</ConstantValue>
+      </Constant>
+    </Access>
+    <Access Scope="LiteralConstant" UId="23">
+      <Constant>
+        <ConstantType>Remote</ConstantType>
+        <ConstantValue>P#DB10.DBX60.0 BYTE 32</ConstantValue>
+      </Constant>
+    </Access>
+    <Access Scope="LiteralConstant" UId="24">
+      <Constant>
+        <ConstantType>Any</ConstantType>
+        <ConstantValue>P#DB1022.DBX60.0 BYTE 32</ConstantValue>
+      </Constant>
+    </Access>
+    <Access Scope="GlobalVariable" UId="25">
+      <Symbol>
+        <Component Name="pulse_1s" />
+      </Symbol>
+    </Access>
+    <Access Scope="TypedConstant" UId="26">
+      <Constant>
+        <ConstantValue>W#16#109</ConstantValue>
+      </Constant>
+    </Access>
+    <Access Scope="LiteralConstant" UId="27">
+      <Constant>
+        <ConstantType>Remote</ConstantType>
+        <ConstantValue>P#DB10.DBX0.0 BYTE 60</ConstantValue>
+      </Constant>
+    </Access>
+    <Access Scope="LiteralConstant" UId="28">
+      <Constant>
+        <ConstantType>Any</ConstantType>
+        <ConstantValue>P#DB1022.DBX0.0 BYTE 60</ConstantValue>
+      </Constant>
+    </Access>
+    <Call UId="29">
+      <CallInfo Name="Comm_SKV" BlockType="FB">
+        <Instance Scope="GlobalVariable" UId="30">
+          <Component Name="Comm_SKV_22" />
+        </Instance>
+      </CallInfo>
+    </Call>
+    <Part Name="GET" Version="1.3" UId="31">
+      <Instance Scope="LocalVariable" UId="32">
+        <Component Name="GET_SKV_22" />
+      </Instance>
+      <TemplateValue Name="remote_type" Type="Type">Remote</TemplateValue>
+      <TemplateValue Name="local_type" Type="Type">Variant</TemplateValue>
+    </Part>
+    <Part Name="PUT" Version="1.3" UId="33">
+      <Instance Scope="LocalVariable" UId="34">
+        <Component Name="PUT_SKV_22" />
+      </Instance>
+      <TemplateValue Name="remote_type" Type="Type">Remote</TemplateValue>
+      <TemplateValue Name="local_type" Type="Type">Variant</TemplateValue>
+    </Part>
+  </Parts>
+  <Wires>
+    <Wire UId="53">
+      <Powerrail />
+      <NameCon UId="29" Name="en" />
+    </Wire>
+    <Wire UId="54">
+      <NameCon UId="29" Name="eno" />
+      <NameCon UId="31" Name="en" />
+    </Wire>
+    <Wire UId="55">
+      <IdentCon UId="21" />
+      <NameCon UId="31" Name="REQ" />
+    </Wire>
+    <Wire UId="56">
+      <IdentCon UId="22" />
+      <NameCon UId="31" Name="ID" />
+    </Wire>
+    <Wire UId="57">
+      <IdentCon UId="23" />
+      <NameCon UId="31" Name="ADDR_1" />
+    </Wire>
+    <Wire UId="58">
+      <OpenCon UId="35" />
+      <NameCon UId="31" Name="ADDR_2" />
+    </Wire>
+    <Wire UId="59">
+      <OpenCon UId="36" />
+      <NameCon UId="31" Name="ADDR_3" />
+    </Wire>
+    <Wire UId="60">
+      <OpenCon UId="37" />
+      <NameCon UId="31" Name="ADDR_4" />
+    </Wire>
+    <Wire UId="61">
+      <IdentCon UId="24" />
+      <NameCon UId="31" Name="RD_1" />
+    </Wire>
+    <Wire UId="62">
+      <OpenCon UId="38" />
+      <NameCon UId="31" Name="RD_2" />
+    </Wire>
+    <Wire UId="63">
+      <OpenCon UId="39" />
+      <NameCon UId="31" Name="RD_3" />
+    </Wire>
+    <Wire UId="64">
+      <OpenCon UId="40" />
+      <NameCon UId="31" Name="RD_4" />
+    </Wire>
+    <Wire UId="65">
+      <NameCon UId="31" Name="eno" />
+      <NameCon UId="33" Name="en" />
+    </Wire>
+    <Wire UId="66">
+      <NameCon UId="31" Name="NDR" />
+      <OpenCon UId="41" />
+    </Wire>
+    <Wire UId="67">
+      <NameCon UId="31" Name="ERROR" />
+      <OpenCon UId="42" />
+    </Wire>
+    <Wire UId="68">
+      <NameCon UId="31" Name="STATUS" />
+      <OpenCon UId="43" />
+    </Wire>
+    <Wire UId="69">
+      <IdentCon UId="25" />
+      <NameCon UId="33" Name="REQ" />
+    </Wire>
+    <Wire UId="70">
+      <IdentCon UId="26" />
+      <NameCon UId="33" Name="ID" />
+    </Wire>
+    <Wire UId="71">
+      <IdentCon UId="27" />
+      <NameCon UId="33" Name="ADDR_1" />
+    </Wire>
+    <Wire UId="72">
+      <OpenCon UId="44" />
+      <NameCon UId="33" Name="ADDR_2" />
+    </Wire>
+    <Wire UId="73">
+      <OpenCon UId="45" />
+      <NameCon UId="33" Name="ADDR_3" />
+    </Wire>
+    <Wire UId="74">
+      <OpenCon UId="46" />
+      <NameCon UId="33" Name="ADDR_4" />
+    </Wire>
+    <Wire UId="75">
+      <IdentCon UId="28" />
+      <NameCon UId="33" Name="SD_1" />
+    </Wire>
+    <Wire UId="76">
+      <OpenCon UId="47" />
+      <NameCon UId="33" Name="SD_2" />
+    </Wire>
+    <Wire UId="77">
+      <OpenCon UId="48" />
+      <NameCon UId="33" Name="SD_3" />
+    </Wire>
+    <Wire UId="78">
+      <OpenCon UId="49" />
+      <NameCon UId="33" Name="SD_4" />
+    </Wire>
+    <Wire UId="79">
+      <NameCon UId="33" Name="DONE" />
+      <OpenCon UId="50" />
+    </Wire>
+    <Wire UId="80">
+      <NameCon UId="33" Name="ERROR" />
+      <OpenCon UId="51" />
+    </Wire>
+    <Wire UId="81">
+      <NameCon UId="33" Name="STATUS" />
+      <OpenCon UId="52" />
+    </Wire>
+  </Wires>
+</FlgNet></NetworkSource>
+          <ProgrammingLanguage>LAD</ProgrammingLanguage>
+        </AttributeList>
+        <ObjectList>
+          <MultilingualText ID="57" CompositionName="Comment">
+            <ObjectList>
+              <MultilingualTextItem ID="58" CompositionName="Items">
+                <AttributeList>
+                  <Culture>en-US</Culture>
+                  <Text />
+                </AttributeList>
+              </MultilingualTextItem>
+              <MultilingualTextItem ID="59" CompositionName="Items">
+                <AttributeList>
+                  <Culture>de-DE</Culture>
+                  <Text />
+                </AttributeList>
+              </MultilingualTextItem>
+              <MultilingualTextItem ID="5A" CompositionName="Items">
+                <AttributeList>
+                  <Culture>ru-RU</Culture>
+                  <Text />
+                </AttributeList>
+              </MultilingualTextItem>
+            </ObjectList>
+          </MultilingualText>
+          <MultilingualText ID="5B" CompositionName="Title">
+            <ObjectList>
+              <MultilingualTextItem ID="5C" CompositionName="Items">
+                <AttributeList>
+                  <Culture>en-US</Culture>
+                  <Text>SKV 10</Text>
+                </AttributeList>
+              </MultilingualTextItem>
+              <MultilingualTextItem ID="5D" CompositionName="Items">
+                <AttributeList>
+                  <Culture>de-DE</Culture>
+                  <Text />
+                </AttributeList>
+              </MultilingualTextItem>
+              <MultilingualTextItem ID="5E" CompositionName="Items">
+                <AttributeList>
+                  <Culture>ru-RU</Culture>
+                  <Text />
+                </AttributeList>
+              </MultilingualTextItem>
+            </ObjectList>
+          </MultilingualText>
+        </ObjectList>
+      </SW.Blocks.CompileUnit>
+      <SW.Blocks.CompileUnit ID="5F" CompositionName="CompileUnits">
+        <AttributeList>
+          <NetworkSource><FlgNet xmlns="http://www.siemens.com/automation/Openness/SW/NetworkSource/FlgNet/v4">
+  <Parts>
+    <Access Scope="GlobalVariable" UId="21">
+      <Symbol>
+        <Component Name="pulse_1s" />
+      </Symbol>
+    </Access>
+    <Access Scope="TypedConstant" UId="22">
+      <Constant>
+        <ConstantValue>W#16#10A</ConstantValue>
+      </Constant>
+    </Access>
+    <Access Scope="LiteralConstant" UId="23">
+      <Constant>
+        <ConstantType>Remote</ConstantType>
+        <ConstantValue>P#DB10.DBX60.0 BYTE 32</ConstantValue>
+      </Constant>
+    </Access>
+    <Access Scope="LiteralConstant" UId="24">
+      <Constant>
+        <ConstantType>Any</ConstantType>
+        <ConstantValue>P#DB1023.DBX60.0 BYTE 32</ConstantValue>
+      </Constant>
+    </Access>
+    <Access Scope="GlobalVariable" UId="25">
+      <Symbol>
+        <Component Name="pulse_1s" />
+      </Symbol>
+    </Access>
+    <Access Scope="TypedConstant" UId="26">
+      <Constant>
+        <ConstantValue>W#16#10A</ConstantValue>
+      </Constant>
+    </Access>
+    <Access Scope="LiteralConstant" UId="27">
+      <Constant>
+        <ConstantType>Remote</ConstantType>
+        <ConstantValue>P#DB10.DBX0.0 BYTE 60</ConstantValue>
+      </Constant>
+    </Access>
+    <Access Scope="LiteralConstant" UId="28">
+      <Constant>
+        <ConstantType>Any</ConstantType>
+        <ConstantValue>P#DB1023.DBX0.0 BYTE 60</ConstantValue>
+      </Constant>
+    </Access>
+    <Call UId="29">
+      <CallInfo Name="Comm_SKV" BlockType="FB">
+        <Instance Scope="GlobalVariable" UId="30">
+          <Component Name="Comm_SKV_23" />
+        </Instance>
+      </CallInfo>
+    </Call>
+    <Part Name="GET" Version="1.3" UId="31">
+      <Instance Scope="LocalVariable" UId="32">
+        <Component Name="GET_SKV_23" />
+      </Instance>
+      <TemplateValue Name="remote_type" Type="Type">Remote</TemplateValue>
+      <TemplateValue Name="local_type" Type="Type">Variant</TemplateValue>
+    </Part>
+    <Part Name="PUT" Version="1.3" UId="33">
+      <Instance Scope="LocalVariable" UId="34">
+        <Component Name="PUT_SKV_23" />
+      </Instance>
+      <TemplateValue Name="remote_type" Type="Type">Remote</TemplateValue>
+      <TemplateValue Name="local_type" Type="Type">Variant</TemplateValue>
+    </Part>
+  </Parts>
+  <Wires>
+    <Wire UId="53">
+      <Powerrail />
+      <NameCon UId="29" Name="en" />
+    </Wire>
+    <Wire UId="54">
+      <NameCon UId="29" Name="eno" />
+      <NameCon UId="31" Name="en" />
+    </Wire>
+    <Wire UId="55">
+      <IdentCon UId="21" />
+      <NameCon UId="31" Name="REQ" />
+    </Wire>
+    <Wire UId="56">
+      <IdentCon UId="22" />
+      <NameCon UId="31" Name="ID" />
+    </Wire>
+    <Wire UId="57">
+      <IdentCon UId="23" />
+      <NameCon UId="31" Name="ADDR_1" />
+    </Wire>
+    <Wire UId="58">
+      <OpenCon UId="35" />
+      <NameCon UId="31" Name="ADDR_2" />
+    </Wire>
+    <Wire UId="59">
+      <OpenCon UId="36" />
+      <NameCon UId="31" Name="ADDR_3" />
+    </Wire>
+    <Wire UId="60">
+      <OpenCon UId="37" />
+      <NameCon UId="31" Name="ADDR_4" />
+    </Wire>
+    <Wire UId="61">
+      <IdentCon UId="24" />
+      <NameCon UId="31" Name="RD_1" />
+    </Wire>
+    <Wire UId="62">
+      <OpenCon UId="38" />
+      <NameCon UId="31" Name="RD_2" />
+    </Wire>
+    <Wire UId="63">
+      <OpenCon UId="39" />
+      <NameCon UId="31" Name="RD_3" />
+    </Wire>
+    <Wire UId="64">
+      <OpenCon UId="40" />
+      <NameCon UId="31" Name="RD_4" />
+    </Wire>
+    <Wire UId="65">
+      <NameCon UId="31" Name="eno" />
+      <NameCon UId="33" Name="en" />
+    </Wire>
+    <Wire UId="66">
+      <NameCon UId="31" Name="NDR" />
+      <OpenCon UId="41" />
+    </Wire>
+    <Wire UId="67">
+      <NameCon UId="31" Name="ERROR" />
+      <OpenCon UId="42" />
+    </Wire>
+    <Wire UId="68">
+      <NameCon UId="31" Name="STATUS" />
+      <OpenCon UId="43" />
+    </Wire>
+    <Wire UId="69">
+      <IdentCon UId="25" />
+      <NameCon UId="33" Name="REQ" />
+    </Wire>
+    <Wire UId="70">
+      <IdentCon UId="26" />
+      <NameCon UId="33" Name="ID" />
+    </Wire>
+    <Wire UId="71">
+      <IdentCon UId="27" />
+      <NameCon UId="33" Name="ADDR_1" />
+    </Wire>
+    <Wire UId="72">
+      <OpenCon UId="44" />
+      <NameCon UId="33" Name="ADDR_2" />
+    </Wire>
+    <Wire UId="73">
+      <OpenCon UId="45" />
+      <NameCon UId="33" Name="ADDR_3" />
+    </Wire>
+    <Wire UId="74">
+      <OpenCon UId="46" />
+      <NameCon UId="33" Name="ADDR_4" />
+    </Wire>
+    <Wire UId="75">
+      <IdentCon UId="28" />
+      <NameCon UId="33" Name="SD_1" />
+    </Wire>
+    <Wire UId="76">
+      <OpenCon UId="47" />
+      <NameCon UId="33" Name="SD_2" />
+    </Wire>
+    <Wire UId="77">
+      <OpenCon UId="48" />
+      <NameCon UId="33" Name="SD_3" />
+    </Wire>
+    <Wire UId="78">
+      <OpenCon UId="49" />
+      <NameCon UId="33" Name="SD_4" />
+    </Wire>
+    <Wire UId="79">
+      <NameCon UId="33" Name="DONE" />
+      <OpenCon UId="50" />
+    </Wire>
+    <Wire UId="80">
+      <NameCon UId="33" Name="ERROR" />
+      <OpenCon UId="51" />
+    </Wire>
+    <Wire UId="81">
+      <NameCon UId="33" Name="STATUS" />
+      <OpenCon UId="52" />
+    </Wire>
+  </Wires>
+</FlgNet></NetworkSource>
+          <ProgrammingLanguage>LAD</ProgrammingLanguage>
+        </AttributeList>
+        <ObjectList>
+          <MultilingualText ID="60" CompositionName="Comment">
+            <ObjectList>
+              <MultilingualTextItem ID="61" CompositionName="Items">
+                <AttributeList>
+                  <Culture>en-US</Culture>
+                  <Text />
+                </AttributeList>
+              </MultilingualTextItem>
+              <MultilingualTextItem ID="62" CompositionName="Items">
+                <AttributeList>
+                  <Culture>de-DE</Culture>
+                  <Text />
+                </AttributeList>
+              </MultilingualTextItem>
+              <MultilingualTextItem ID="63" CompositionName="Items">
+                <AttributeList>
+                  <Culture>ru-RU</Culture>
+                  <Text />
+                </AttributeList>
+              </MultilingualTextItem>
+            </ObjectList>
+          </MultilingualText>
+          <MultilingualText ID="64" CompositionName="Title">
+            <ObjectList>
+              <MultilingualTextItem ID="65" CompositionName="Items">
+                <AttributeList>
+                  <Culture>en-US</Culture>
+                  <Text>SKV 11</Text>
+                </AttributeList>
+              </MultilingualTextItem>
+              <MultilingualTextItem ID="66" CompositionName="Items">
+                <AttributeList>
+                  <Culture>de-DE</Culture>
+                  <Text />
+                </AttributeList>
+              </MultilingualTextItem>
+              <MultilingualTextItem ID="67" CompositionName="Items">
+                <AttributeList>
+                  <Culture>ru-RU</Culture>
+                  <Text />
+                </AttributeList>
+              </MultilingualTextItem>
+            </ObjectList>
+          </MultilingualText>
+        </ObjectList>
+      </SW.Blocks.CompileUnit>
+      <SW.Blocks.CompileUnit ID="68" CompositionName="CompileUnits">
+        <AttributeList>
+          <NetworkSource><FlgNet xmlns="http://www.siemens.com/automation/Openness/SW/NetworkSource/FlgNet/v4">
+  <Parts>
+    <Access Scope="GlobalVariable" UId="21">
+      <Symbol>
+        <Component Name="pulse_1s" />
+      </Symbol>
+    </Access>
+    <Access Scope="TypedConstant" UId="22">
+      <Constant>
+        <ConstantValue>W#16#10B</ConstantValue>
+      </Constant>
+    </Access>
+    <Access Scope="LiteralConstant" UId="23">
+      <Constant>
+        <ConstantType>Remote</ConstantType>
+        <ConstantValue>P#DB317.DBX2.0 BYTE 2</ConstantValue>
+      </Constant>
+    </Access>
+    <Access Scope="LiteralConstant" UId="24">
+      <Constant>
+        <ConstantType>Remote</ConstantType>
+        <ConstantValue>P#DB318.DBX2.0 BYTE 2</ConstantValue>
+      </Constant>
+    </Access>
+    <Access Scope="LiteralConstant" UId="25">
+      <Constant>
+        <ConstantType>Remote</ConstantType>
+        <ConstantValue>P#DB319.DBX2.0 BYTE 2</ConstantValue>
+      </Constant>
+    </Access>
+    <Access Scope="LiteralConstant" UId="26">
+      <Constant>
+        <ConstantType>Remote</ConstantType>
+        <ConstantValue>P#DB320.DBX2.0 BYTE 2</ConstantValue>
+      </Constant>
+    </Access>
+    <Access Scope="LiteralConstant" UId="27">
+      <Constant>
+        <ConstantType>Any</ConstantType>
+        <ConstantValue>P#DB300.DBX2.0 BYTE 2</ConstantValue>
+      </Constant>
+    </Access>
+    <Access Scope="LiteralConstant" UId="28">
+      <Constant>
+        <ConstantType>Any</ConstantType>
+        <ConstantValue>P#DB301.DBX2.0 BYTE 2</ConstantValue>
+      </Constant>
+    </Access>
+    <Access Scope="LiteralConstant" UId="29">
+      <Constant>
+        <ConstantType>Any</ConstantType>
+        <ConstantValue>P#DB302.DBX2.0 BYTE 2</ConstantValue>
+      </Constant>
+    </Access>
+    <Access Scope="LiteralConstant" UId="30">
+      <Constant>
+        <ConstantType>Any</ConstantType>
+        <ConstantValue>P#DB303.DBX2.0 BYTE 2</ConstantValue>
+      </Constant>
+    </Access>
+    <Part Name="PUT" Version="1.3" UId="31">
+      <Instance Scope="LocalVariable" UId="32">
+        <Component Name="PUT_SKD2" />
+      </Instance>
+      <TemplateValue Name="remote_type" Type="Type">Remote</TemplateValue>
+      <TemplateValue Name="local_type" Type="Type">Variant</TemplateValue>
+    </Part>
+  </Parts>
+  <Wires>
+    <Wire UId="36">
+      <Powerrail />
+      <NameCon UId="31" Name="en" />
+    </Wire>
+    <Wire UId="37">
+      <IdentCon UId="21" />
+      <NameCon UId="31" Name="REQ" />
+    </Wire>
+    <Wire UId="38">
+      <IdentCon UId="22" />
+      <NameCon UId="31" Name="ID" />
+    </Wire>
+    <Wire UId="39">
+      <IdentCon UId="23" />
+      <NameCon UId="31" Name="ADDR_1" />
+    </Wire>
+    <Wire UId="40">
+      <IdentCon UId="24" />
+      <NameCon UId="31" Name="ADDR_2" />
+    </Wire>
+    <Wire UId="41">
+      <IdentCon UId="25" />
+      <NameCon UId="31" Name="ADDR_3" />
+    </Wire>
+    <Wire UId="42">
+      <IdentCon UId="26" />
+      <NameCon UId="31" Name="ADDR_4" />
+    </Wire>
+    <Wire UId="43">
+      <IdentCon UId="27" />
+      <NameCon UId="31" Name="SD_1" />
+    </Wire>
+    <Wire UId="44">
+      <IdentCon UId="28" />
+      <NameCon UId="31" Name="SD_2" />
+    </Wire>
+    <Wire UId="45">
+      <IdentCon UId="29" />
+      <NameCon UId="31" Name="SD_3" />
+    </Wire>
+    <Wire UId="46">
+      <IdentCon UId="30" />
+      <NameCon UId="31" Name="SD_4" />
+    </Wire>
+    <Wire UId="47">
+      <NameCon UId="31" Name="DONE" />
+      <OpenCon UId="33" />
+    </Wire>
+    <Wire UId="48">
+      <NameCon UId="31" Name="ERROR" />
+      <OpenCon UId="34" />
+    </Wire>
+    <Wire UId="49">
+      <NameCon UId="31" Name="STATUS" />
+      <OpenCon UId="35" />
+    </Wire>
+  </Wires>
+</FlgNet></NetworkSource>
+          <ProgrammingLanguage>LAD</ProgrammingLanguage>
+        </AttributeList>
+        <ObjectList>
+          <MultilingualText ID="69" CompositionName="Comment">
+            <ObjectList>
+              <MultilingualTextItem ID="6A" CompositionName="Items">
+                <AttributeList>
+                  <Culture>en-US</Culture>
+                  <Text />
+                </AttributeList>
+              </MultilingualTextItem>
+              <MultilingualTextItem ID="6B" CompositionName="Items">
+                <AttributeList>
+                  <Culture>de-DE</Culture>
+                  <Text />
+                </AttributeList>
+              </MultilingualTextItem>
+              <MultilingualTextItem ID="6C" CompositionName="Items">
+                <AttributeList>
+                  <Culture>ru-RU</Culture>
+                  <Text />
+                </AttributeList>
+              </MultilingualTextItem>
+            </ObjectList>
+          </MultilingualText>
+          <MultilingualText ID="6D" CompositionName="Title">
+            <ObjectList>
+              <MultilingualTextItem ID="6E" CompositionName="Items">
+                <AttributeList>
+                  <Culture>en-US</Culture>
+                  <Text />
+                </AttributeList>
+              </MultilingualTextItem>
+              <MultilingualTextItem ID="6F" CompositionName="Items">
+                <AttributeList>
+                  <Culture>de-DE</Culture>
+                  <Text />
+                </AttributeList>
+              </MultilingualTextItem>
+              <MultilingualTextItem ID="70" CompositionName="Items">
+                <AttributeList>
+                  <Culture>ru-RU</Culture>
+                  <Text />
+                </AttributeList>
+              </MultilingualTextItem>
+            </ObjectList>
+          </MultilingualText>
+        </ObjectList>
+      </SW.Blocks.CompileUnit>
+      <SW.Blocks.CompileUnit ID="71" CompositionName="CompileUnits">
+        <AttributeList>
+          <NetworkSource />
+          <ProgrammingLanguage>LAD</ProgrammingLanguage>
+        </AttributeList>
+        <ObjectList>
+          <MultilingualText ID="72" CompositionName="Comment">
+            <ObjectList>
+              <MultilingualTextItem ID="73" CompositionName="Items">
+                <AttributeList>
+                  <Culture>en-US</Culture>
+                  <Text />
+                </AttributeList>
+              </MultilingualTextItem>
+              <MultilingualTextItem ID="74" CompositionName="Items">
+                <AttributeList>
+                  <Culture>de-DE</Culture>
+                  <Text />
+                </AttributeList>
+              </MultilingualTextItem>
+              <MultilingualTextItem ID="75" CompositionName="Items">
+                <AttributeList>
+                  <Culture>ru-RU</Culture>
+                  <Text />
+                </AttributeList>
+              </MultilingualTextItem>
+            </ObjectList>
+          </MultilingualText>
+          <MultilingualText ID="76" CompositionName="Title">
+            <ObjectList>
+              <MultilingualTextItem ID="77" CompositionName="Items">
+                <AttributeList>
+                  <Culture>en-US</Culture>
+                  <Text />
+                </AttributeList>
+              </MultilingualTextItem>
+              <MultilingualTextItem ID="78" CompositionName="Items">
+                <AttributeList>
+                  <Culture>de-DE</Culture>
+                  <Text />
+                </AttributeList>
+              </MultilingualTextItem>
+              <MultilingualTextItem ID="79" CompositionName="Items">
+                <AttributeList>
+                  <Culture>ru-RU</Culture>
+                  <Text />
+                </AttributeList>
+              </MultilingualTextItem>
+            </ObjectList>
+          </MultilingualText>
+        </ObjectList>
+      </SW.Blocks.CompileUnit>
+      <MultilingualText ID="7A" CompositionName="Title">
+        <ObjectList>
+          <MultilingualTextItem ID="7B" CompositionName="Items">
+            <AttributeList>
+              <Culture>en-US</Culture>
+              <Text>ADDR - удаленный PLC</Text>
+            </AttributeList>
+          </MultilingualTextItem>
+          <MultilingualTextItem ID="7C" CompositionName="Items">
+            <AttributeList>
+              <Culture>de-DE</Culture>
+              <Text />
+            </AttributeList>
+          </MultilingualTextItem>
+          <MultilingualTextItem ID="7D" CompositionName="Items">
+            <AttributeList>
+              <Culture>ru-RU</Culture>
+              <Text />
+            </AttributeList>
+          </MultilingualTextItem>
+        </ObjectList>
+      </MultilingualText>
+    </ObjectList>
+  </SW.Blocks.FB>
+</Document>

@@ -1,0 +1,187 @@
+﻿FUNCTION_BLOCK "Comm_SKV"
+{ S7_Optimized_Access := 'FALSE' }
+VERSION : 0.1
+   VAR 
+      To_SKV : Struct
+         watchdog : Int;
+         LE_1 : Int;
+         LE_2 : Int;
+         LE_3 : Int;
+         LE_4 : Int;
+         SP_FE : Int;
+         SP_M : Int;
+         CMD : Struct
+            REQ : Bool;
+            Reset : Bool;
+            Hand : Bool;
+            Start_M : Bool;
+         END_STRUCT;
+         Valves : Struct
+            ID : Int;
+            Local : Array[0..15] of Bool;
+            Mode : Array[1..10] of Int;
+            Status : Array[1..10] of Int;
+         END_STRUCT;
+      END_STRUCT;
+      From_SKV : Struct
+         watchdog : Int;
+         LE_SKV : Int;
+         res_h : DInt;
+         LE : Int;
+         TE : Int;
+         PE_1 : Int;
+         PE_2 : Int;
+         PE_3 : Int;
+         PE_4 : Int;
+         FE : Int;
+         C : Int;
+         Status : Int;
+         STATE : Struct
+            Ready : Bool;
+            Local : Bool;
+            Warning : Bool;
+            Alarm : Bool;
+            LS : Bool;
+            Lock : Bool;
+         END_STRUCT;
+         Valves : Struct
+            ID : Int;
+            REQ : Array[0..15] of Bool;
+         END_STRUCT;
+      END_STRUCT;
+      watchdog_control : Int;
+      Alarm : Struct
+         Link : Bool;
+      END_STRUCT;
+      ID : Int;
+      SP_M : Real;
+      SP_FE : Real;
+      LE : Real;
+      PE_1 : Real;
+      PE_2 : Real;
+      PE_3 : Real;
+      PE_4 : Real;
+      FE : Real;
+      TE : Real;
+      C : Real;
+      Route : Bool;
+      "Name" : Array[0..10] of String[5];
+      Clock { S7_SetPoint := 'False'} : Array[0..10] of "Time_S";
+   END_VAR
+
+   VAR_TEMP 
+      x : Int;
+   END_VAR
+
+
+BEGIN
+	//Отправка данных в СКВ
+	    //контроль связи
+	    IF #watchdog_control = #From_SKV.watchdog THEN
+	        #Clock[0].Start := TRUE;
+	        IF #Clock[0]."Exit" THEN
+	            #Alarm.Link := TRUE; //нет связи с ЩКД1
+	        ELSE
+	            #Alarm.Link := FALSE;
+	        END_IF;
+	    ELSE
+	        #Clock[0].Start := FALSE;
+	    END_IF;
+	    
+	    //уровни в РВ
+	    #To_SKV.LE_1 := REAL_TO_INT("LE_105".Result * 10.0);
+	    #To_SKV.LE_2 := REAL_TO_INT("LE_106".Result * 10.0);
+	    #To_SKV.LE_3 := REAL_TO_INT("LE_107".Result * 10.0);
+	    #To_SKV.LE_4 := REAL_TO_INT("LE_108".Result * 10.0);
+	    
+	    //управление насосом
+	    #To_SKV.SP_M := REAL_TO_INT(#SP_M * 10.0);
+	    
+	    //сброс аварий
+	    IF #To_SKV.CMD.Reset THEN
+	        #Clock[1].Start := TRUE;
+	        IF #Clock[1]."Exit" THEN
+	            #To_SKV.CMD.Reset := FALSE;
+	            #Clock[1].Start := FALSE;
+	        END_IF;
+	    END_IF;
+	    
+	    //статусы задвижек
+	    CASE #ID OF
+	        0:  //КП не выбрано
+	            FOR #x := 1 TO 10 DO
+	                #To_SKV.Valves.Status[#x] := 0;
+	            END_FOR;
+	        1:  //КП 2.1
+	            FOR #x := 1 TO 10 DO
+	                #To_SKV.Valves.Status[#x] := "KP_2_1_DB".KP[#x].Status;
+	            END_FOR;
+	        2:  //КП 2.1
+	            FOR #x := 1 TO 10 DO
+	                #To_SKV.Valves.Status[#x] := "KP_2_2_DB".KP[#x].Status;
+	            END_FOR;
+	        3:  //КП 2.3
+	            FOR #x := 1 TO 10 DO
+	                #To_SKV.Valves.Status[#x] := "KP_2_3_DB".KP[#x].Status;
+	            END_FOR;
+	        4:  //КП 2.4
+	            FOR #x := 1 TO 10 DO
+	                #To_SKV.Valves.Status[#x] := "KP_2_4_DB".KP[#x].Status;
+	            END_FOR;
+	        5:  //КП 2.5
+	            FOR #x := 1 TO 10 DO
+	                #To_SKV.Valves.Status[#x] := "KP_2_5_DB".KP[#x].Status;
+	            END_FOR;
+	        6:  //КП 2.6
+	            FOR #x := 1 TO 10 DO
+	                #To_SKV.Valves.Status[#x] := "KP_2_6_DB".KP[#x].Status;
+	            END_FOR;
+	        7:  //КП 2.7
+	            FOR #x := 1 TO 10 DO
+	                #To_SKV.Valves.Status[#x] := "KP_2_7_DB".KP[#x].Status;
+	            END_FOR;
+	        8:  //КП 2.8
+	            FOR #x := 1 TO 10 DO
+	                #To_SKV.Valves.Status[#x] := "KP_2_8_DB".KP[#x].Status;
+	            END_FOR;
+	        9:  //КП 2.9
+	            FOR #x := 1 TO 10 DO
+	                #To_SKV.Valves.Status[#x] := "KP_2_9_DB".KP[#x].Status;
+	            END_FOR;
+	        10:  //КП 2.10
+	            FOR #x := 1 TO 10 DO
+	                #To_SKV.Valves.Status[#x] := "KP_2_10_DB".KP[#x].Status;
+	            END_FOR;
+	    END_CASE;
+	
+	    
+	//Получение данных от СКВ
+	    //контроль связи
+	    IF "pulse_1s" THEN
+	        #To_SKV.watchdog := #To_SKV.watchdog + 1;
+	        IF #To_SKV.watchdog > 10000 THEN
+	            #To_SKV.watchdog := 0;
+	        END_IF;
+	    END_IF;
+	    
+	    #ID := #From_SKV.Valves.ID;
+	
+	    //давление в КП
+	    #PE_1 := INT_TO_REAL(#From_SKV.PE_1) / 10;
+	    #PE_2 := INT_TO_REAL(#From_SKV.PE_2) / 10;
+	    #PE_3 := INT_TO_REAL(#From_SKV.PE_3) / 10;
+	    #PE_4 := INT_TO_REAL(#From_SKV.PE_4) / 10;
+	    
+	    //прочие датчики
+	    #LE := INT_TO_REAL(#From_SKV.LE) / 10;
+	    #TE := INT_TO_REAL(#From_SKV.TE) / 10;
+	    #FE := INT_TO_REAL(#From_SKV.FE) / 10;
+	    #C := INT_TO_REAL(#From_SKV.C) / 10;
+	    
+	    
+	//вызов таймеров на исполнение
+	FOR #x := 0 TO 10 BY 1 DO
+	    #Clock[#x]();
+	END_FOR;
+END_FUNCTION_BLOCK
+

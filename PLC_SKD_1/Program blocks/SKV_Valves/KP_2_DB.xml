@@ -1,0 +1,108 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Document>
+  <Engineering version="V17" />
+  <DocumentInfo>
+    <Created>2023-12-22T15:03:15.3254882Z</Created>
+    <ExportSetting>WithDefaults</ExportSetting>
+    <InstalledProducts>
+      <Product>
+        <DisplayName>Totally Integrated Automation Portal</DisplayName>
+        <DisplayVersion>V17</DisplayVersion>
+      </Product>
+      <OptionPackage>
+        <DisplayName>TIA Portal Openness</DisplayName>
+        <DisplayVersion>V17</DisplayVersion>
+      </OptionPackage>
+      <OptionPackage>
+        <DisplayName>TIA Portal Version Control Interface</DisplayName>
+        <DisplayVersion>V17</DisplayVersion>
+      </OptionPackage>
+      <Product>
+        <DisplayName>STEP 7 Professional</DisplayName>
+        <DisplayVersion>V17</DisplayVersion>
+      </Product>
+      <OptionPackage>
+        <DisplayName>STEP 7 Safety</DisplayName>
+        <DisplayVersion>V17</DisplayVersion>
+      </OptionPackage>
+      <Product>
+        <DisplayName>WinCC Advanced</DisplayName>
+        <DisplayVersion>V17</DisplayVersion>
+      </Product>
+    </InstalledProducts>
+  </DocumentInfo>
+  <SW.Blocks.InstanceDB ID="0">
+    <AttributeList>
+      <AutoNumber>false</AutoNumber>
+      <DBAccessibleFromOPCUA>true</DBAccessibleFromOPCUA>
+      <DBAccessibleFromWebserver>true</DBAccessibleFromWebserver>
+      <HeaderAuthor />
+      <HeaderFamily />
+      <HeaderName />
+      <HeaderVersion>0.1</HeaderVersion>
+      <InstanceOfName>KP_2</InstanceOfName>
+      <InstanceOfType>FB</InstanceOfType>
+      <Interface><Sections xmlns="http://www.siemens.com/automation/Openness/SW/Interface/v5">
+  <Section Name="Input" />
+  <Section Name="Output" />
+  <Section Name="InOut" />
+  <Section Name="Static">
+    <Member Name="limit" Datatype="Int" Remanence="NonRetain" Accessibility="Public"><AttributeList><BooleanAttribute Name="ExternalAccessible" SystemDefined="true">true</BooleanAttribute><BooleanAttribute Name="ExternalVisible" SystemDefined="true">true</BooleanAttribute><BooleanAttribute Name="ExternalWritable" SystemDefined="true">true</BooleanAttribute><BooleanAttribute Name="SetPoint" SystemDefined="true">true</BooleanAttribute></AttributeList></Member>
+    <Member Name="load" Datatype="Int" Remanence="NonRetain" Accessibility="Public"><AttributeList><BooleanAttribute Name="ExternalAccessible" SystemDefined="true">true</BooleanAttribute><BooleanAttribute Name="ExternalVisible" SystemDefined="true">true</BooleanAttribute><BooleanAttribute Name="ExternalWritable" SystemDefined="true">true</BooleanAttribute><BooleanAttribute Name="SetPoint" SystemDefined="true">false</BooleanAttribute></AttributeList></Member>
+    <Member Name="load_last" Datatype="Int" Remanence="NonRetain" Accessibility="Public"><AttributeList><BooleanAttribute Name="ExternalAccessible" SystemDefined="true">true</BooleanAttribute><BooleanAttribute Name="ExternalVisible" SystemDefined="true">true</BooleanAttribute><BooleanAttribute Name="ExternalWritable" SystemDefined="true">true</BooleanAttribute><BooleanAttribute Name="SetPoint" SystemDefined="true">false</BooleanAttribute></AttributeList></Member>
+    <Member Name="KP" Datatype="Array[0..10] of &quot;DRV_AUMA&quot;" Remanence="NonRetain" Accessibility="Public"><AttributeList><BooleanAttribute Name="ExternalAccessible" SystemDefined="true">true</BooleanAttribute><BooleanAttribute Name="ExternalVisible" SystemDefined="true">true</BooleanAttribute><BooleanAttribute Name="ExternalWritable" SystemDefined="true">true</BooleanAttribute><BooleanAttribute Name="SetPoint" SystemDefined="true">true</BooleanAttribute></AttributeList><Sections><Section Name="Input" /><Section Name="Output" /><Section Name="InOut" /><Section Name="Static"><Member Name="CMD" Datatype="&quot;CMD&quot;"><Sections><Section Name="None"><Member Name="Start_A" Datatype="Bool" /><Member Name="Start_M" Datatype="Bool" /><Member Name="Hand" Datatype="Bool" /><Member Name="Local" Datatype="Bool" /><Member Name="Lock" Datatype="Bool" /><Member Name="Service" Datatype="Bool" /><Member Name="Safety" Datatype="Bool" /><Member Name="Force" Datatype="Bool" /><Member Name="Alarm" Datatype="Bool" /><Member Name="Reset" Datatype="Bool" /><Member Name="Sim" Datatype="Bool" /><Member Name="Vector" Datatype="Bool" /><Member Name="ResetOpTime" Datatype="Bool" /><Member Name="Ready" Datatype="Bool" /><Member Name="reserv" Datatype="Bool" /></Section></Sections></Member><Member Name="Mode" Datatype="Int" /><Member Name="Status" Datatype="Int" /><Member Name="FB" Datatype="Struct"><Member Name="QF" Datatype="Bool" /><Member Name="KM_Open" Datatype="Bool" /><Member Name="KM_Close" Datatype="Bool" /><Member Name="Open" Datatype="Bool" /><Member Name="Close" Datatype="Bool" /><Member Name="Reserv" Datatype="Bool" /><Member Name="Local_Open" Datatype="Bool" /><Member Name="Local_Close" Datatype="Bool" /></Member><Member Name="Use" Datatype="Struct"><Member Name="QF" Datatype="Bool" /><Member Name="KM_Open" Datatype="Bool" /><Member Name="KM_Close" Datatype="Bool" /><Member Name="Open" Datatype="Bool" /><Member Name="Close" Datatype="Bool" /><Member Name="One_KM" Datatype="Bool" /><Member Name="Air" Datatype="Bool" /><Member Name="Cross" Datatype="Bool" /><Member Name="CMD_Open" Datatype="Bool" /><Member Name="CMD_Close" Datatype="Bool" /><Member Name="CMD_Reset" Datatype="Bool" /><Member Name="Local_Keys" Datatype="Bool" /><Member Name="Local_EndPoint" Datatype="Bool" /><Member Name="Enable" Datatype="Bool" /><Member Name="CWF" Datatype="Bool" /><Member Name="Duo" Datatype="Bool" /></Member><Member Name="Alarm" Datatype="Struct"><Member Name="Block" Datatype="Bool" /><Member Name="QF" Datatype="Bool" /><Member Name="KM_Open" Datatype="Bool" /><Member Name="KM_Close" Datatype="Bool" /><Member Name="Two_S" Datatype="Bool" /><Member Name="Open" Datatype="Bool" /><Member Name="Close" Datatype="Bool" /><Member Name="OpTime" Datatype="Bool" /><Member Name="Link" Datatype="Bool" /></Member><Member Name="support" Datatype="Word" /><Member Name="CMD_Open" Datatype="Bool" /><Member Name="CMD_Close" Datatype="Bool" /><Member Name="xON" Datatype="Bool" /><Member Name="xOFF" Datatype="Bool" /><Member Name="Clock" Datatype="Array[0..4] of &quot;Time_S&quot;"><Sections><Section Name="Input" /><Section Name="Output" /><Section Name="InOut" /><Section Name="Static"><Member Name="SP" Datatype="Int" /><Member Name="Now" Datatype="Int" /><Member Name="Start" Datatype="Bool" /><Member Name="Exit" Datatype="Bool" /><Member Name="Pause" Datatype="Bool" /><Member Name="Reset" Datatype="Bool" /></Section></Sections></Member><Member Name="CodeID" Datatype="Int" /><Member Name="Position" Datatype="Real" /><Member Name="Speed" Datatype="Byte" /><Member Name="Name" Datatype="String[4]" /><Member Name="PT" Datatype="Array[0..1] of R_TRIG" Version="1.0"><Sections><Section Name="Input"><Member Name="CLK" Datatype="Bool" /></Section><Section Name="Output"><Member Name="Q" Datatype="Bool" /></Section><Section Name="InOut" /><Section Name="Static"><Member Name="Stat_Bit" Datatype="Bool" /></Section></Sections></Member><Member Name="NT" Datatype="Array[0..1] of F_TRIG" Version="1.0"><Sections><Section Name="Input"><Member Name="CLK" Datatype="Bool" /></Section><Section Name="Output"><Member Name="Q" Datatype="Bool" /></Section><Section Name="InOut" /><Section Name="Static"><Member Name="Stat_Bit" Datatype="Bool" /></Section></Sections></Member></Section></Sections></Member>
+    <Member Name="load_ok" Datatype="Bool" Remanence="NonRetain" Accessibility="Public"><AttributeList><BooleanAttribute Name="ExternalAccessible" SystemDefined="true">true</BooleanAttribute><BooleanAttribute Name="ExternalVisible" SystemDefined="true">true</BooleanAttribute><BooleanAttribute Name="ExternalWritable" SystemDefined="true">true</BooleanAttribute><BooleanAttribute Name="SetPoint" SystemDefined="true">true</BooleanAttribute></AttributeList></Member>
+  </Section>
+</Sections></Interface>
+      <Name>KP_2_DB</Name>
+      <Number>522</Number>
+      <ProgrammingLanguage>DB</ProgrammingLanguage>
+    </AttributeList>
+    <ObjectList>
+      <MultilingualText ID="1" CompositionName="Comment">
+        <ObjectList>
+          <MultilingualTextItem ID="2" CompositionName="Items">
+            <AttributeList>
+              <Culture>en-US</Culture>
+              <Text />
+            </AttributeList>
+          </MultilingualTextItem>
+          <MultilingualTextItem ID="3" CompositionName="Items">
+            <AttributeList>
+              <Culture>de-DE</Culture>
+              <Text />
+            </AttributeList>
+          </MultilingualTextItem>
+          <MultilingualTextItem ID="4" CompositionName="Items">
+            <AttributeList>
+              <Culture>ru-RU</Culture>
+              <Text />
+            </AttributeList>
+          </MultilingualTextItem>
+        </ObjectList>
+      </MultilingualText>
+      <MultilingualText ID="5" CompositionName="Title">
+        <ObjectList>
+          <MultilingualTextItem ID="6" CompositionName="Items">
+            <AttributeList>
+              <Culture>en-US</Culture>
+              <Text />
+            </AttributeList>
+          </MultilingualTextItem>
+          <MultilingualTextItem ID="7" CompositionName="Items">
+            <AttributeList>
+              <Culture>de-DE</Culture>
+              <Text />
+            </AttributeList>
+          </MultilingualTextItem>
+          <MultilingualTextItem ID="8" CompositionName="Items">
+            <AttributeList>
+              <Culture>ru-RU</Culture>
+              <Text />
+            </AttributeList>
+          </MultilingualTextItem>
+        </ObjectList>
+      </MultilingualText>
+    </ObjectList>
+  </SW.Blocks.InstanceDB>
+</Document>

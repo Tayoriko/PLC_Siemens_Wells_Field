@@ -1,0 +1,158 @@
+﻿FUNCTION_BLOCK "SKV_One"
+{ S7_Optimized_Access := 'FALSE' }
+VERSION : 0.1
+   VAR_INPUT 
+      Ready : Bool;   // Флаг готовности устр-ва
+      Warning : Bool;   // Флаг предупрждения
+      Alarm : Bool;   // Флаг аварии устр-ва
+      Route : Bool;   // Флаг готовности маршрута
+      FeedBack : Real;   // ОС производительности утр-ва
+   END_VAR
+
+   VAR_OUTPUT 
+      REQ_CMD : Bool;   // Команда - запуск устр-ва
+      REQ_SP : Real;   // Команда - уставка производительности устр-ва
+   END_VAR
+
+   VAR 
+      Enable : Bool;   // Флаг выбора устр-ва для работы
+      SP_Use { S7_SetPoint := 'True'} : Bool := true;   // Использовать флаг достижения уставки
+      CMD { S7_SetPoint := 'False'} : "CMD";   // Управляющее слово
+      Mode { S7_SetPoint := 'True'} : Int;   // Режим работы
+      Status : Int;   // Статус устр-ва
+      C { S7_SetPoint := 'True'} : Real;   // Коэффециент эффективности
+      Delta : Real;   // Текущее отклонение от уставки
+      SP : Struct   // Уставки
+         Ok : Bool;   // Флаг достижения уставки
+         Auto : Real;   // - авто режим
+         Hand : Real;   // - ручной режим
+         Low_Percent { S7_SetPoint := 'True'} : Real := 85.0;   // - замедление до %
+         Low : Real;   // - замедленная скорость
+         Min { S7_SetPoint := 'True'} : Real := 30.0;   // - минимальный расход
+         Max { S7_SetPoint := 'True'} : Real := 45.0;   // - максимальный расход
+         Delta { S7_SetPoint := 'True'} : Real := 10.0;   // - допустимое отклонение
+         Last : Real;   // - прошлая уставка
+      END_STRUCT;
+      drv_CMD { S7_SetPoint := 'False'} : "drv_CMD";
+      support : Word;
+      PT {InstructionName := 'R_TRIG'; LibVersion := '1.0'; S7_SetPoint := 'False'} : Array[0..1] of R_TRIG;
+      NT {InstructionName := 'F_TRIG'; LibVersion := '1.0'; S7_SetPoint := 'False'} : Array[0..1] of F_TRIG;
+   END_VAR
+
+
+BEGIN
+	//Управление одной скважиной
+	
+	#CMD.Lock := NOT #Ready OR #Alarm;  //Запрет запуска
+	#CMD.Ready := NOT #CMD.Lock;
+	
+	//Ограничение уставки
+	IF NOT #CMD.Hand THEN
+	    #SP.Hand := #SP.Auto;
+	END_IF;
+	IF #SP.Hand < #SP.Min THEN
+	    #SP.Hand := #SP.Min;
+	END_IF;
+	IF #SP.Hand > #SP.Max THEN
+	    #SP.Hand := #SP.Max;
+	END_IF;
+	
+	//Замедленная скорость
+	#SP.Low := #SP.Hand * (100 / #SP.Low_Percent);
+	
+	//Контроль достижения уставки
+	IF #SP.Last <> #SP.Hand THEN
+	    #Delta := ABS(#SP.Hand - #SP.Last);
+	    IF #Delta < #SP.Delta THEN
+	        #SP.Last := #SP.Hand;
+	        #SP.Ok := TRUE;
+	    ELSE
+	        #SP.Ok := FALSE;
+	    END_IF;
+	END_IF;
+	#PT[0](CLK := #SP.Ok);
+	
+	//device control
+	#drv_CMD(Emergency := #support.%X0,
+	          CMD := #CMD);
+	 //manual mode flag
+	     IF #CMD.Hand THEN
+	         "Hand_MDA" := TRUE;
+	     END_IF;
+	     
+	//Отключение
+	     IF NOT #CMD.Start_M AND #Mode > 1 AND #Mode <= 5 THEN
+	         IF #Status <> 5 THEN
+	             #Mode := 5;
+	         ELSE
+	             #Mode := 6;
+	         END_IF;
+	     END_IF;
+	     
+	//Режимы работы
+	     CASE #Mode OF
+	         0: //Установка отключена
+	             #CMD.Start_A := FALSE;
+	             #CMD.Start_M := FALSE;
+	             #Status := 0;
+	             #Mode := 1;
+	         1: //Запуск в работу
+	             IF #CMD.Start_M THEN
+	                 #REQ_CMD := TRUE;
+	                 #REQ_SP := #SP.Min;
+	                 IF #Status = 0 THEN
+	                     #Status := 10; //выход на минимальную рабочую точку
+	                 ELSIF #Status = 10 AND (#PT[0].Q OR NOT #SP_Use) THEN
+	                     #Status := 1;  //готов к работе
+	                 END_IF;
+	             ELSE
+	                 #REQ_CMD := FALSE;
+	                 #REQ_SP := 0.0;
+	                 #Status := 0;
+	             END_IF;
+	         2:  //Плавный разгон до общей точки
+	             IF #Status = 1 THEN
+	                 #REQ_SP := #SP.Hand;
+	                 #Status := 20;     //выход на общую рабочую точку
+	             ELSIF #Status = 20 AND (#PT[0].Q OR NOT #SP_Use) THEN
+	                 #Status := 2;      //рабочая точка достигнута
+	             END_IF;
+	         3:  //Переход в штатный режим работы
+	             IF #Status = 2 OR #Status = 4 THEN
+	                 #Status := 3;       //штатный режим работы
+	             ELSIF #Status = 3 THEN
+	                 IF NOT #Warning THEN
+	                     #REQ_SP := #SP.Hand;
+	                 ELSE
+	                     #REQ_SP := #SP.Low;
+	                 END_IF;
+	             END_IF;
+	         4: //Замедление перед вводном нового элемента в работу
+	             IF #Status = 3 THEN
+	                 #REQ_SP := #SP.Hand;
+	                 #Status := 40;        //замедление при вводе нового элемента
+	             ELSIF #Status = 40 AND (#PT[0].Q OR NOT #SP_Use) THEN
+	                 #Status := 4;
+	             END_IF;
+	         5: //Замедление при отключении
+	             IF #Status <> 50 AND #Status <> 5 THEN
+	                 #REQ_SP := #SP.Min;
+	                 #Status := 50;
+	             ELSIF #Status = 50 AND (NOT #Enable OR #CMD.Lock OR (#PT[0].Q OR NOT #SP_Use)) THEN
+	                 #Status := 5;
+	             END_IF;
+	         6: //Вывод элемента из работы
+	             IF #Status = 5 THEN
+	                 #CMD.Start_A := FALSE;
+	                 #REQ_CMD := FALSE;
+	                 #REQ_SP := 0.0;
+	                 #Status := 60;
+	             ELSIF #Status = 60 AND (#PT[0].Q OR NOT #SP_Use) THEN
+	                 #Status := 0;
+	                 #Mode := 0;
+	             END_IF;
+	     END_CASE;
+	     
+	
+END_FUNCTION_BLOCK
+

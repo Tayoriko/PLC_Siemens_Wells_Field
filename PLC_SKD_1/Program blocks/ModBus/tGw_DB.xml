@@ -1,0 +1,104 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Document>
+  <Engineering version="V17" />
+  <DocumentInfo>
+    <Created>2023-12-22T15:03:09.492741Z</Created>
+    <ExportSetting>WithDefaults</ExportSetting>
+    <InstalledProducts>
+      <Product>
+        <DisplayName>Totally Integrated Automation Portal</DisplayName>
+        <DisplayVersion>V17</DisplayVersion>
+      </Product>
+      <OptionPackage>
+        <DisplayName>TIA Portal Openness</DisplayName>
+        <DisplayVersion>V17</DisplayVersion>
+      </OptionPackage>
+      <OptionPackage>
+        <DisplayName>TIA Portal Version Control Interface</DisplayName>
+        <DisplayVersion>V17</DisplayVersion>
+      </OptionPackage>
+      <Product>
+        <DisplayName>STEP 7 Professional</DisplayName>
+        <DisplayVersion>V17</DisplayVersion>
+      </Product>
+      <OptionPackage>
+        <DisplayName>STEP 7 Safety</DisplayName>
+        <DisplayVersion>V17</DisplayVersion>
+      </OptionPackage>
+      <Product>
+        <DisplayName>WinCC Advanced</DisplayName>
+        <DisplayVersion>V17</DisplayVersion>
+      </Product>
+    </InstalledProducts>
+  </DocumentInfo>
+  <SW.Blocks.GlobalDB ID="0">
+    <AttributeList>
+      <AutoNumber>true</AutoNumber>
+      <DBAccessibleFromOPCUA>true</DBAccessibleFromOPCUA>
+      <DBAccessibleFromWebserver>true</DBAccessibleFromWebserver>
+      <HeaderAuthor />
+      <HeaderFamily />
+      <HeaderName />
+      <HeaderVersion>0.1</HeaderVersion>
+      <Interface><Sections xmlns="http://www.siemens.com/automation/Openness/SW/Interface/v5">
+  <Section Name="Static">
+    <Member Name="tGw" Datatype="Array[0..31] of Struct" Remanence="Retain" Accessibility="Public"><AttributeList><BooleanAttribute Name="ExternalAccessible" SystemDefined="true">true</BooleanAttribute><BooleanAttribute Name="ExternalVisible" SystemDefined="true">true</BooleanAttribute><BooleanAttribute Name="ExternalWritable" SystemDefined="true">true</BooleanAttribute><BooleanAttribute Name="SetPoint" SystemDefined="true">false</BooleanAttribute></AttributeList><Comment><MultiLanguageText Lang="en-US">Точка подключения к КП</MultiLanguageText></Comment><Member Name="IP" Datatype="IP_V4" Version="1.0"><AttributeList><BooleanAttribute Name="ExternalAccessible" SystemDefined="true">true</BooleanAttribute><BooleanAttribute Name="ExternalVisible" SystemDefined="true">true</BooleanAttribute><BooleanAttribute Name="ExternalWritable" SystemDefined="true">true</BooleanAttribute><BooleanAttribute Name="SetPoint" SystemDefined="true">true</BooleanAttribute></AttributeList><Sections><Section Name="None"><Member Name="ADDR" Datatype="Array[1..4] of Byte"><Subelement Path="0,1"><StartValue>16#0A</StartValue></Subelement><Subelement Path="0,2"><StartValue>16#01</StartValue></Subelement><Subelement Path="0,3"><StartValue>16#01</StartValue></Subelement><Subelement Path="0,4"><StartValue>16#9B</StartValue></Subelement><Subelement Path="1,1"><StartValue>16#0A</StartValue></Subelement><Subelement Path="1,2"><StartValue>16#01</StartValue></Subelement><Subelement Path="1,3"><StartValue>16#01</StartValue></Subelement><Subelement Path="1,4"><StartValue>16#C9</StartValue></Subelement><Subelement Path="2,1"><StartValue>16#0A</StartValue></Subelement><Subelement Path="2,2"><StartValue>16#01</StartValue></Subelement><Subelement Path="2,3"><StartValue>16#01</StartValue></Subelement><Subelement Path="2,4"><StartValue>16#CA</StartValue></Subelement><Subelement Path="3,1"><StartValue>16#0A</StartValue></Subelement><Subelement Path="3,2"><StartValue>16#01</StartValue></Subelement><Subelement Path="3,3"><StartValue>16#01</StartValue></Subelement><Subelement Path="3,4"><StartValue>16#CB</StartValue></Subelement><Subelement Path="4,1"><StartValue>16#0A</StartValue></Subelement><Subelement Path="4,2"><StartValue>16#01</StartValue></Subelement><Subelement Path="4,3"><StartValue>16#01</StartValue></Subelement><Subelement Path="4,4"><StartValue>16#D4</StartValue></Subelement><Subelement Path="5,1"><StartValue>16#0A</StartValue></Subelement><Subelement Path="5,2"><StartValue>16#01</StartValue></Subelement><Subelement Path="5,3"><StartValue>16#01</StartValue></Subelement><Subelement Path="5,4"><StartValue>16#D5</StartValue></Subelement><Subelement Path="6,1"><StartValue>16#0A</StartValue></Subelement><Subelement Path="6,2"><StartValue>16#01</StartValue></Subelement><Subelement Path="6,3"><StartValue>16#01</StartValue></Subelement><Subelement Path="6,4"><StartValue>16#D6</StartValue></Subelement><Subelement Path="7,1"><StartValue>16#0A</StartValue></Subelement><Subelement Path="7,2"><StartValue>16#01</StartValue></Subelement><Subelement Path="7,3"><StartValue>16#01</StartValue></Subelement><Subelement Path="7,4"><StartValue>16#D7</StartValue></Subelement><Subelement Path="8,1"><StartValue>16#0A</StartValue></Subelement><Subelement Path="8,2"><StartValue>16#01</StartValue></Subelement><Subelement Path="8,3"><StartValue>16#01</StartValue></Subelement><Subelement Path="8,4"><StartValue>16#DC</StartValue></Subelement><Subelement Path="9,1"><StartValue>16#0A</StartValue></Subelement><Subelement Path="9,2"><StartValue>16#01</StartValue></Subelement><Subelement Path="9,3"><StartValue>16#01</StartValue></Subelement><Subelement Path="9,4"><StartValue>16#DD</StartValue></Subelement><Subelement Path="10,1"><StartValue>16#0A</StartValue></Subelement><Subelement Path="10,2"><StartValue>16#01</StartValue></Subelement><Subelement Path="10,3"><StartValue>16#01</StartValue></Subelement><Subelement Path="10,4"><StartValue>16#DE</StartValue></Subelement><Subelement Path="11,1"><StartValue>16#0A</StartValue></Subelement><Subelement Path="11,2"><StartValue>16#01</StartValue></Subelement><Subelement Path="11,3"><StartValue>16#01</StartValue></Subelement><Subelement Path="11,4"><StartValue>16#DF</StartValue></Subelement></Member></Section></Sections></Member><Member Name="Port" Datatype="UInt"><AttributeList><BooleanAttribute Name="ExternalAccessible" SystemDefined="true">true</BooleanAttribute><BooleanAttribute Name="ExternalVisible" SystemDefined="true">true</BooleanAttribute><BooleanAttribute Name="ExternalWritable" SystemDefined="true">true</BooleanAttribute><BooleanAttribute Name="SetPoint" SystemDefined="true">true</BooleanAttribute></AttributeList><Subelement Path="0"><StartValue>504</StartValue></Subelement><Subelement Path="1"><StartValue>504</StartValue></Subelement><Subelement Path="2"><StartValue>504</StartValue></Subelement><Subelement Path="3"><StartValue>504</StartValue></Subelement><Subelement Path="4"><StartValue>504</StartValue></Subelement><Subelement Path="5"><StartValue>504</StartValue></Subelement><Subelement Path="6"><StartValue>504</StartValue></Subelement><Subelement Path="7"><StartValue>504</StartValue></Subelement><Subelement Path="8"><StartValue>504</StartValue></Subelement><Subelement Path="9"><StartValue>504</StartValue></Subelement><Subelement Path="10"><StartValue>504</StartValue></Subelement><Subelement Path="11"><StartValue>504</StartValue></Subelement><Subelement Path="12"><StartValue>502</StartValue></Subelement><Subelement Path="13"><StartValue>503</StartValue></Subelement><Subelement Path="14"><StartValue>504</StartValue></Subelement><Subelement Path="15"><StartValue>502</StartValue></Subelement><Subelement Path="16"><StartValue>503</StartValue></Subelement><Subelement Path="17"><StartValue>504</StartValue></Subelement><Subelement Path="18"><StartValue>502</StartValue></Subelement><Subelement Path="19"><StartValue>502</StartValue></Subelement><Subelement Path="20"><StartValue>502</StartValue></Subelement><Subelement Path="21"><StartValue>502</StartValue></Subelement><Subelement Path="22"><StartValue>0</StartValue></Subelement><Subelement Path="23"><StartValue>0</StartValue></Subelement><Subelement Path="24"><StartValue>0</StartValue></Subelement><Subelement Path="25"><StartValue>0</StartValue></Subelement><Subelement Path="26"><StartValue>0</StartValue></Subelement><Subelement Path="27"><StartValue>0</StartValue></Subelement><Subelement Path="28"><StartValue>0</StartValue></Subelement><Subelement Path="29"><StartValue>0</StartValue></Subelement><Subelement Path="30"><StartValue>0</StartValue></Subelement><Subelement Path="31"><StartValue>0</StartValue></Subelement></Member></Member>
+  </Section>
+</Sections></Interface>
+      <IsOnlyStoredInLoadMemory>false</IsOnlyStoredInLoadMemory>
+      <IsRetainMemResEnabled>false</IsRetainMemResEnabled>
+      <IsWriteProtectedInAS>false</IsWriteProtectedInAS>
+      <MemoryLayout>Optimized</MemoryLayout>
+      <MemoryReserve>100</MemoryReserve>
+      <Name>tGw_DB</Name>
+      <Number>3</Number>
+      <ProgrammingLanguage>DB</ProgrammingLanguage>
+    </AttributeList>
+    <ObjectList>
+      <MultilingualText ID="1" CompositionName="Comment">
+        <ObjectList>
+          <MultilingualTextItem ID="2" CompositionName="Items">
+            <AttributeList>
+              <Culture>en-US</Culture>
+              <Text />
+            </AttributeList>
+          </MultilingualTextItem>
+          <MultilingualTextItem ID="3" CompositionName="Items">
+            <AttributeList>
+              <Culture>de-DE</Culture>
+              <Text />
+            </AttributeList>
+          </MultilingualTextItem>
+          <MultilingualTextItem ID="4" CompositionName="Items">
+            <AttributeList>
+              <Culture>ru-RU</Culture>
+              <Text />
+            </AttributeList>
+          </MultilingualTextItem>
+        </ObjectList>
+      </MultilingualText>
+      <MultilingualText ID="5" CompositionName="Title">
+        <ObjectList>
+          <MultilingualTextItem ID="6" CompositionName="Items">
+            <AttributeList>
+              <Culture>en-US</Culture>
+              <Text />
+            </AttributeList>
+          </MultilingualTextItem>
+          <MultilingualTextItem ID="7" CompositionName="Items">
+            <AttributeList>
+              <Culture>de-DE</Culture>
+              <Text />
+            </AttributeList>
+          </MultilingualTextItem>
+          <MultilingualTextItem ID="8" CompositionName="Items">
+            <AttributeList>
+              <Culture>ru-RU</Culture>
+              <Text />
+            </AttributeList>
+          </MultilingualTextItem>
+        </ObjectList>
+      </MultilingualText>
+    </ObjectList>
+  </SW.Blocks.GlobalDB>
+</Document>

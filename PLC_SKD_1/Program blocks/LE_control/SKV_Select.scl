@@ -1,0 +1,86 @@
+﻿FUNCTION "SKV_Select" : Void
+{ S7_Optimized_Access := 'TRUE' }
+VERSION : 0.1
+   VAR_INPUT 
+      Limit : Int;   // Общее количество устр-ва
+   END_VAR
+
+   VAR_OUTPUT 
+      Ready : Bool;   // Готовность выбранного устр-ва
+      Status : Int;   // Статус выбранного устр--ва
+   END_VAR
+
+   VAR_IN_OUT 
+      C : Real;   // Вес приоритета устр-ва
+      REQ : Bool;   // Запрос обработки данных
+      Mode : Bool;   // Команда - 0 - останов, 1 - запуск
+      Number : Int;   // Номер устр-ва
+   END_VAR
+
+   VAR_TEMP 
+      x : Int;
+   END_VAR
+
+
+BEGIN
+	//контроль запроса на выбор насоса для запуска
+	IF #REQ THEN
+	    #C := 0.0;
+	    #Number := 0;
+	    #Status := -1;
+	    #Ready := FALSE;
+	    
+	    FOR #x := 1 TO #Limit DO
+	        //выбор максимального веса
+	        IF "SKV_Main_DB".One[#x].C >= #C THEN
+	            #C := "SKV_Main_DB".One[#x].C;
+	        END_IF;
+	    END_FOR;
+	    
+	    //проходим по всему списку насосов
+	    FOR #x := 1 TO #Limit DO
+	        //выбор насоса для запуска
+	        IF #Mode THEN
+	            //проверяем приоритетность запуска для остановленных насосов
+	            IF "SKV_Main_DB".One[#x].C <= #C AND "SKV_Main_DB".One[#x].CMD.Ready AND NOT "SKV_Main_DB".One[#x].CMD.Start_M THEN
+	                #C := "SKV_Main_DB".One[#x].C;           //сохраняем приоритет в буфер
+	                #Number := #x;                           //возвращаем номер насоса для запуска
+	                #Ready := "SKV_Main_DB".One[#x].CMD.Ready;
+	                #Status := "SKV_Main_DB".One[#x].Status;
+	            END_IF;
+	        END_IF;
+	    END_FOR;
+	    
+	    FOR #x := 1 TO #Limit DO
+	        
+	        //выбор максимального веса
+	        IF "SKV_Main_DB".One[#x].C <= #C THEN
+	            #C := "SKV_Main_DB".One[#x].C;
+	        END_IF;
+	        
+	    END_FOR;
+	    
+	    //проходим по всему списку насосов
+	    FOR #x := 1 TO #Limit DO
+	        
+	        //выбор насоса для останова
+	        IF NOT #Mode THEN
+	            //проверяем приоритетность запуска для остановки насосов
+	            IF "SKV_Main_DB".One[#x].C >= #C AND "SKV_Main_DB".One[#x].Status = 3 AND "SKV_Main_DB".One[#x].CMD.Start_M THEN
+	                #C := "SKV_Main_DB".One[#x].C;  //сохраняем приоритет в буфер
+	                #Number := #x;                  //возвращаем номер насоса для запуска
+	                #Ready := "SKV_Main_DB".One[#x].CMD.Ready;
+	            END_IF;
+	        END_IF;
+	    END_FOR;
+	    
+	    //снятие флага запуска
+	    #REQ := FALSE;
+	END_IF;
+	
+	
+	
+	
+	
+END_FUNCTION
+
