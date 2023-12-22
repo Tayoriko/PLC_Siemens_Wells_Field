@@ -1,0 +1,157 @@
+﻿FUNCTION_BLOCK "Comm_SKD1"
+{ S7_Optimized_Access := 'FALSE' }
+VERSION : 0.1
+   VAR 
+      From_SKD1 : Struct
+         watchdog : Int;
+         LE_1 : Int;
+         LE_2 : Int;
+         LE_3 : Int;
+         LE_4 : Int;
+         SP_FE : Int;
+         SP_M : Int;
+         CMD : Struct
+            REQ : Bool;
+            Reset : Bool;
+            Hand : Bool;
+            Start_M : Bool;
+         END_STRUCT;
+         Valves : Struct
+            ID : Int;
+            Local : Array[0..15] of Bool;
+            Mode : Array[1..10] of Int;
+            Status : Array[1..10] of Int;
+         END_STRUCT;
+      END_STRUCT;
+      To_SKD1 : Struct
+         watchdog : Int;
+         LE_SKV : Int;
+         res_h : DInt;
+         LE : Int;
+         TE : Int;
+         PE_1 : Int;
+         PE_2 : Int;
+         PE_3 : Int;
+         PE_4 : Int;
+         FE : Int;
+         C : Int;
+         Status : Int;
+         STATE : Struct
+            Ready : Bool;
+            Local : Bool;
+            Warning : Bool;
+            Alarm : Bool;
+            LS : Bool;
+            Lock : Bool;
+         END_STRUCT;
+         Valves : Struct
+            ID : Int;
+            REQ : Array[0..15] of Bool;
+         END_STRUCT;
+      END_STRUCT;
+      Alarm : Struct
+         Link : Bool;
+      END_STRUCT;
+      watchdog_control : Int;
+      ID : Int;
+      LE_1 : Real;
+      LE_2 : Real;
+      LE_3 : Real;
+      LE_4 : Real;
+      Valve_Name { S7_SetPoint := 'True'} : Array[1..10] of String[4];
+      Clock { S7_SetPoint := 'False'} : Array[0..10] of "Time_S";
+   END_VAR
+
+   VAR_TEMP 
+      x : Int;
+   END_VAR
+
+
+BEGIN
+	//Получение данных от ЩКД1
+	    //контроль связи
+	    IF #watchdog_control = #From_SKD1.watchdog THEN
+	        #Clock[0].Start := TRUE;
+	        IF #Clock[0]."Exit" THEN
+	            #Alarm.Link := TRUE; //нет связи с ЩКД1
+	        ELSE
+	            #Alarm.Link := FALSE;
+	        END_IF;
+	    ELSE
+	        #Clock[0].Start := FALSE;
+	    END_IF;
+	    
+	    //уровни в РВ
+	    #LE_1 := INT_TO_REAL(#From_SKD1.LE_1) / 10;
+	    #LE_2 := INT_TO_REAL(#From_SKD1.LE_2) / 10;
+	    #LE_3 := INT_TO_REAL(#From_SKD1.LE_3) / 10;
+	    #LE_4 := INT_TO_REAL(#From_SKD1.LE_4) / 10;
+	    
+	    //управление насосом
+	    IF NOT #To_SKD1.STATE.Local THEN
+	        "Pump_DB".CMD.Hand := #From_SKD1.CMD.Hand;
+	        "Pump_DB".CMD.Start_M := #From_SKD1.CMD.Start_M;
+	        "Pump_DB".SP_M := INT_TO_REAL(#From_SKD1.SP_M) / 10;
+	    END_IF;
+	    
+	    IF #From_SKD1.CMD.Reset THEN
+	        "Reset_All" := TRUE;
+	    END_IF;
+	    
+	    //управление
+	    "Main_Logick_DB".Start := #From_SKD1.CMD.REQ;
+	    "Main_Logick_DB".RM_SP := INT_TO_REAL(#From_SKD1.SP_FE) / 10;
+	    
+	    IF NOT #From_SKD1.Valves.Local[0] THEN
+	        FOR #x := 1 TO 10 BY 1 DO
+	            #To_SKD1.Valves.REQ[#x] := #From_SKD1.Valves.Local[#x];
+	        END_FOR;
+	    END_IF;
+	    
+	//Передача данных в ЩКД1
+	    //контроль связи
+	    IF "pulse_1s" THEN
+	        #To_SKD1.watchdog := #To_SKD1.watchdog + 1;
+	        IF #To_SKD1.watchdog > 10000 THEN
+	            #To_SKD1.watchdog := 0;
+	        END_IF;
+	    END_IF;
+	    
+	    //состояние установки
+	    #To_SKD1.STATE.Ready := "Main_Logick_DB".Ready;
+	    #To_SKD1.STATE.Alarm := "Alm_Any";
+	    #To_SKD1.STATE.LS := "DIx_1_DB".Level_Norm.Signal;
+	    
+	    //насос
+	    #To_SKD1.res_h := "Pump_DB".OpTime_h;
+	    #To_SKD1.Status := "Pump_DB".Status;
+	    #To_SKD1.STATE.Lock := "Pump_DB".CMD.Lock;
+	    
+	    //давление в КП
+	    #To_SKD1.PE_1 := REAL_TO_INT("PE_1_DB".Result * 10);
+	    #To_SKD1.PE_2 := REAL_TO_INT("PE_2_DB".Result * 10);
+	    #To_SKD1.PE_3 := REAL_TO_INT("PE_3_DB".Result * 10);
+	    #To_SKD1.PE_4 := REAL_TO_INT("PE_4_DB".Result * 10);
+	    
+	    //Прочие датчики
+	    #To_SKD1.LE := REAL_TO_INT("LE_DB".Result * 10);
+	    #To_SKD1.TE := REAL_TO_INT("TE_1_DB".Result * 10);
+	    #To_SKD1.FE := REAL_TO_INT("FE_DB".FE[1].Flow * 10);
+	    #To_SKD1.C := REAL_TO_INT("C_Pump_DB".Result * 10);
+	    
+	    //Сброс аварий задвижек
+	    IF #To_SKD1.Valves.REQ[0] THEN
+	        #Clock[1].Start := TRUE;
+	    END_IF;
+	    IF #Clock[1]."Exit" THEN
+	        #To_SKD1.Valves.REQ[0] := FALSE;
+	        #Clock[1].Start := FALSE;
+	    END_IF;
+	    
+	    
+	//вызов таймеров на исполнение
+	FOR #x := 0 TO 10 BY 1 DO
+	    #Clock[#x]();
+	END_FOR;
+END_FUNCTION_BLOCK
+

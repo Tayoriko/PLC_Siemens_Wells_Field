@@ -1,0 +1,118 @@
+﻿FUNCTION_BLOCK "ModBus"
+{ S7_Optimized_Access := 'TRUE' }
+VERSION : 0.1
+   VAR 
+      Step : Int;   // Шаг опроса
+      "type" : Int;   // тип устройства
+      type_max : Int := 1;   // общее кол-во типов устройства
+      cnt : Int;   // номер опрашиваемого устройства
+      cnt_max : Int := 10;   // общее количество устройств
+      CMD : Struct
+         DIS : Bool;
+         REQ : Bool;
+         BUSY : Bool;
+         DONE : Bool;
+         ERROR : Bool;
+         STATUS : Word;
+      END_STRUCT;
+      CFG : Struct
+         ADDR : UInt;
+         Register : UDInt;
+         Length : UInt;
+         IP {InstructionName := 'IP_V4'; LibVersion := '1.0'; S7_SetPoint := 'False'} : IP_V4;
+         Port { S7_SetPoint := 'True'} : UInt;
+         Mode : USInt;
+      END_STRUCT;
+      Clock { S7_SetPoint := 'False'} : Array[0..10] of "Time_S";
+      test : Int;
+      test_run : Bool;
+   END_VAR
+
+   VAR_TEMP 
+      fc_read : Bool;
+      fc_write : Bool;
+      x : Int;
+   END_VAR
+
+
+BEGIN
+	// Общее количество устройств для опроса
+	IF #cnt > #cnt_max THEN
+	    #cnt := 0;
+	END_IF;
+	//#cnt := 3;
+	//  Цикл опроса
+	CASE #Step OF
+	    0:  //  Шаг 0 - параметры подключения
+	        #Step := 1;
+	
+	                #CFG.IP := "tGw_DB".tGw["FE_DB".FE[#cnt].ID].IP;
+	                #CFG."Port" := "tGw_DB".tGw["FE_DB".FE[#cnt].ID]."Port";
+	                #CFG.ADDR := "FE_DB".FE["FE_DB".FE[#cnt].ID].ADDR;
+	
+	        IF NOT "ModBus_TCP_DB".CONNECT.ActiveEstablished THEN
+	            #Step := 10;
+	        END_IF;
+	    1:  //  Шаг 1 - параметры чтения
+	
+	        #CFG.Register := 0;
+	        #CFG.Length := 12;
+	        #CFG.Mode := 104;
+	
+	        IF NOT #CMD.BUSY AND NOT #CMD.DONE THEN
+	            #Step := 2;
+	            //#CMD.DIS := FALSE;
+	        END_IF;
+	    2:  // Шаг 2 - чтение данных
+	        #CMD.REQ := TRUE;
+	        #Clock[0].Start := TRUE;
+	        //успешное чтение данных
+	        IF #CMD.DONE THEN
+	            %DB5.DBW42 := %DB40.DBW0;
+	            %DB5.DBW44 := %DB40.DBW2;
+	            %DB5.DBW46 := %DB40.DBW4;
+	            %DB5.DBW48 := %DB40.DBW6;
+	            %DB5.DBW50 := %DB40.DBW8;
+	            %DB5.DBW52 := %DB40.DBW10;
+	            %DB5.DBW54 := %DB40.DBW12;
+	            %DB5.DBW56 := %DB40.DBW14;
+	            %DB5.DBW58 := %DB40.DBW16;
+	            %DB5.DBW60 := %DB40.DBW18;
+	            %DB5.DBW62 := %DB40.DBW20;
+	            %DB5.DBW64 := %DB40.DBW22;
+	            "FE_DB".FE[1].Flow := "FE_DB".FE[1].Flow * 3600;
+	                    "FE_DB".FE[#cnt].Link := TRUE;
+	                    #Step := 10;
+	        END_IF;
+	        //ошибка при чтении
+	        IF #CMD.ERROR OR #Clock[0]."Exit" THEN
+	
+	                    "FE_DB".FE[#cnt].Link := FALSE;
+	                    "FE_DB".FE[#cnt].NoRead := TRUE;
+	                    #Step := 10;
+	
+	        END_IF;
+	    10: //  Шаг 10 - конец опроса
+	        #CMD.REQ := FALSE;
+	        //#CMD.DIS := TRUE;
+	        #cnt := 1;
+	        //сброс таймеров
+	        FOR #x := 0 TO 10 BY 1 DO
+	            #Clock[#x].Start := FALSE;
+	        END_FOR;
+	        //очистка буфера
+	        FOR #x := 0 TO 20 BY 1 DO
+	            "ModBus_TCP_DB".DATA[#x] := 0;
+	        END_FOR;
+	        //конец цикла
+	        #Step := 0;
+	END_CASE;
+	
+	//вызов таймеров на исполнение
+	FOR #x := 0 TO 10 BY 1 DO
+	    #Clock[#x]();
+	END_FOR;
+	
+	        
+END_FUNCTION_BLOCK
+

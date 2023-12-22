@@ -1,0 +1,104 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Document>
+  <Engineering version="V17" />
+  <DocumentInfo>
+    <Created>2023-12-22T15:04:44.804435Z</Created>
+    <ExportSetting>WithDefaults</ExportSetting>
+    <InstalledProducts>
+      <Product>
+        <DisplayName>Totally Integrated Automation Portal</DisplayName>
+        <DisplayVersion>V17</DisplayVersion>
+      </Product>
+      <OptionPackage>
+        <DisplayName>TIA Portal Openness</DisplayName>
+        <DisplayVersion>V17</DisplayVersion>
+      </OptionPackage>
+      <OptionPackage>
+        <DisplayName>TIA Portal Version Control Interface</DisplayName>
+        <DisplayVersion>V17</DisplayVersion>
+      </OptionPackage>
+      <Product>
+        <DisplayName>STEP 7 Professional</DisplayName>
+        <DisplayVersion>V17</DisplayVersion>
+      </Product>
+      <OptionPackage>
+        <DisplayName>STEP 7 Safety</DisplayName>
+        <DisplayVersion>V17</DisplayVersion>
+      </OptionPackage>
+      <Product>
+        <DisplayName>WinCC Advanced</DisplayName>
+        <DisplayVersion>V17</DisplayVersion>
+      </Product>
+    </InstalledProducts>
+  </DocumentInfo>
+  <SW.Blocks.InstanceDB ID="0">
+    <AttributeList>
+      <AutoNumber>false</AutoNumber>
+      <DBAccessibleFromOPCUA>true</DBAccessibleFromOPCUA>
+      <HeaderAuthor />
+      <HeaderFamily />
+      <HeaderName />
+      <HeaderVersion>0.1</HeaderVersion>
+      <InstanceOfName>ModBus_TCP</InstanceOfName>
+      <InstanceOfType>FB</InstanceOfType>
+      <Interface><Sections xmlns="http://www.siemens.com/automation/Openness/SW/Interface/v5">
+  <Section Name="Input" />
+  <Section Name="Output" />
+  <Section Name="InOut" />
+  <Section Name="Static">
+    <Member Name="DATA" Datatype="Array[0..100] of Word" Remanence="Retain" Accessibility="Public"><AttributeList><BooleanAttribute Name="ExternalAccessible" SystemDefined="true">true</BooleanAttribute><BooleanAttribute Name="ExternalVisible" SystemDefined="true">true</BooleanAttribute><BooleanAttribute Name="ExternalWritable" SystemDefined="true">true</BooleanAttribute><BooleanAttribute Name="SetPoint" SystemDefined="true">false</BooleanAttribute></AttributeList><Subelement Path="0"><StartValue>16#0000</StartValue></Subelement><Subelement Path="1"><StartValue>16#0000</StartValue></Subelement><Subelement Path="2"><StartValue>16#0000</StartValue></Subelement><Subelement Path="3"><StartValue>16#0000</StartValue></Subelement><Subelement Path="4"><StartValue>16#0000</StartValue></Subelement><Subelement Path="5"><StartValue>16#0000</StartValue></Subelement><Subelement Path="6"><StartValue>16#0000</StartValue></Subelement><Subelement Path="7"><StartValue>16#0000</StartValue></Subelement><Subelement Path="8"><StartValue>16#0000</StartValue></Subelement><Subelement Path="9"><StartValue>16#0000</StartValue></Subelement><Subelement Path="10"><StartValue>16#0000</StartValue></Subelement><Subelement Path="11"><StartValue>16#0000</StartValue></Subelement><Subelement Path="12"><StartValue>16#0000</StartValue></Subelement><Subelement Path="13"><StartValue>16#0000</StartValue></Subelement><Subelement Path="14"><StartValue>16#0000</StartValue></Subelement><Subelement Path="15"><StartValue>16#0000</StartValue></Subelement><Subelement Path="16"><StartValue>16#0000</StartValue></Subelement><Subelement Path="17"><StartValue>16#0000</StartValue></Subelement><Subelement Path="18"><StartValue>16#0000</StartValue></Subelement><Subelement Path="19"><StartValue>16#0000</StartValue></Subelement><Subelement Path="20"><StartValue>16#0000</StartValue></Subelement><Subelement Path="21"><StartValue>16#0000</StartValue></Subelement><Subelement Path="22"><StartValue>16#0000</StartValue></Subelement><Subelement Path="23"><StartValue>16#0000</StartValue></Subelement><Subelement Path="24"><StartValue>16#0000</StartValue></Subelement><Subelement Path="25"><StartValue>16#0000</StartValue></Subelement><Subelement Path="26"><StartValue>16#0000</StartValue></Subelement><Subelement Path="27"><StartValue>16#0000</StartValue></Subelement><Subelement Path="28"><StartValue>16#0000</StartValue></Subelement><Subelement Path="29"><StartValue>16#0000</StartValue></Subelement><Subelement Path="30"><StartValue>16#0000</StartValue></Subelement><Subelement Path="31"><StartValue>16#0000</StartValue></Subelement><Subelement Path="32"><StartValue>16#0000</StartValue></Subelement><Subelement Path="33"><StartValue>16#0000</StartValue></Subelement><Subelement Path="34"><StartValue>16#0000</StartValue></Subelement><Subelement Path="35"><StartValue>16#0000</StartValue></Subelement><Subelement Path="36"><StartValue>16#0000</StartValue></Subelement><Subelement Path="37"><StartValue>16#0000</StartValue></Subelement><Subelement Path="38"><StartValue>16#0000</StartValue></Subelement><Subelement Path="39"><StartValue>16#0000</StartValue></Subelement><Subelement Path="40"><StartValue>16#0000</StartValue></Subelement><Subelement Path="41"><StartValue>16#0000</StartValue></Subelement><Subelement Path="42"><StartValue>16#0000</StartValue></Subelement><Subelement Path="43"><StartValue>16#0000</StartValue></Subelement><Subelement Path="44"><StartValue>16#0000</StartValue></Subelement><Subelement Path="45"><StartValue>16#0000</StartValue></Subelement><Subelement Path="46"><StartValue>16#0000</StartValue></Subelement><Subelement Path="47"><StartValue>16#0000</StartValue></Subelement><Subelement Path="48"><StartValue>16#0000</StartValue></Subelement><Subelement Path="49"><StartValue>16#0000</StartValue></Subelement><Subelement Path="50"><StartValue>16#0000</StartValue></Subelement><Subelement Path="51"><StartValue>16#0000</StartValue></Subelement><Subelement Path="52"><StartValue>16#0000</StartValue></Subelement><Subelement Path="53"><StartValue>16#0000</StartValue></Subelement><Subelement Path="54"><StartValue>16#0000</StartValue></Subelement><Subelement Path="55"><StartValue>16#0000</StartValue></Subelement><Subelement Path="56"><StartValue>16#0000</StartValue></Subelement><Subelement Path="57"><StartValue>16#0000</StartValue></Subelement><Subelement Path="58"><StartValue>16#0000</StartValue></Subelement><Subelement Path="59"><StartValue>16#0000</StartValue></Subelement><Subelement Path="60"><StartValue>16#0000</StartValue></Subelement><Subelement Path="61"><StartValue>16#0000</StartValue></Subelement><Subelement Path="62"><StartValue>16#0000</StartValue></Subelement><Subelement Path="63"><StartValue>16#0000</StartValue></Subelement><Subelement Path="64"><StartValue>16#0000</StartValue></Subelement><Subelement Path="65"><StartValue>16#0000</StartValue></Subelement><Subelement Path="66"><StartValue>16#0000</StartValue></Subelement><Subelement Path="67"><StartValue>16#0000</StartValue></Subelement><Subelement Path="68"><StartValue>16#0000</StartValue></Subelement><Subelement Path="69"><StartValue>16#0000</StartValue></Subelement><Subelement Path="70"><StartValue>16#0000</StartValue></Subelement><Subelement Path="71"><StartValue>16#0000</StartValue></Subelement><Subelement Path="72"><StartValue>16#0000</StartValue></Subelement><Subelement Path="73"><StartValue>16#0000</StartValue></Subelement><Subelement Path="74"><StartValue>16#0000</StartValue></Subelement><Subelement Path="75"><StartValue>16#0000</StartValue></Subelement><Subelement Path="76"><StartValue>16#0000</StartValue></Subelement><Subelement Path="77"><StartValue>16#0000</StartValue></Subelement><Subelement Path="78"><StartValue>16#0000</StartValue></Subelement><Subelement Path="79"><StartValue>16#0000</StartValue></Subelement><Subelement Path="80"><StartValue>16#0000</StartValue></Subelement><Subelement Path="81"><StartValue>16#0000</StartValue></Subelement><Subelement Path="82"><StartValue>16#0000</StartValue></Subelement><Subelement Path="83"><StartValue>16#0000</StartValue></Subelement><Subelement Path="84"><StartValue>16#0000</StartValue></Subelement><Subelement Path="85"><StartValue>16#0000</StartValue></Subelement><Subelement Path="86"><StartValue>16#0000</StartValue></Subelement><Subelement Path="87"><StartValue>16#0000</StartValue></Subelement><Subelement Path="88"><StartValue>16#0000</StartValue></Subelement><Subelement Path="89"><StartValue>16#0000</StartValue></Subelement><Subelement Path="90"><StartValue>16#0000</StartValue></Subelement><Subelement Path="91"><StartValue>16#0000</StartValue></Subelement><Subelement Path="92"><StartValue>16#0000</StartValue></Subelement><Subelement Path="93"><StartValue>16#0000</StartValue></Subelement><Subelement Path="94"><StartValue>16#0000</StartValue></Subelement><Subelement Path="95"><StartValue>16#0000</StartValue></Subelement><Subelement Path="96"><StartValue>16#0000</StartValue></Subelement><Subelement Path="97"><StartValue>16#0000</StartValue></Subelement><Subelement Path="98"><StartValue>16#0000</StartValue></Subelement><Subelement Path="99"><StartValue>16#0000</StartValue></Subelement><Subelement Path="100"><StartValue>16#0000</StartValue></Subelement></Member>
+    <Member Name="CONNECT" Datatype="TCON_IP_v4" Version="1.0" Remanence="Retain" Accessibility="Public"><AttributeList><BooleanAttribute Name="ExternalAccessible" SystemDefined="true">true</BooleanAttribute><BooleanAttribute Name="ExternalVisible" SystemDefined="true">true</BooleanAttribute><BooleanAttribute Name="ExternalWritable" SystemDefined="true">true</BooleanAttribute><BooleanAttribute Name="SetPoint" SystemDefined="true">true</BooleanAttribute></AttributeList><Sections><Section Name="None"><Member Name="InterfaceId" Datatype="HW_ANY"><StartValue>64</StartValue></Member><Member Name="ID" Datatype="CONN_OUC"><StartValue>16#0001</StartValue></Member><Member Name="ConnectionType" Datatype="Byte"><StartValue>16#0B</StartValue></Member><Member Name="ActiveEstablished" Datatype="Bool"><StartValue>TRUE</StartValue></Member><Member Name="RemoteAddress" Datatype="IP_V4" Version="1.0"><Sections><Section Name="None"><Member Name="ADDR" Datatype="Array[1..4] of Byte"><Subelement Path="1"><StartValue>16#0A</StartValue></Subelement><Subelement Path="2"><StartValue>16#01</StartValue></Subelement><Subelement Path="3"><StartValue>16#01</StartValue></Subelement><Subelement Path="4"><StartValue>16#C9</StartValue></Subelement></Member></Section></Sections></Member><Member Name="RemotePort" Datatype="UInt"><StartValue>503</StartValue></Member><Member Name="LocalPort" Datatype="UInt"><StartValue>0</StartValue></Member></Section></Sections></Member>
+  </Section>
+</Sections></Interface>
+      <Name>ModBus_TCP_DB</Name>
+      <Number>40</Number>
+      <ProgrammingLanguage>DB</ProgrammingLanguage>
+    </AttributeList>
+    <ObjectList>
+      <MultilingualText ID="1" CompositionName="Comment">
+        <ObjectList>
+          <MultilingualTextItem ID="2" CompositionName="Items">
+            <AttributeList>
+              <Culture>en-US</Culture>
+              <Text />
+            </AttributeList>
+          </MultilingualTextItem>
+          <MultilingualTextItem ID="3" CompositionName="Items">
+            <AttributeList>
+              <Culture>de-DE</Culture>
+              <Text />
+            </AttributeList>
+          </MultilingualTextItem>
+          <MultilingualTextItem ID="4" CompositionName="Items">
+            <AttributeList>
+              <Culture>ru-RU</Culture>
+              <Text />
+            </AttributeList>
+          </MultilingualTextItem>
+        </ObjectList>
+      </MultilingualText>
+      <MultilingualText ID="5" CompositionName="Title">
+        <ObjectList>
+          <MultilingualTextItem ID="6" CompositionName="Items">
+            <AttributeList>
+              <Culture>en-US</Culture>
+              <Text />
+            </AttributeList>
+          </MultilingualTextItem>
+          <MultilingualTextItem ID="7" CompositionName="Items">
+            <AttributeList>
+              <Culture>de-DE</Culture>
+              <Text />
+            </AttributeList>
+          </MultilingualTextItem>
+          <MultilingualTextItem ID="8" CompositionName="Items">
+            <AttributeList>
+              <Culture>ru-RU</Culture>
+              <Text />
+            </AttributeList>
+          </MultilingualTextItem>
+        </ObjectList>
+      </MultilingualText>
+    </ObjectList>
+  </SW.Blocks.InstanceDB>
+</Document>

@@ -1,0 +1,49 @@
+﻿FUNCTION_BLOCK "System"
+{ S7_Optimized_Access := 'FALSE' }
+VERSION : 0.1
+   VAR 
+      PE_1_Delta : Real;
+      PE_2_Detla : Real;
+      PE_1_Min : Real := 0.2;
+      PE_2_Min : Real;
+   END_VAR
+
+
+BEGIN
+	//Отключение аварий
+	IF NOT "Pump_DB".ON THEN
+	    "C_Pump_DB".Use.Lim_Low := TRUE;
+	    "PE_1_DB".Use.Lim_Low := TRUE;
+	    "PE_2_DB".Use.Lim_Low := TRUE;
+	ELSE
+	    "C_Pump_DB".Use.Lim_Low := FALSE;
+	    "PE_1_DB".Use.Lim_Low := FALSE;
+	    "PE_2_DB".Use.Lim_Low := FALSE;
+	END_IF;
+	
+	//Снижение расхода при высоком давлении
+	IF "PE_1_DB".Alarm.H THEN
+	    #PE_1_Delta := "PE_1_DB".SP.HH - "PE_1_DB".Result;
+	    IF #PE_1_Delta > 1 THEN
+	        #PE_1_Delta := 1.0;
+	    END_IF;
+	    IF #PE_1_Delta < #PE_1_Min THEN
+	        "Pump_DB".CMD.Lock := TRUE;
+	        #PE_1_Delta := #PE_1_Min;
+	    END_IF;
+	    "Pump_DB".coeff := #PE_1_Delta;
+	ELSE
+	    "Pump_DB".coeff := 1.0;
+	END_IF;
+	
+	//Возобновление работы
+	IF "Reset_All" THEN
+	    "Pump_DB".CMD.Lock := FALSE;
+	END_IF;
+	
+	//костыль для управления насосами
+	IF "Pump_DB".Indirect_BIT.CMD = 0 THEN
+	    "Tag_2" := "Pump_DB".CMD_Run;
+	END_IF;
+END_FUNCTION_BLOCK
+

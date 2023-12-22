@@ -1,0 +1,46 @@
+﻿FUNCTION "Pump_LE" : Void
+{ S7_Optimized_Access := 'TRUE' }
+VERSION : 0.1
+   VAR_INPUT 
+      Level_Norm : Real;
+      LS : Real;
+      LE_now : Real;
+   END_VAR
+
+   VAR_TEMP 
+      x : Array[1..10] of Real;
+      Delta : Real;
+   END_VAR
+
+
+BEGIN
+	//рассчёт коррекции при падении уровня в РЧВ
+	#x[1] := #Level_Norm - #LS;
+	#x[2] := #LE_now - #LS;
+	#x[3] := #x[1] / #x[2];
+	#Delta := 1 - #x[3];
+	
+	//уровень ниже рабочей точки
+	IF #Delta < 1.0 THEN
+	    "Main_Logick_DB".Alarms.LE_Warning := TRUE;
+	ELSE
+	    "Main_Logick_DB".Alarms.LE_Warning := FALSE;
+	    #Delta := 1.0;
+	END_IF;
+	
+	//уровень в аварийной зоне
+	IF #Delta <= 0.0 THEN
+	    "Main_Logick_DB".Alarms.LE_Alarm := TRUE;
+	    #Delta := 0.0;
+	ELSE
+	    "Main_Logick_DB".Alarms.LE_Alarm := FALSE;
+	END_IF;
+	
+	//коррекция уставки при аварийных ситуациях
+	IF "Main_Logick_DB".Mode = TRUE THEN
+	    "Pump_DB".SP_A := "Main_Logick_DB".PID_Pump.Result * #Delta;
+	ELSE
+	    "Pump_DB".SP_A := "Main_Logick_DB".SP_Pump * #Delta;
+	END_IF;
+END_FUNCTION
+

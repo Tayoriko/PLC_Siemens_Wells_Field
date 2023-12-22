@@ -1,0 +1,92 @@
+﻿FUNCTION_BLOCK "Converter_SCL"
+{ S7_Optimized_Access := 'FALSE' }
+VERSION : 0.1
+   VAR_INPUT 
+      Signal : Real;
+   END_VAR
+
+   VAR_OUTPUT 
+      Result : Real;
+   END_VAR
+
+   VAR 
+      Lim_High { S7_SetPoint := 'True'} : Bool;
+      Lim_Low { S7_SetPoint := 'True'} : Bool;
+      Inverse { S7_SetPoint := 'True'} : Bool;
+      Min_In { S7_SetPoint := 'True'} : Real;   // Минимальный входной сигнал
+      Min_Out { S7_SetPoint := 'True'} : Real;   // Минимальный выходной сигнал
+      Max_In { S7_SetPoint := 'True'} : Real;   // Максимальный входной сигнал
+      Max_Out { S7_SetPoint := 'True'} : Real;   // Максимальный выходной сигнал
+   END_VAR
+
+   VAR_TEMP 
+      Buffer : Real;
+      Range_In : Real;
+      Range_Out : Real;
+      RR_Scale : Real;
+      Value_Min : Real;
+      Value_Max : Real;
+   END_VAR
+
+
+BEGIN
+	//Диапазон входного сигнала
+	IF #Min_In >= 0 THEN
+	    #Range_In := #Max_In - #Min_In;
+	ELSE
+	    #Range_In := #Max_In + ABS(#Min_In);
+	END_IF;
+	
+	//Диапазон выходного сигнала
+	#Inverse := FALSE;
+	IF #Min_Out >= 0 AND #Max_Out >= 0 THEN
+	    IF #Max_Out > #Min_Out THEN
+	        #Range_Out := #Max_Out - #Min_Out;
+	        #Value_Min := #Min_Out;
+	        #Value_Max := #Max_Out;
+	    END_IF;
+	    IF #Max_Out < #Min_Out THEN
+	        #Range_Out := #Min_Out - #Max_Out;
+	        #Value_Min := #Max_Out;
+	        #Value_Max := #Min_Out;
+	        #Inverse := TRUE;
+	    END_IF;
+	END_IF;
+	IF #Min_Out < 0 AND #Max_Out >= 0 THEN
+	    #Range_Out := #Max_Out + ABS(#Min_Out);
+	END_IF;
+	IF #Min_Out < 0 AND #Max_Out < 0 THEN
+	    #Range_Out := ABS(#Max_Out) + ABS(#Min_Out);
+	END_IF;
+	
+	//Соотношение диапазонов
+	IF #Range_Out <> 0 THEN
+	    #RR_Scale := #Range_In / #Range_Out;
+	END_IF;
+	
+	//Линеаризация
+	IF #RR_Scale <> 0 THEN
+	    #Buffer := (#Signal - #Min_In) / #RR_Scale;
+	END_IF;
+	//Коррекция
+	#Buffer := #Buffer + #Value_Min;
+	
+	//Инверсия
+	IF #Inverse THEN
+	    #Buffer := #Value_Max - #Buffer;
+	END_IF;
+	
+	//Ограничение снизу
+	IF #Buffer < #Value_Min THEN
+	    #Buffer := #Value_Min;
+	END_IF;
+	
+	//Ограничение сверху
+	IF #Buffer > #Value_Max THEN
+	    #Buffer := #Value_Max;
+	END_IF;
+	
+	//Вывод значения
+	#Result := #Buffer;
+END_FUNCTION_BLOCK
+
