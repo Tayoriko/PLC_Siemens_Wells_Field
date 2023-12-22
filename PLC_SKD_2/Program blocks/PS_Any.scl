@@ -1,0 +1,123 @@
+﻿FUNCTION_BLOCK "PS_Any"
+{ S7_Optimized_Access := 'FALSE' }
+VERSION : 0.1
+   VAR 
+      x : Array[0..10] of Real;
+      Delta_PE : Real;
+      Delta_LE_in : Real;
+      Delta_LE_out : Real;
+   END_VAR
+
+
+BEGIN
+	//чтение уставки с ПИД-регулятора, если он в работе - режим работы по давлению
+	IF "PID_PE_DB".Start AND NOT "PID_PE_DB".CMD.Hand AND "Logick_DB".Mode = 0 THEN
+	    "Logick_DB".SP_Hz := "PID_PE_DB".Result;
+	END_IF;
+	
+	//чтение уставки с ПИД-регулятора, если он в работе - режим работы по уровню в РЧВ
+	IF "PID_LE_in_DB".Start AND NOT "PID_LE_in_DB".CMD.Hand AND "Logick_DB".Mode = 1 THEN
+	    "Logick_DB".SP_Hz := "PID_LE_in_DB".Result;
+	    IF "PS_StartUp_DB".Step = 1 THEN
+	        "Logick_DB".SP_Hz := "Logick_DB".SP_Hz * "PS_StartUp_DB".xTime[2].Progress;
+	    END_IF;
+	END_IF;
+	
+	//чтение уставки с ПИД-регулятора, если он в работе - режим работы по уровню в городе
+	IF "PID_LE_out_DB".Start AND NOT "PID_LE_out_DB".CMD.Hand AND "Logick_DB".Mode = 2 THEN
+	    "Logick_DB".SP_Hz := "PID_LE_out_DB".Result;
+	    IF "PS_StartUp_DB".Step = 1 THEN
+	        "Logick_DB".SP_Hz := "Logick_DB".SP_Hz * "PS_StartUp_DB".xTime[2].Progress;
+	    END_IF;
+	END_IF;
+	
+	//рассчёт коррекции при превышении рабочего давления
+	#x[1] := "Logick_DB".SP_PE_Alarm - "Logick_DB".SP_PE_Warning;
+	#x[2] := "Logick_DB".PE - "Logick_DB".SP_PE_Warning;
+	#x[3] := #x[2] / #x[1];
+	#Delta_PE := 1 - #x[3];
+	
+	//давление выше рабочей точки
+	IF #Delta_PE <= 1.0 THEN
+	    "Logick_DB".PE_Warning := TRUE;
+	    "Logick_DB".Alarms.%X0 := TRUE;
+	ELSE
+	    "Logick_DB".PE_Warning := FALSE;
+	    "Logick_DB".Alarms.%X0 := FALSE;
+	    #Delta_PE := 1.0;
+	END_IF;
+	
+	//давление в аварийной зоне
+	IF #Delta_PE <= 0.0 THEN
+	    "Logick_DB".PE_Alarm := TRUE;
+	    "Logick_DB".Alarms.%X1 := TRUE;
+	    #Delta_PE := 0.0;
+	ELSE
+	    "Logick_DB".PE_Alarm := FALSE;
+	END_IF;
+	
+	//рассчёт коррекции при падении уровня в РЧВ
+	#x[4] := "Logick_DB".SP_LE_in_Warning - "Logick_DB".SP_LE_in_Alarm;
+	#x[5] := "Logick_DB".LE_Source - "Logick_DB".SP_LE_in_Alarm;
+	#x[6] := #x[5] / #x[4];
+	#Delta_LE_in := #x[6];
+	
+	//уровень ниже рабочей точки
+	IF #Delta_LE_in < 1.0 THEN
+	    "Logick_DB".LE_in_Warning := TRUE;
+	    "Logick_DB".Alarms.%X2 := TRUE;
+	ELSE
+	    "Logick_DB".LE_in_Warning := FALSE;
+	    "Logick_DB".Alarms.%X2 := FALSE;
+	    #Delta_LE_in := 1.0;
+	END_IF;
+	
+	//уровень в аварийной зоне
+	IF #Delta_LE_in <= 0.0 THEN
+	    "Logick_DB".LE_in_Alarm := TRUE;
+	    "Logick_DB".Alarms.%X3 := TRUE;
+	    #Delta_LE_in := 0.0;
+	ELSE
+	    "Logick_DB".LE_in_Alarm := FALSE;
+	END_IF;
+	
+	//рассчёт коррекции при превышении уровня в городе
+	#x[7] := "Logick_DB".SP_LE_out_Alarm - "Logick_DB".SP_LE_out_Warning;
+	#x[8] := "Logick_DB".LE_Target - "Logick_DB".SP_LE_out_Warning;
+	#x[9] := #x[8] / #x[7];
+	#Delta_LE_out := 1 - #x[9];
+	
+	//давление выше рабочей точки
+	IF #Delta_LE_out <= 1.0 THEN
+	    "Logick_DB".LE_out_Warning := TRUE;
+	    "Logick_DB".Alarms.%X4 := TRUE;
+	ELSE
+	    "Logick_DB".LE_out_Warning := FALSE;
+	    "Logick_DB".Alarms.%X4 := FALSE;
+	    #Delta_LE_out := 1.0;
+	END_IF;
+	
+	//давление в аварийной зоне
+	IF #Delta_LE_out <= 0.0 THEN
+	    "Logick_DB".LE_out_Alarm := TRUE;
+	    "Logick_DB".Alarms.%X5 := TRUE;
+	    #Delta_LE_out := 0.0;
+	ELSE
+	    "Logick_DB".LE_out_Alarm := FALSE;
+	END_IF;
+	
+	//коррекция уставки при аварийных ситуациях
+	"PS_Main_DB".PS_SP_Hz := "Logick_DB".SP_Hz * #Delta_PE * #Delta_LE_in * #Delta_LE_out;
+	
+	//Сброс аварий
+	IF "Reset_All" THEN
+	    "Logick_DB".Alarms := 0;
+	END_IF;
+	
+	//индикатор аварий
+	IF "Logick_DB".Alarms > 0 THEN
+	    "Alm_Logick" := TRUE;
+	END_IF;
+	
+END_FUNCTION_BLOCK
+

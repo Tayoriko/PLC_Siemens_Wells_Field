@@ -1,0 +1,95 @@
+﻿FUNCTION_BLOCK "LE_Diag"
+{ S7_Optimized_Access := 'TRUE' }
+VERSION : 0.1
+   VAR_OUTPUT 
+      LE : Real;
+   END_VAR
+
+   VAR 
+      Select : Int;
+   END_VAR
+   VAR RETAIN
+      Use { S7_SetPoint := 'True'} : Array[0..5] of Bool := [false, true];
+   END_VAR
+   VAR 
+      LEx : Array[0..5] of Real;
+      Delta : Array[0..5] of Real;
+   END_VAR
+   VAR RETAIN
+      Delta_Max { S7_SetPoint := 'True'} : Real := 0.1;
+   END_VAR
+   VAR 
+      Warning : Array[0..15] of Bool;
+      cnt : Int;
+      w_word : Int;
+   END_VAR
+
+   VAR_TEMP 
+      x : Int;
+   END_VAR
+
+
+BEGIN
+	#LEx[1] := "LE_1_DB".Result;
+	#LEx[2] := "LE_2_DB".Result;
+	#LEx[3] := "LE_3_DB".Result;
+	#LEx[4] := "LE_4_DB".Result;
+	#cnt := 0;
+	#LEx[0] := 0.0;
+	
+	FOR #x := 1 TO 4 DO
+	    IF #Use[#x] THEN
+	        #LEx[0] := #LEx[0] + #LEx[#x];
+	        #cnt := #cnt + 1;
+	    END_IF;
+	END_FOR;
+	
+	#LE := #LEx[0] / #cnt;
+	
+	FOR #x := 1 TO 4 DO
+	    IF #Use[#x] THEN
+	        #Delta[#x] := #LEx[#x] / #LE;
+	        IF #Delta[#x] > 1.0 THEN
+	            #Delta[#x] := #Delta[#x] - 1.0;
+	        END_IF;
+	        #Delta[#x] := 1.0 - #Delta[#x];
+	        #Delta[#x] := ABS(#Delta[#x]);
+	        IF #Delta[#x] > #Delta_Max THEN
+	            #Warning[#x] := TRUE;
+	        END_IF;
+	    END_IF;
+	END_FOR;
+	
+	IF "Reset_All" THEN
+	    FOR #x := 1 TO 4 DO
+	        #Warning[#x] := FALSE;
+	    END_FOR;
+	    #w_word := 0;
+	END_IF;
+	
+	IF #Warning[1] AND #Use[1] THEN
+	    #w_word.%X1 := TRUE;
+	END_IF;
+	IF #Warning[2] AND #Use[2] THEN
+	    #w_word.%X2 := TRUE;
+	END_IF;
+	IF #Warning[3] AND #Use[3] THEN
+	    #w_word.%X3 := TRUE;
+	END_IF;
+	IF #Warning[4] AND #Use[4] THEN
+	    #w_word.%X4 := TRUE;
+	END_IF;
+	
+	//датчики протока хлора
+	IF "PS_cnt_DB".cnt > 0 THEN
+	    "Any_DB".PS_Cl_1 := TRUE;
+	    "Any_DB".PS_Cl_2 := TRUE;
+	    "V_1_DB".CMD.Start_A := TRUE;
+	ELSE
+	    "Any_DB".PS_Cl_1 := false;
+	    "Any_DB".PS_Cl_2 := FALSE;
+	    "V_1_DB".CMD.Start_A := FALSE;
+	END_IF;
+	
+END_FUNCTION_BLOCK
+

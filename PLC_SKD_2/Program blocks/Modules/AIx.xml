@@ -1,0 +1,1666 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Document>
+  <Engineering version="V17" />
+  <DocumentInfo>
+    <Created>2023-12-22T15:08:02.6117163Z</Created>
+    <ExportSetting>WithDefaults</ExportSetting>
+    <InstalledProducts>
+      <Product>
+        <DisplayName>Totally Integrated Automation Portal</DisplayName>
+        <DisplayVersion>V17</DisplayVersion>
+      </Product>
+      <OptionPackage>
+        <DisplayName>TIA Portal Openness</DisplayName>
+        <DisplayVersion>V17</DisplayVersion>
+      </OptionPackage>
+      <OptionPackage>
+        <DisplayName>TIA Portal Version Control Interface</DisplayName>
+        <DisplayVersion>V17</DisplayVersion>
+      </OptionPackage>
+      <Product>
+        <DisplayName>STEP 7 Professional</DisplayName>
+        <DisplayVersion>V17</DisplayVersion>
+      </Product>
+      <OptionPackage>
+        <DisplayName>STEP 7 Safety</DisplayName>
+        <DisplayVersion>V17</DisplayVersion>
+      </OptionPackage>
+      <Product>
+        <DisplayName>WinCC Advanced</DisplayName>
+        <DisplayVersion>V17</DisplayVersion>
+      </Product>
+    </InstalledProducts>
+  </DocumentInfo>
+  <SW.Blocks.FB ID="0">
+    <AttributeList>
+      <AutoNumber>false</AutoNumber>
+      <HeaderAuthor />
+      <HeaderFamily />
+      <HeaderName />
+      <HeaderVersion>0.1</HeaderVersion>
+      <Interface><Sections xmlns="http://www.siemens.com/automation/Openness/SW/Interface/v5">
+  <Section Name="Input" />
+  <Section Name="Output" />
+  <Section Name="InOut" />
+  <Section Name="Static">
+    <Member Name="Time_DTL" Datatype="DTL" Version="1.0" Remanence="SetInIDB" Accessibility="Public"><AttributeList><BooleanAttribute Name="ExternalAccessible" SystemDefined="true">true</BooleanAttribute><BooleanAttribute Name="ExternalVisible" SystemDefined="true">true</BooleanAttribute><BooleanAttribute Name="ExternalWritable" SystemDefined="true">true</BooleanAttribute><BooleanAttribute Name="SetPoint" SystemDefined="true">true</BooleanAttribute></AttributeList></Member>
+  </Section>
+  <Section Name="Temp" />
+  <Section Name="Constant" />
+</Sections></Interface>
+      <IsIECCheckEnabled>false</IsIECCheckEnabled>
+      <MemoryLayout>Standard</MemoryLayout>
+      <Name>AIx</Name>
+      <Number>220</Number>
+      <ProgrammingLanguage>LAD</ProgrammingLanguage>
+      <SetENOAutomatically>false</SetENOAutomatically>
+      <UDABlockProperties />
+      <UDAEnableTagReadback>false</UDAEnableTagReadback>
+    </AttributeList>
+    <ObjectList>
+      <MultilingualText ID="1" CompositionName="Comment">
+        <ObjectList>
+          <MultilingualTextItem ID="2" CompositionName="Items">
+            <AttributeList>
+              <Culture>en-US</Culture>
+              <Text>Signal - PIW код сигнала от датчика
+pulse - частота алгоритма фильтрации
+Result - результат обработки сигнала, формат Real</Text>
+            </AttributeList>
+          </MultilingualTextItem>
+          <MultilingualTextItem ID="3" CompositionName="Items">
+            <AttributeList>
+              <Culture>de-DE</Culture>
+              <Text />
+            </AttributeList>
+          </MultilingualTextItem>
+          <MultilingualTextItem ID="4" CompositionName="Items">
+            <AttributeList>
+              <Culture>ru-RU</Culture>
+              <Text />
+            </AttributeList>
+          </MultilingualTextItem>
+        </ObjectList>
+      </MultilingualText>
+      <SW.Blocks.CompileUnit ID="5" CompositionName="CompileUnits">
+        <AttributeList>
+          <NetworkSource><FlgNet xmlns="http://www.siemens.com/automation/Openness/SW/NetworkSource/FlgNet/v4">
+  <Parts>
+    <Call UId="21">
+      <CallInfo Name="AI_ex" BlockType="FB">
+        <Instance Scope="GlobalVariable" UId="22">
+          <Component Name="PE_1_DB" />
+        </Instance>
+        <Parameter Name="S_Alarm" Section="Output" Type="Bool" />
+        <Parameter Name="Signal" Section="InOut" Type="Int" />
+        <Parameter Name="Result" Section="InOut" Type="Real" />
+      </CallInfo>
+    </Call>
+    <Call UId="23">
+      <CallInfo Name="AI_ex" BlockType="FB">
+        <Instance Scope="GlobalVariable" UId="24">
+          <Component Name="PE_2_DB" />
+        </Instance>
+        <Parameter Name="S_Alarm" Section="Output" Type="Bool" />
+        <Parameter Name="Signal" Section="InOut" Type="Int" />
+        <Parameter Name="Result" Section="InOut" Type="Real" />
+      </CallInfo>
+    </Call>
+  </Parts>
+  <Wires>
+    <Wire UId="31">
+      <Powerrail />
+      <NameCon UId="21" Name="en" />
+    </Wire>
+    <Wire UId="32">
+      <OpenCon UId="25" />
+      <NameCon UId="21" Name="Signal" />
+    </Wire>
+    <Wire UId="33">
+      <OpenCon UId="26" />
+      <NameCon UId="21" Name="Result" />
+    </Wire>
+    <Wire UId="34">
+      <NameCon UId="21" Name="eno" />
+      <NameCon UId="23" Name="en" />
+    </Wire>
+    <Wire UId="35">
+      <NameCon UId="21" Name="S_Alarm" />
+      <OpenCon UId="27" />
+    </Wire>
+    <Wire UId="36">
+      <OpenCon UId="28" />
+      <NameCon UId="23" Name="Signal" />
+    </Wire>
+    <Wire UId="37">
+      <OpenCon UId="29" />
+      <NameCon UId="23" Name="Result" />
+    </Wire>
+    <Wire UId="38">
+      <NameCon UId="23" Name="S_Alarm" />
+      <OpenCon UId="30" />
+    </Wire>
+  </Wires>
+</FlgNet></NetworkSource>
+          <ProgrammingLanguage>LAD</ProgrammingLanguage>
+        </AttributeList>
+        <ObjectList>
+          <MultilingualText ID="6" CompositionName="Comment">
+            <ObjectList>
+              <MultilingualTextItem ID="7" CompositionName="Items">
+                <AttributeList>
+                  <Culture>en-US</Culture>
+                  <Text />
+                </AttributeList>
+              </MultilingualTextItem>
+              <MultilingualTextItem ID="8" CompositionName="Items">
+                <AttributeList>
+                  <Culture>de-DE</Culture>
+                  <Text />
+                </AttributeList>
+              </MultilingualTextItem>
+              <MultilingualTextItem ID="9" CompositionName="Items">
+                <AttributeList>
+                  <Culture>ru-RU</Culture>
+                  <Text />
+                </AttributeList>
+              </MultilingualTextItem>
+            </ObjectList>
+          </MultilingualText>
+          <MultilingualText ID="A" CompositionName="Title">
+            <ObjectList>
+              <MultilingualTextItem ID="B" CompositionName="Items">
+                <AttributeList>
+                  <Culture>en-US</Culture>
+                  <Text>Датчик давления 1 - 2</Text>
+                </AttributeList>
+              </MultilingualTextItem>
+              <MultilingualTextItem ID="C" CompositionName="Items">
+                <AttributeList>
+                  <Culture>de-DE</Culture>
+                  <Text />
+                </AttributeList>
+              </MultilingualTextItem>
+              <MultilingualTextItem ID="D" CompositionName="Items">
+                <AttributeList>
+                  <Culture>ru-RU</Culture>
+                  <Text />
+                </AttributeList>
+              </MultilingualTextItem>
+            </ObjectList>
+          </MultilingualText>
+        </ObjectList>
+      </SW.Blocks.CompileUnit>
+      <SW.Blocks.CompileUnit ID="E" CompositionName="CompileUnits">
+        <AttributeList>
+          <NetworkSource><FlgNet xmlns="http://www.siemens.com/automation/Openness/SW/NetworkSource/FlgNet/v4">
+  <Parts>
+    <Call UId="21">
+      <CallInfo Name="AI_ex" BlockType="FB">
+        <Instance Scope="GlobalVariable" UId="22">
+          <Component Name="PE_3_DB" />
+        </Instance>
+        <Parameter Name="S_Alarm" Section="Output" Type="Bool" />
+        <Parameter Name="Signal" Section="InOut" Type="Int" />
+        <Parameter Name="Result" Section="InOut" Type="Real" />
+      </CallInfo>
+    </Call>
+    <Call UId="23">
+      <CallInfo Name="AI_ex" BlockType="FB">
+        <Instance Scope="GlobalVariable" UId="24">
+          <Component Name="PE_4_DB" />
+        </Instance>
+        <Parameter Name="S_Alarm" Section="Output" Type="Bool" />
+        <Parameter Name="Signal" Section="InOut" Type="Int" />
+        <Parameter Name="Result" Section="InOut" Type="Real" />
+      </CallInfo>
+    </Call>
+  </Parts>
+  <Wires>
+    <Wire UId="31">
+      <Powerrail />
+      <NameCon UId="21" Name="en" />
+    </Wire>
+    <Wire UId="32">
+      <OpenCon UId="25" />
+      <NameCon UId="21" Name="Signal" />
+    </Wire>
+    <Wire UId="33">
+      <OpenCon UId="26" />
+      <NameCon UId="21" Name="Result" />
+    </Wire>
+    <Wire UId="34">
+      <NameCon UId="21" Name="eno" />
+      <NameCon UId="23" Name="en" />
+    </Wire>
+    <Wire UId="35">
+      <NameCon UId="21" Name="S_Alarm" />
+      <OpenCon UId="27" />
+    </Wire>
+    <Wire UId="36">
+      <OpenCon UId="28" />
+      <NameCon UId="23" Name="Signal" />
+    </Wire>
+    <Wire UId="37">
+      <OpenCon UId="29" />
+      <NameCon UId="23" Name="Result" />
+    </Wire>
+    <Wire UId="38">
+      <NameCon UId="23" Name="S_Alarm" />
+      <OpenCon UId="30" />
+    </Wire>
+  </Wires>
+</FlgNet></NetworkSource>
+          <ProgrammingLanguage>LAD</ProgrammingLanguage>
+        </AttributeList>
+        <ObjectList>
+          <MultilingualText ID="F" CompositionName="Comment">
+            <ObjectList>
+              <MultilingualTextItem ID="10" CompositionName="Items">
+                <AttributeList>
+                  <Culture>en-US</Culture>
+                  <Text />
+                </AttributeList>
+              </MultilingualTextItem>
+              <MultilingualTextItem ID="11" CompositionName="Items">
+                <AttributeList>
+                  <Culture>de-DE</Culture>
+                  <Text />
+                </AttributeList>
+              </MultilingualTextItem>
+              <MultilingualTextItem ID="12" CompositionName="Items">
+                <AttributeList>
+                  <Culture>ru-RU</Culture>
+                  <Text />
+                </AttributeList>
+              </MultilingualTextItem>
+            </ObjectList>
+          </MultilingualText>
+          <MultilingualText ID="13" CompositionName="Title">
+            <ObjectList>
+              <MultilingualTextItem ID="14" CompositionName="Items">
+                <AttributeList>
+                  <Culture>en-US</Culture>
+                  <Text>Датчик давления 3 - 4</Text>
+                </AttributeList>
+              </MultilingualTextItem>
+              <MultilingualTextItem ID="15" CompositionName="Items">
+                <AttributeList>
+                  <Culture>de-DE</Culture>
+                  <Text />
+                </AttributeList>
+              </MultilingualTextItem>
+              <MultilingualTextItem ID="16" CompositionName="Items">
+                <AttributeList>
+                  <Culture>ru-RU</Culture>
+                  <Text />
+                </AttributeList>
+              </MultilingualTextItem>
+            </ObjectList>
+          </MultilingualText>
+        </ObjectList>
+      </SW.Blocks.CompileUnit>
+      <SW.Blocks.CompileUnit ID="17" CompositionName="CompileUnits">
+        <AttributeList>
+          <NetworkSource><FlgNet xmlns="http://www.siemens.com/automation/Openness/SW/NetworkSource/FlgNet/v4">
+  <Parts>
+    <Call UId="21">
+      <CallInfo Name="AI_ex" BlockType="FB">
+        <Instance Scope="GlobalVariable" UId="22">
+          <Component Name="PE_5_DB" />
+        </Instance>
+        <Parameter Name="S_Alarm" Section="Output" Type="Bool" />
+        <Parameter Name="Signal" Section="InOut" Type="Int" />
+        <Parameter Name="Result" Section="InOut" Type="Real" />
+      </CallInfo>
+    </Call>
+    <Call UId="23">
+      <CallInfo Name="AI_ex" BlockType="FB">
+        <Instance Scope="GlobalVariable" UId="24">
+          <Component Name="PE_6_DB" />
+        </Instance>
+        <Parameter Name="S_Alarm" Section="Output" Type="Bool" />
+        <Parameter Name="Signal" Section="InOut" Type="Int" />
+        <Parameter Name="Result" Section="InOut" Type="Real" />
+      </CallInfo>
+    </Call>
+  </Parts>
+  <Wires>
+    <Wire UId="31">
+      <Powerrail />
+      <NameCon UId="21" Name="en" />
+    </Wire>
+    <Wire UId="32">
+      <OpenCon UId="25" />
+      <NameCon UId="21" Name="Signal" />
+    </Wire>
+    <Wire UId="33">
+      <OpenCon UId="26" />
+      <NameCon UId="21" Name="Result" />
+    </Wire>
+    <Wire UId="34">
+      <NameCon UId="21" Name="eno" />
+      <NameCon UId="23" Name="en" />
+    </Wire>
+    <Wire UId="35">
+      <NameCon UId="21" Name="S_Alarm" />
+      <OpenCon UId="27" />
+    </Wire>
+    <Wire UId="36">
+      <OpenCon UId="28" />
+      <NameCon UId="23" Name="Signal" />
+    </Wire>
+    <Wire UId="37">
+      <OpenCon UId="29" />
+      <NameCon UId="23" Name="Result" />
+    </Wire>
+    <Wire UId="38">
+      <NameCon UId="23" Name="S_Alarm" />
+      <OpenCon UId="30" />
+    </Wire>
+  </Wires>
+</FlgNet></NetworkSource>
+          <ProgrammingLanguage>LAD</ProgrammingLanguage>
+        </AttributeList>
+        <ObjectList>
+          <MultilingualText ID="18" CompositionName="Comment">
+            <ObjectList>
+              <MultilingualTextItem ID="19" CompositionName="Items">
+                <AttributeList>
+                  <Culture>en-US</Culture>
+                  <Text />
+                </AttributeList>
+              </MultilingualTextItem>
+              <MultilingualTextItem ID="1A" CompositionName="Items">
+                <AttributeList>
+                  <Culture>de-DE</Culture>
+                  <Text />
+                </AttributeList>
+              </MultilingualTextItem>
+              <MultilingualTextItem ID="1B" CompositionName="Items">
+                <AttributeList>
+                  <Culture>ru-RU</Culture>
+                  <Text />
+                </AttributeList>
+              </MultilingualTextItem>
+            </ObjectList>
+          </MultilingualText>
+          <MultilingualText ID="1C" CompositionName="Title">
+            <ObjectList>
+              <MultilingualTextItem ID="1D" CompositionName="Items">
+                <AttributeList>
+                  <Culture>en-US</Culture>
+                  <Text>Датчик давления 5 - 6</Text>
+                </AttributeList>
+              </MultilingualTextItem>
+              <MultilingualTextItem ID="1E" CompositionName="Items">
+                <AttributeList>
+                  <Culture>de-DE</Culture>
+                  <Text />
+                </AttributeList>
+              </MultilingualTextItem>
+              <MultilingualTextItem ID="1F" CompositionName="Items">
+                <AttributeList>
+                  <Culture>ru-RU</Culture>
+                  <Text />
+                </AttributeList>
+              </MultilingualTextItem>
+            </ObjectList>
+          </MultilingualText>
+        </ObjectList>
+      </SW.Blocks.CompileUnit>
+      <SW.Blocks.CompileUnit ID="20" CompositionName="CompileUnits">
+        <AttributeList>
+          <NetworkSource><FlgNet xmlns="http://www.siemens.com/automation/Openness/SW/NetworkSource/FlgNet/v4">
+  <Parts>
+    <Call UId="21">
+      <CallInfo Name="AI_ex" BlockType="FB">
+        <Instance Scope="GlobalVariable" UId="22">
+          <Component Name="PE_7_DB" />
+        </Instance>
+        <Parameter Name="S_Alarm" Section="Output" Type="Bool" />
+        <Parameter Name="Signal" Section="InOut" Type="Int" />
+        <Parameter Name="Result" Section="InOut" Type="Real" />
+      </CallInfo>
+    </Call>
+    <Call UId="23">
+      <CallInfo Name="AI_ex" BlockType="FB">
+        <Instance Scope="GlobalVariable" UId="24">
+          <Component Name="PE_8_DB" />
+        </Instance>
+        <Parameter Name="S_Alarm" Section="Output" Type="Bool" />
+        <Parameter Name="Signal" Section="InOut" Type="Int" />
+        <Parameter Name="Result" Section="InOut" Type="Real" />
+      </CallInfo>
+    </Call>
+  </Parts>
+  <Wires>
+    <Wire UId="31">
+      <Powerrail />
+      <NameCon UId="21" Name="en" />
+    </Wire>
+    <Wire UId="32">
+      <OpenCon UId="25" />
+      <NameCon UId="21" Name="Signal" />
+    </Wire>
+    <Wire UId="33">
+      <OpenCon UId="26" />
+      <NameCon UId="21" Name="Result" />
+    </Wire>
+    <Wire UId="34">
+      <NameCon UId="21" Name="eno" />
+      <NameCon UId="23" Name="en" />
+    </Wire>
+    <Wire UId="35">
+      <NameCon UId="21" Name="S_Alarm" />
+      <OpenCon UId="27" />
+    </Wire>
+    <Wire UId="36">
+      <OpenCon UId="28" />
+      <NameCon UId="23" Name="Signal" />
+    </Wire>
+    <Wire UId="37">
+      <OpenCon UId="29" />
+      <NameCon UId="23" Name="Result" />
+    </Wire>
+    <Wire UId="38">
+      <NameCon UId="23" Name="S_Alarm" />
+      <OpenCon UId="30" />
+    </Wire>
+  </Wires>
+</FlgNet></NetworkSource>
+          <ProgrammingLanguage>LAD</ProgrammingLanguage>
+        </AttributeList>
+        <ObjectList>
+          <MultilingualText ID="21" CompositionName="Comment">
+            <ObjectList>
+              <MultilingualTextItem ID="22" CompositionName="Items">
+                <AttributeList>
+                  <Culture>en-US</Culture>
+                  <Text />
+                </AttributeList>
+              </MultilingualTextItem>
+              <MultilingualTextItem ID="23" CompositionName="Items">
+                <AttributeList>
+                  <Culture>de-DE</Culture>
+                  <Text />
+                </AttributeList>
+              </MultilingualTextItem>
+              <MultilingualTextItem ID="24" CompositionName="Items">
+                <AttributeList>
+                  <Culture>ru-RU</Culture>
+                  <Text />
+                </AttributeList>
+              </MultilingualTextItem>
+            </ObjectList>
+          </MultilingualText>
+          <MultilingualText ID="25" CompositionName="Title">
+            <ObjectList>
+              <MultilingualTextItem ID="26" CompositionName="Items">
+                <AttributeList>
+                  <Culture>en-US</Culture>
+                  <Text>Датчик давления 7 - 8</Text>
+                </AttributeList>
+              </MultilingualTextItem>
+              <MultilingualTextItem ID="27" CompositionName="Items">
+                <AttributeList>
+                  <Culture>de-DE</Culture>
+                  <Text />
+                </AttributeList>
+              </MultilingualTextItem>
+              <MultilingualTextItem ID="28" CompositionName="Items">
+                <AttributeList>
+                  <Culture>ru-RU</Culture>
+                  <Text />
+                </AttributeList>
+              </MultilingualTextItem>
+            </ObjectList>
+          </MultilingualText>
+        </ObjectList>
+      </SW.Blocks.CompileUnit>
+      <SW.Blocks.CompileUnit ID="29" CompositionName="CompileUnits">
+        <AttributeList>
+          <NetworkSource><FlgNet xmlns="http://www.siemens.com/automation/Openness/SW/NetworkSource/FlgNet/v4">
+  <Parts>
+    <Call UId="21">
+      <CallInfo Name="AI_ex" BlockType="FB">
+        <Instance Scope="GlobalVariable" UId="22">
+          <Component Name="PE_9_DB" />
+        </Instance>
+        <Parameter Name="S_Alarm" Section="Output" Type="Bool" />
+        <Parameter Name="Signal" Section="InOut" Type="Int" />
+        <Parameter Name="Result" Section="InOut" Type="Real" />
+      </CallInfo>
+    </Call>
+  </Parts>
+  <Wires>
+    <Wire UId="26">
+      <Powerrail />
+      <NameCon UId="21" Name="en" />
+    </Wire>
+    <Wire UId="27">
+      <OpenCon UId="23" />
+      <NameCon UId="21" Name="Signal" />
+    </Wire>
+    <Wire UId="28">
+      <OpenCon UId="24" />
+      <NameCon UId="21" Name="Result" />
+    </Wire>
+    <Wire UId="29">
+      <NameCon UId="21" Name="S_Alarm" />
+      <OpenCon UId="25" />
+    </Wire>
+  </Wires>
+</FlgNet></NetworkSource>
+          <ProgrammingLanguage>LAD</ProgrammingLanguage>
+        </AttributeList>
+        <ObjectList>
+          <MultilingualText ID="2A" CompositionName="Comment">
+            <ObjectList>
+              <MultilingualTextItem ID="2B" CompositionName="Items">
+                <AttributeList>
+                  <Culture>en-US</Culture>
+                  <Text />
+                </AttributeList>
+              </MultilingualTextItem>
+              <MultilingualTextItem ID="2C" CompositionName="Items">
+                <AttributeList>
+                  <Culture>de-DE</Culture>
+                  <Text />
+                </AttributeList>
+              </MultilingualTextItem>
+              <MultilingualTextItem ID="2D" CompositionName="Items">
+                <AttributeList>
+                  <Culture>ru-RU</Culture>
+                  <Text />
+                </AttributeList>
+              </MultilingualTextItem>
+            </ObjectList>
+          </MultilingualText>
+          <MultilingualText ID="2E" CompositionName="Title">
+            <ObjectList>
+              <MultilingualTextItem ID="2F" CompositionName="Items">
+                <AttributeList>
+                  <Culture>en-US</Culture>
+                  <Text>Датчик давления 9, датчик температуры</Text>
+                </AttributeList>
+              </MultilingualTextItem>
+              <MultilingualTextItem ID="30" CompositionName="Items">
+                <AttributeList>
+                  <Culture>de-DE</Culture>
+                  <Text />
+                </AttributeList>
+              </MultilingualTextItem>
+              <MultilingualTextItem ID="31" CompositionName="Items">
+                <AttributeList>
+                  <Culture>ru-RU</Culture>
+                  <Text />
+                </AttributeList>
+              </MultilingualTextItem>
+            </ObjectList>
+          </MultilingualText>
+        </ObjectList>
+      </SW.Blocks.CompileUnit>
+      <SW.Blocks.CompileUnit ID="32" CompositionName="CompileUnits">
+        <AttributeList>
+          <NetworkSource><FlgNet xmlns="http://www.siemens.com/automation/Openness/SW/NetworkSource/FlgNet/v4">
+  <Parts>
+    <Call UId="21">
+      <CallInfo Name="AI_ex" BlockType="FB">
+        <Instance Scope="GlobalVariable" UId="22">
+          <Component Name="kWt_Pump_1_DB" />
+        </Instance>
+        <Parameter Name="S_Alarm" Section="Output" Type="Bool" />
+        <Parameter Name="Signal" Section="InOut" Type="Int" />
+        <Parameter Name="Result" Section="InOut" Type="Real" />
+      </CallInfo>
+    </Call>
+    <Call UId="23">
+      <CallInfo Name="AI_ex" BlockType="FB">
+        <Instance Scope="GlobalVariable" UId="24">
+          <Component Name="kWt_Pump_2_DB" />
+        </Instance>
+        <Parameter Name="S_Alarm" Section="Output" Type="Bool" />
+        <Parameter Name="Signal" Section="InOut" Type="Int" />
+        <Parameter Name="Result" Section="InOut" Type="Real" />
+      </CallInfo>
+    </Call>
+  </Parts>
+  <Wires>
+    <Wire UId="31">
+      <Powerrail />
+      <NameCon UId="21" Name="en" />
+    </Wire>
+    <Wire UId="32">
+      <OpenCon UId="25" />
+      <NameCon UId="21" Name="Signal" />
+    </Wire>
+    <Wire UId="33">
+      <OpenCon UId="26" />
+      <NameCon UId="21" Name="Result" />
+    </Wire>
+    <Wire UId="34">
+      <NameCon UId="21" Name="eno" />
+      <NameCon UId="23" Name="en" />
+    </Wire>
+    <Wire UId="35">
+      <NameCon UId="21" Name="S_Alarm" />
+      <OpenCon UId="27" />
+    </Wire>
+    <Wire UId="36">
+      <OpenCon UId="28" />
+      <NameCon UId="23" Name="Signal" />
+    </Wire>
+    <Wire UId="37">
+      <OpenCon UId="29" />
+      <NameCon UId="23" Name="Result" />
+    </Wire>
+    <Wire UId="38">
+      <NameCon UId="23" Name="S_Alarm" />
+      <OpenCon UId="30" />
+    </Wire>
+  </Wires>
+</FlgNet></NetworkSource>
+          <ProgrammingLanguage>LAD</ProgrammingLanguage>
+        </AttributeList>
+        <ObjectList>
+          <MultilingualText ID="33" CompositionName="Comment">
+            <ObjectList>
+              <MultilingualTextItem ID="34" CompositionName="Items">
+                <AttributeList>
+                  <Culture>en-US</Culture>
+                  <Text />
+                </AttributeList>
+              </MultilingualTextItem>
+              <MultilingualTextItem ID="35" CompositionName="Items">
+                <AttributeList>
+                  <Culture>de-DE</Culture>
+                  <Text />
+                </AttributeList>
+              </MultilingualTextItem>
+              <MultilingualTextItem ID="36" CompositionName="Items">
+                <AttributeList>
+                  <Culture>ru-RU</Culture>
+                  <Text />
+                </AttributeList>
+              </MultilingualTextItem>
+            </ObjectList>
+          </MultilingualText>
+          <MultilingualText ID="37" CompositionName="Title">
+            <ObjectList>
+              <MultilingualTextItem ID="38" CompositionName="Items">
+                <AttributeList>
+                  <Culture>en-US</Culture>
+                  <Text>Ток двигателя 1 и 2</Text>
+                </AttributeList>
+              </MultilingualTextItem>
+              <MultilingualTextItem ID="39" CompositionName="Items">
+                <AttributeList>
+                  <Culture>de-DE</Culture>
+                  <Text />
+                </AttributeList>
+              </MultilingualTextItem>
+              <MultilingualTextItem ID="3A" CompositionName="Items">
+                <AttributeList>
+                  <Culture>ru-RU</Culture>
+                  <Text />
+                </AttributeList>
+              </MultilingualTextItem>
+            </ObjectList>
+          </MultilingualText>
+        </ObjectList>
+      </SW.Blocks.CompileUnit>
+      <SW.Blocks.CompileUnit ID="3B" CompositionName="CompileUnits">
+        <AttributeList>
+          <NetworkSource><FlgNet xmlns="http://www.siemens.com/automation/Openness/SW/NetworkSource/FlgNet/v4">
+  <Parts>
+    <Call UId="21">
+      <CallInfo Name="AI_ex" BlockType="FB">
+        <Instance Scope="GlobalVariable" UId="22">
+          <Component Name="kWt_Pump_3_DB" />
+        </Instance>
+        <Parameter Name="S_Alarm" Section="Output" Type="Bool" />
+        <Parameter Name="Signal" Section="InOut" Type="Int" />
+        <Parameter Name="Result" Section="InOut" Type="Real" />
+      </CallInfo>
+    </Call>
+    <Call UId="23">
+      <CallInfo Name="AI_ex" BlockType="FB">
+        <Instance Scope="GlobalVariable" UId="24">
+          <Component Name="kWt_Pump_4_DB" />
+        </Instance>
+        <Parameter Name="S_Alarm" Section="Output" Type="Bool" />
+        <Parameter Name="Signal" Section="InOut" Type="Int" />
+        <Parameter Name="Result" Section="InOut" Type="Real" />
+      </CallInfo>
+    </Call>
+  </Parts>
+  <Wires>
+    <Wire UId="31">
+      <Powerrail />
+      <NameCon UId="21" Name="en" />
+    </Wire>
+    <Wire UId="32">
+      <OpenCon UId="25" />
+      <NameCon UId="21" Name="Signal" />
+    </Wire>
+    <Wire UId="33">
+      <OpenCon UId="26" />
+      <NameCon UId="21" Name="Result" />
+    </Wire>
+    <Wire UId="34">
+      <NameCon UId="21" Name="eno" />
+      <NameCon UId="23" Name="en" />
+    </Wire>
+    <Wire UId="35">
+      <NameCon UId="21" Name="S_Alarm" />
+      <OpenCon UId="27" />
+    </Wire>
+    <Wire UId="36">
+      <OpenCon UId="28" />
+      <NameCon UId="23" Name="Signal" />
+    </Wire>
+    <Wire UId="37">
+      <OpenCon UId="29" />
+      <NameCon UId="23" Name="Result" />
+    </Wire>
+    <Wire UId="38">
+      <NameCon UId="23" Name="S_Alarm" />
+      <OpenCon UId="30" />
+    </Wire>
+  </Wires>
+</FlgNet></NetworkSource>
+          <ProgrammingLanguage>LAD</ProgrammingLanguage>
+        </AttributeList>
+        <ObjectList>
+          <MultilingualText ID="3C" CompositionName="Comment">
+            <ObjectList>
+              <MultilingualTextItem ID="3D" CompositionName="Items">
+                <AttributeList>
+                  <Culture>en-US</Culture>
+                  <Text />
+                </AttributeList>
+              </MultilingualTextItem>
+              <MultilingualTextItem ID="3E" CompositionName="Items">
+                <AttributeList>
+                  <Culture>de-DE</Culture>
+                  <Text />
+                </AttributeList>
+              </MultilingualTextItem>
+              <MultilingualTextItem ID="3F" CompositionName="Items">
+                <AttributeList>
+                  <Culture>ru-RU</Culture>
+                  <Text />
+                </AttributeList>
+              </MultilingualTextItem>
+            </ObjectList>
+          </MultilingualText>
+          <MultilingualText ID="40" CompositionName="Title">
+            <ObjectList>
+              <MultilingualTextItem ID="41" CompositionName="Items">
+                <AttributeList>
+                  <Culture>en-US</Culture>
+                  <Text>Ток двигателя 3 и 4</Text>
+                </AttributeList>
+              </MultilingualTextItem>
+              <MultilingualTextItem ID="42" CompositionName="Items">
+                <AttributeList>
+                  <Culture>de-DE</Culture>
+                  <Text />
+                </AttributeList>
+              </MultilingualTextItem>
+              <MultilingualTextItem ID="43" CompositionName="Items">
+                <AttributeList>
+                  <Culture>ru-RU</Culture>
+                  <Text />
+                </AttributeList>
+              </MultilingualTextItem>
+            </ObjectList>
+          </MultilingualText>
+        </ObjectList>
+      </SW.Blocks.CompileUnit>
+      <SW.Blocks.CompileUnit ID="44" CompositionName="CompileUnits">
+        <AttributeList>
+          <NetworkSource><FlgNet xmlns="http://www.siemens.com/automation/Openness/SW/NetworkSource/FlgNet/v4">
+  <Parts>
+    <Call UId="21">
+      <CallInfo Name="AI_ex" BlockType="FB">
+        <Instance Scope="GlobalVariable" UId="22">
+          <Component Name="kWt_Pump_5_DB" />
+        </Instance>
+        <Parameter Name="S_Alarm" Section="Output" Type="Bool" />
+        <Parameter Name="Signal" Section="InOut" Type="Int" />
+        <Parameter Name="Result" Section="InOut" Type="Real" />
+      </CallInfo>
+    </Call>
+    <Call UId="23">
+      <CallInfo Name="AI_ex" BlockType="FB">
+        <Instance Scope="GlobalVariable" UId="24">
+          <Component Name="kWt_Pump_6_DB" />
+        </Instance>
+        <Parameter Name="S_Alarm" Section="Output" Type="Bool" />
+        <Parameter Name="Signal" Section="InOut" Type="Int" />
+        <Parameter Name="Result" Section="InOut" Type="Real" />
+      </CallInfo>
+    </Call>
+  </Parts>
+  <Wires>
+    <Wire UId="31">
+      <Powerrail />
+      <NameCon UId="21" Name="en" />
+    </Wire>
+    <Wire UId="32">
+      <OpenCon UId="25" />
+      <NameCon UId="21" Name="Signal" />
+    </Wire>
+    <Wire UId="33">
+      <OpenCon UId="26" />
+      <NameCon UId="21" Name="Result" />
+    </Wire>
+    <Wire UId="34">
+      <NameCon UId="21" Name="eno" />
+      <NameCon UId="23" Name="en" />
+    </Wire>
+    <Wire UId="35">
+      <NameCon UId="21" Name="S_Alarm" />
+      <OpenCon UId="27" />
+    </Wire>
+    <Wire UId="36">
+      <OpenCon UId="28" />
+      <NameCon UId="23" Name="Signal" />
+    </Wire>
+    <Wire UId="37">
+      <OpenCon UId="29" />
+      <NameCon UId="23" Name="Result" />
+    </Wire>
+    <Wire UId="38">
+      <NameCon UId="23" Name="S_Alarm" />
+      <OpenCon UId="30" />
+    </Wire>
+  </Wires>
+</FlgNet></NetworkSource>
+          <ProgrammingLanguage>LAD</ProgrammingLanguage>
+        </AttributeList>
+        <ObjectList>
+          <MultilingualText ID="45" CompositionName="Comment">
+            <ObjectList>
+              <MultilingualTextItem ID="46" CompositionName="Items">
+                <AttributeList>
+                  <Culture>en-US</Culture>
+                  <Text />
+                </AttributeList>
+              </MultilingualTextItem>
+              <MultilingualTextItem ID="47" CompositionName="Items">
+                <AttributeList>
+                  <Culture>de-DE</Culture>
+                  <Text />
+                </AttributeList>
+              </MultilingualTextItem>
+              <MultilingualTextItem ID="48" CompositionName="Items">
+                <AttributeList>
+                  <Culture>ru-RU</Culture>
+                  <Text />
+                </AttributeList>
+              </MultilingualTextItem>
+            </ObjectList>
+          </MultilingualText>
+          <MultilingualText ID="49" CompositionName="Title">
+            <ObjectList>
+              <MultilingualTextItem ID="4A" CompositionName="Items">
+                <AttributeList>
+                  <Culture>en-US</Culture>
+                  <Text>Ток двигателя 5 и 6</Text>
+                </AttributeList>
+              </MultilingualTextItem>
+              <MultilingualTextItem ID="4B" CompositionName="Items">
+                <AttributeList>
+                  <Culture>de-DE</Culture>
+                  <Text />
+                </AttributeList>
+              </MultilingualTextItem>
+              <MultilingualTextItem ID="4C" CompositionName="Items">
+                <AttributeList>
+                  <Culture>ru-RU</Culture>
+                  <Text />
+                </AttributeList>
+              </MultilingualTextItem>
+            </ObjectList>
+          </MultilingualText>
+        </ObjectList>
+      </SW.Blocks.CompileUnit>
+      <SW.Blocks.CompileUnit ID="4D" CompositionName="CompileUnits">
+        <AttributeList>
+          <NetworkSource><FlgNet xmlns="http://www.siemens.com/automation/Openness/SW/NetworkSource/FlgNet/v4">
+  <Parts>
+    <Call UId="21">
+      <CallInfo Name="AI_ex" BlockType="FB">
+        <Instance Scope="GlobalVariable" UId="22">
+          <Component Name="kWt_Pump_7_DB" />
+        </Instance>
+        <Parameter Name="S_Alarm" Section="Output" Type="Bool" />
+        <Parameter Name="Signal" Section="InOut" Type="Int" />
+        <Parameter Name="Result" Section="InOut" Type="Real" />
+      </CallInfo>
+    </Call>
+  </Parts>
+  <Wires>
+    <Wire UId="26">
+      <Powerrail />
+      <NameCon UId="21" Name="en" />
+    </Wire>
+    <Wire UId="27">
+      <OpenCon UId="23" />
+      <NameCon UId="21" Name="Signal" />
+    </Wire>
+    <Wire UId="28">
+      <OpenCon UId="24" />
+      <NameCon UId="21" Name="Result" />
+    </Wire>
+    <Wire UId="29">
+      <NameCon UId="21" Name="S_Alarm" />
+      <OpenCon UId="25" />
+    </Wire>
+  </Wires>
+</FlgNet></NetworkSource>
+          <ProgrammingLanguage>LAD</ProgrammingLanguage>
+        </AttributeList>
+        <ObjectList>
+          <MultilingualText ID="4E" CompositionName="Comment">
+            <ObjectList>
+              <MultilingualTextItem ID="4F" CompositionName="Items">
+                <AttributeList>
+                  <Culture>en-US</Culture>
+                  <Text />
+                </AttributeList>
+              </MultilingualTextItem>
+              <MultilingualTextItem ID="50" CompositionName="Items">
+                <AttributeList>
+                  <Culture>de-DE</Culture>
+                  <Text />
+                </AttributeList>
+              </MultilingualTextItem>
+              <MultilingualTextItem ID="51" CompositionName="Items">
+                <AttributeList>
+                  <Culture>ru-RU</Culture>
+                  <Text />
+                </AttributeList>
+              </MultilingualTextItem>
+            </ObjectList>
+          </MultilingualText>
+          <MultilingualText ID="52" CompositionName="Title">
+            <ObjectList>
+              <MultilingualTextItem ID="53" CompositionName="Items">
+                <AttributeList>
+                  <Culture>en-US</Culture>
+                  <Text>Ток двигателя 7</Text>
+                </AttributeList>
+              </MultilingualTextItem>
+              <MultilingualTextItem ID="54" CompositionName="Items">
+                <AttributeList>
+                  <Culture>de-DE</Culture>
+                  <Text />
+                </AttributeList>
+              </MultilingualTextItem>
+              <MultilingualTextItem ID="55" CompositionName="Items">
+                <AttributeList>
+                  <Culture>ru-RU</Culture>
+                  <Text />
+                </AttributeList>
+              </MultilingualTextItem>
+            </ObjectList>
+          </MultilingualText>
+        </ObjectList>
+      </SW.Blocks.CompileUnit>
+      <SW.Blocks.CompileUnit ID="56" CompositionName="CompileUnits">
+        <AttributeList>
+          <NetworkSource><FlgNet xmlns="http://www.siemens.com/automation/Openness/SW/NetworkSource/FlgNet/v4">
+  <Parts>
+    <Call UId="21">
+      <CallInfo Name="AI_ex" BlockType="FB">
+        <Instance Scope="GlobalVariable" UId="22">
+          <Component Name="LE_1_DB" />
+        </Instance>
+        <Parameter Name="S_Alarm" Section="Output" Type="Bool" />
+        <Parameter Name="Signal" Section="InOut" Type="Int" />
+        <Parameter Name="Result" Section="InOut" Type="Real" />
+      </CallInfo>
+    </Call>
+    <Call UId="23">
+      <CallInfo Name="AI_ex" BlockType="FB">
+        <Instance Scope="GlobalVariable" UId="24">
+          <Component Name="LE_2_DB" />
+        </Instance>
+        <Parameter Name="S_Alarm" Section="Output" Type="Bool" />
+        <Parameter Name="Signal" Section="InOut" Type="Int" />
+        <Parameter Name="Result" Section="InOut" Type="Real" />
+      </CallInfo>
+    </Call>
+  </Parts>
+  <Wires>
+    <Wire UId="31">
+      <Powerrail />
+      <NameCon UId="21" Name="en" />
+    </Wire>
+    <Wire UId="32">
+      <OpenCon UId="25" />
+      <NameCon UId="21" Name="Signal" />
+    </Wire>
+    <Wire UId="33">
+      <OpenCon UId="26" />
+      <NameCon UId="21" Name="Result" />
+    </Wire>
+    <Wire UId="34">
+      <NameCon UId="21" Name="eno" />
+      <NameCon UId="23" Name="en" />
+    </Wire>
+    <Wire UId="35">
+      <NameCon UId="21" Name="S_Alarm" />
+      <OpenCon UId="27" />
+    </Wire>
+    <Wire UId="36">
+      <OpenCon UId="28" />
+      <NameCon UId="23" Name="Signal" />
+    </Wire>
+    <Wire UId="37">
+      <OpenCon UId="29" />
+      <NameCon UId="23" Name="Result" />
+    </Wire>
+    <Wire UId="38">
+      <NameCon UId="23" Name="S_Alarm" />
+      <OpenCon UId="30" />
+    </Wire>
+  </Wires>
+</FlgNet></NetworkSource>
+          <ProgrammingLanguage>LAD</ProgrammingLanguage>
+        </AttributeList>
+        <ObjectList>
+          <MultilingualText ID="57" CompositionName="Comment">
+            <ObjectList>
+              <MultilingualTextItem ID="58" CompositionName="Items">
+                <AttributeList>
+                  <Culture>en-US</Culture>
+                  <Text />
+                </AttributeList>
+              </MultilingualTextItem>
+              <MultilingualTextItem ID="59" CompositionName="Items">
+                <AttributeList>
+                  <Culture>de-DE</Culture>
+                  <Text />
+                </AttributeList>
+              </MultilingualTextItem>
+              <MultilingualTextItem ID="5A" CompositionName="Items">
+                <AttributeList>
+                  <Culture>ru-RU</Culture>
+                  <Text />
+                </AttributeList>
+              </MultilingualTextItem>
+            </ObjectList>
+          </MultilingualText>
+          <MultilingualText ID="5B" CompositionName="Title">
+            <ObjectList>
+              <MultilingualTextItem ID="5C" CompositionName="Items">
+                <AttributeList>
+                  <Culture>en-US</Culture>
+                  <Text />
+                </AttributeList>
+              </MultilingualTextItem>
+              <MultilingualTextItem ID="5D" CompositionName="Items">
+                <AttributeList>
+                  <Culture>de-DE</Culture>
+                  <Text />
+                </AttributeList>
+              </MultilingualTextItem>
+              <MultilingualTextItem ID="5E" CompositionName="Items">
+                <AttributeList>
+                  <Culture>ru-RU</Culture>
+                  <Text />
+                </AttributeList>
+              </MultilingualTextItem>
+            </ObjectList>
+          </MultilingualText>
+        </ObjectList>
+      </SW.Blocks.CompileUnit>
+      <SW.Blocks.CompileUnit ID="5F" CompositionName="CompileUnits">
+        <AttributeList>
+          <NetworkSource><FlgNet xmlns="http://www.siemens.com/automation/Openness/SW/NetworkSource/FlgNet/v4">
+  <Parts>
+    <Call UId="21">
+      <CallInfo Name="AI_ex" BlockType="FB">
+        <Instance Scope="GlobalVariable" UId="22">
+          <Component Name="LE_3_DB" />
+        </Instance>
+        <Parameter Name="S_Alarm" Section="Output" Type="Bool" />
+        <Parameter Name="Signal" Section="InOut" Type="Int" />
+        <Parameter Name="Result" Section="InOut" Type="Real" />
+      </CallInfo>
+    </Call>
+    <Call UId="23">
+      <CallInfo Name="AI_ex" BlockType="FB">
+        <Instance Scope="GlobalVariable" UId="24">
+          <Component Name="LE_4_DB" />
+        </Instance>
+        <Parameter Name="S_Alarm" Section="Output" Type="Bool" />
+        <Parameter Name="Signal" Section="InOut" Type="Int" />
+        <Parameter Name="Result" Section="InOut" Type="Real" />
+      </CallInfo>
+    </Call>
+  </Parts>
+  <Wires>
+    <Wire UId="31">
+      <Powerrail />
+      <NameCon UId="21" Name="en" />
+    </Wire>
+    <Wire UId="32">
+      <OpenCon UId="25" />
+      <NameCon UId="21" Name="Signal" />
+    </Wire>
+    <Wire UId="33">
+      <OpenCon UId="26" />
+      <NameCon UId="21" Name="Result" />
+    </Wire>
+    <Wire UId="34">
+      <NameCon UId="21" Name="eno" />
+      <NameCon UId="23" Name="en" />
+    </Wire>
+    <Wire UId="35">
+      <NameCon UId="21" Name="S_Alarm" />
+      <OpenCon UId="27" />
+    </Wire>
+    <Wire UId="36">
+      <OpenCon UId="28" />
+      <NameCon UId="23" Name="Signal" />
+    </Wire>
+    <Wire UId="37">
+      <OpenCon UId="29" />
+      <NameCon UId="23" Name="Result" />
+    </Wire>
+    <Wire UId="38">
+      <NameCon UId="23" Name="S_Alarm" />
+      <OpenCon UId="30" />
+    </Wire>
+  </Wires>
+</FlgNet></NetworkSource>
+          <ProgrammingLanguage>LAD</ProgrammingLanguage>
+        </AttributeList>
+        <ObjectList>
+          <MultilingualText ID="60" CompositionName="Comment">
+            <ObjectList>
+              <MultilingualTextItem ID="61" CompositionName="Items">
+                <AttributeList>
+                  <Culture>en-US</Culture>
+                  <Text />
+                </AttributeList>
+              </MultilingualTextItem>
+              <MultilingualTextItem ID="62" CompositionName="Items">
+                <AttributeList>
+                  <Culture>de-DE</Culture>
+                  <Text />
+                </AttributeList>
+              </MultilingualTextItem>
+              <MultilingualTextItem ID="63" CompositionName="Items">
+                <AttributeList>
+                  <Culture>ru-RU</Culture>
+                  <Text />
+                </AttributeList>
+              </MultilingualTextItem>
+            </ObjectList>
+          </MultilingualText>
+          <MultilingualText ID="64" CompositionName="Title">
+            <ObjectList>
+              <MultilingualTextItem ID="65" CompositionName="Items">
+                <AttributeList>
+                  <Culture>en-US</Culture>
+                  <Text />
+                </AttributeList>
+              </MultilingualTextItem>
+              <MultilingualTextItem ID="66" CompositionName="Items">
+                <AttributeList>
+                  <Culture>de-DE</Culture>
+                  <Text />
+                </AttributeList>
+              </MultilingualTextItem>
+              <MultilingualTextItem ID="67" CompositionName="Items">
+                <AttributeList>
+                  <Culture>ru-RU</Culture>
+                  <Text />
+                </AttributeList>
+              </MultilingualTextItem>
+            </ObjectList>
+          </MultilingualText>
+        </ObjectList>
+      </SW.Blocks.CompileUnit>
+      <SW.Blocks.CompileUnit ID="68" CompositionName="CompileUnits">
+        <AttributeList>
+          <NetworkSource><FlgNet xmlns="http://www.siemens.com/automation/Openness/SW/NetworkSource/FlgNet/v4">
+  <Parts>
+    <Call UId="21">
+      <CallInfo Name="AI_ex" BlockType="FB">
+        <Instance Scope="GlobalVariable" UId="22">
+          <Component Name="CL_1_DB" />
+        </Instance>
+        <Parameter Name="S_Alarm" Section="Output" Type="Bool" />
+        <Parameter Name="Signal" Section="InOut" Type="Int" />
+        <Parameter Name="Result" Section="InOut" Type="Real" />
+      </CallInfo>
+    </Call>
+    <Call UId="23">
+      <CallInfo Name="AI_ex" BlockType="FB">
+        <Instance Scope="GlobalVariable" UId="24">
+          <Component Name="CL_2_DB" />
+        </Instance>
+        <Parameter Name="S_Alarm" Section="Output" Type="Bool" />
+        <Parameter Name="Signal" Section="InOut" Type="Int" />
+        <Parameter Name="Result" Section="InOut" Type="Real" />
+      </CallInfo>
+    </Call>
+  </Parts>
+  <Wires>
+    <Wire UId="31">
+      <Powerrail />
+      <NameCon UId="21" Name="en" />
+    </Wire>
+    <Wire UId="32">
+      <OpenCon UId="25" />
+      <NameCon UId="21" Name="Signal" />
+    </Wire>
+    <Wire UId="33">
+      <OpenCon UId="26" />
+      <NameCon UId="21" Name="Result" />
+    </Wire>
+    <Wire UId="34">
+      <NameCon UId="21" Name="eno" />
+      <NameCon UId="23" Name="en" />
+    </Wire>
+    <Wire UId="35">
+      <NameCon UId="21" Name="S_Alarm" />
+      <OpenCon UId="27" />
+    </Wire>
+    <Wire UId="36">
+      <OpenCon UId="28" />
+      <NameCon UId="23" Name="Signal" />
+    </Wire>
+    <Wire UId="37">
+      <OpenCon UId="29" />
+      <NameCon UId="23" Name="Result" />
+    </Wire>
+    <Wire UId="38">
+      <NameCon UId="23" Name="S_Alarm" />
+      <OpenCon UId="30" />
+    </Wire>
+  </Wires>
+</FlgNet></NetworkSource>
+          <ProgrammingLanguage>LAD</ProgrammingLanguage>
+        </AttributeList>
+        <ObjectList>
+          <MultilingualText ID="69" CompositionName="Comment">
+            <ObjectList>
+              <MultilingualTextItem ID="6A" CompositionName="Items">
+                <AttributeList>
+                  <Culture>en-US</Culture>
+                  <Text />
+                </AttributeList>
+              </MultilingualTextItem>
+              <MultilingualTextItem ID="6B" CompositionName="Items">
+                <AttributeList>
+                  <Culture>de-DE</Culture>
+                  <Text />
+                </AttributeList>
+              </MultilingualTextItem>
+              <MultilingualTextItem ID="6C" CompositionName="Items">
+                <AttributeList>
+                  <Culture>ru-RU</Culture>
+                  <Text />
+                </AttributeList>
+              </MultilingualTextItem>
+            </ObjectList>
+          </MultilingualText>
+          <MultilingualText ID="6D" CompositionName="Title">
+            <ObjectList>
+              <MultilingualTextItem ID="6E" CompositionName="Items">
+                <AttributeList>
+                  <Culture>en-US</Culture>
+                  <Text />
+                </AttributeList>
+              </MultilingualTextItem>
+              <MultilingualTextItem ID="6F" CompositionName="Items">
+                <AttributeList>
+                  <Culture>de-DE</Culture>
+                  <Text />
+                </AttributeList>
+              </MultilingualTextItem>
+              <MultilingualTextItem ID="70" CompositionName="Items">
+                <AttributeList>
+                  <Culture>ru-RU</Culture>
+                  <Text />
+                </AttributeList>
+              </MultilingualTextItem>
+            </ObjectList>
+          </MultilingualText>
+        </ObjectList>
+      </SW.Blocks.CompileUnit>
+      <SW.Blocks.CompileUnit ID="71" CompositionName="CompileUnits">
+        <AttributeList>
+          <NetworkSource><FlgNet xmlns="http://www.siemens.com/automation/Openness/SW/NetworkSource/FlgNet/v4">
+  <Parts>
+    <Call UId="21">
+      <CallInfo Name="AI_ex" BlockType="FB">
+        <Instance Scope="GlobalVariable" UId="22">
+          <Component Name="TE_1_DB" />
+        </Instance>
+        <Parameter Name="S_Alarm" Section="Output" Type="Bool" />
+        <Parameter Name="Signal" Section="InOut" Type="Int" />
+        <Parameter Name="Result" Section="InOut" Type="Real" />
+      </CallInfo>
+    </Call>
+    <Call UId="23">
+      <CallInfo Name="AI_ex" BlockType="FB">
+        <Instance Scope="GlobalVariable" UId="24">
+          <Component Name="TE_2_DB" />
+        </Instance>
+        <Parameter Name="S_Alarm" Section="Output" Type="Bool" />
+        <Parameter Name="Signal" Section="InOut" Type="Int" />
+        <Parameter Name="Result" Section="InOut" Type="Real" />
+      </CallInfo>
+    </Call>
+  </Parts>
+  <Wires>
+    <Wire UId="31">
+      <Powerrail />
+      <NameCon UId="21" Name="en" />
+    </Wire>
+    <Wire UId="32">
+      <OpenCon UId="25" />
+      <NameCon UId="21" Name="Signal" />
+    </Wire>
+    <Wire UId="33">
+      <OpenCon UId="26" />
+      <NameCon UId="21" Name="Result" />
+    </Wire>
+    <Wire UId="34">
+      <NameCon UId="21" Name="eno" />
+      <NameCon UId="23" Name="en" />
+    </Wire>
+    <Wire UId="35">
+      <NameCon UId="21" Name="S_Alarm" />
+      <OpenCon UId="27" />
+    </Wire>
+    <Wire UId="36">
+      <OpenCon UId="28" />
+      <NameCon UId="23" Name="Signal" />
+    </Wire>
+    <Wire UId="37">
+      <OpenCon UId="29" />
+      <NameCon UId="23" Name="Result" />
+    </Wire>
+    <Wire UId="38">
+      <NameCon UId="23" Name="S_Alarm" />
+      <OpenCon UId="30" />
+    </Wire>
+  </Wires>
+</FlgNet></NetworkSource>
+          <ProgrammingLanguage>LAD</ProgrammingLanguage>
+        </AttributeList>
+        <ObjectList>
+          <MultilingualText ID="72" CompositionName="Comment">
+            <ObjectList>
+              <MultilingualTextItem ID="73" CompositionName="Items">
+                <AttributeList>
+                  <Culture>en-US</Culture>
+                  <Text />
+                </AttributeList>
+              </MultilingualTextItem>
+              <MultilingualTextItem ID="74" CompositionName="Items">
+                <AttributeList>
+                  <Culture>de-DE</Culture>
+                  <Text />
+                </AttributeList>
+              </MultilingualTextItem>
+              <MultilingualTextItem ID="75" CompositionName="Items">
+                <AttributeList>
+                  <Culture>ru-RU</Culture>
+                  <Text />
+                </AttributeList>
+              </MultilingualTextItem>
+            </ObjectList>
+          </MultilingualText>
+          <MultilingualText ID="76" CompositionName="Title">
+            <ObjectList>
+              <MultilingualTextItem ID="77" CompositionName="Items">
+                <AttributeList>
+                  <Culture>en-US</Culture>
+                  <Text />
+                </AttributeList>
+              </MultilingualTextItem>
+              <MultilingualTextItem ID="78" CompositionName="Items">
+                <AttributeList>
+                  <Culture>de-DE</Culture>
+                  <Text />
+                </AttributeList>
+              </MultilingualTextItem>
+              <MultilingualTextItem ID="79" CompositionName="Items">
+                <AttributeList>
+                  <Culture>ru-RU</Culture>
+                  <Text />
+                </AttributeList>
+              </MultilingualTextItem>
+            </ObjectList>
+          </MultilingualText>
+        </ObjectList>
+      </SW.Blocks.CompileUnit>
+      <SW.Blocks.CompileUnit ID="7A" CompositionName="CompileUnits">
+        <AttributeList>
+          <NetworkSource><FlgNet xmlns="http://www.siemens.com/automation/Openness/SW/NetworkSource/FlgNet/v4">
+  <Parts>
+    <Call UId="21">
+      <CallInfo Name="AI_ex" BlockType="FB">
+        <Instance Scope="GlobalVariable" UId="22">
+          <Component Name="PE_KP_1_1_DB" />
+        </Instance>
+        <Parameter Name="S_Alarm" Section="Output" Type="Bool" />
+        <Parameter Name="Signal" Section="InOut" Type="Int" />
+        <Parameter Name="Result" Section="InOut" Type="Real" />
+      </CallInfo>
+    </Call>
+    <Call UId="23">
+      <CallInfo Name="AI_ex" BlockType="FB">
+        <Instance Scope="GlobalVariable" UId="24">
+          <Component Name="PE_KP_1_2_DB" />
+        </Instance>
+        <Parameter Name="S_Alarm" Section="Output" Type="Bool" />
+        <Parameter Name="Signal" Section="InOut" Type="Int" />
+        <Parameter Name="Result" Section="InOut" Type="Real" />
+      </CallInfo>
+    </Call>
+  </Parts>
+  <Wires>
+    <Wire UId="31">
+      <Powerrail />
+      <NameCon UId="21" Name="en" />
+    </Wire>
+    <Wire UId="32">
+      <OpenCon UId="25" />
+      <NameCon UId="21" Name="Signal" />
+    </Wire>
+    <Wire UId="33">
+      <OpenCon UId="26" />
+      <NameCon UId="21" Name="Result" />
+    </Wire>
+    <Wire UId="34">
+      <NameCon UId="21" Name="eno" />
+      <NameCon UId="23" Name="en" />
+    </Wire>
+    <Wire UId="35">
+      <NameCon UId="21" Name="S_Alarm" />
+      <OpenCon UId="27" />
+    </Wire>
+    <Wire UId="36">
+      <OpenCon UId="28" />
+      <NameCon UId="23" Name="Signal" />
+    </Wire>
+    <Wire UId="37">
+      <OpenCon UId="29" />
+      <NameCon UId="23" Name="Result" />
+    </Wire>
+    <Wire UId="38">
+      <NameCon UId="23" Name="S_Alarm" />
+      <OpenCon UId="30" />
+    </Wire>
+  </Wires>
+</FlgNet></NetworkSource>
+          <ProgrammingLanguage>LAD</ProgrammingLanguage>
+        </AttributeList>
+        <ObjectList>
+          <MultilingualText ID="7B" CompositionName="Comment">
+            <ObjectList>
+              <MultilingualTextItem ID="7C" CompositionName="Items">
+                <AttributeList>
+                  <Culture>en-US</Culture>
+                  <Text />
+                </AttributeList>
+              </MultilingualTextItem>
+              <MultilingualTextItem ID="7D" CompositionName="Items">
+                <AttributeList>
+                  <Culture>de-DE</Culture>
+                  <Text />
+                </AttributeList>
+              </MultilingualTextItem>
+              <MultilingualTextItem ID="7E" CompositionName="Items">
+                <AttributeList>
+                  <Culture>ru-RU</Culture>
+                  <Text />
+                </AttributeList>
+              </MultilingualTextItem>
+            </ObjectList>
+          </MultilingualText>
+          <MultilingualText ID="7F" CompositionName="Title">
+            <ObjectList>
+              <MultilingualTextItem ID="80" CompositionName="Items">
+                <AttributeList>
+                  <Culture>en-US</Culture>
+                  <Text />
+                </AttributeList>
+              </MultilingualTextItem>
+              <MultilingualTextItem ID="81" CompositionName="Items">
+                <AttributeList>
+                  <Culture>de-DE</Culture>
+                  <Text />
+                </AttributeList>
+              </MultilingualTextItem>
+              <MultilingualTextItem ID="82" CompositionName="Items">
+                <AttributeList>
+                  <Culture>ru-RU</Culture>
+                  <Text />
+                </AttributeList>
+              </MultilingualTextItem>
+            </ObjectList>
+          </MultilingualText>
+        </ObjectList>
+      </SW.Blocks.CompileUnit>
+      <SW.Blocks.CompileUnit ID="83" CompositionName="CompileUnits">
+        <AttributeList>
+          <NetworkSource><FlgNet xmlns="http://www.siemens.com/automation/Openness/SW/NetworkSource/FlgNet/v4">
+  <Parts>
+    <Access Scope="GlobalVariable" UId="21">
+      <Symbol>
+        <Component Name="Time_SYS_DB" />
+        <Component Name="RD_Time" />
+      </Symbol>
+    </Access>
+    <Access Scope="LocalVariable" UId="22">
+      <Symbol>
+        <Component Name="Time_DTL" />
+      </Symbol>
+    </Access>
+    <Part Name="Move" UId="23" DisabledENO="true">
+      <TemplateValue Name="Card" Type="Cardinality">1</TemplateValue>
+    </Part>
+  </Parts>
+  <Wires>
+    <Wire UId="24">
+      <Powerrail />
+      <NameCon UId="23" Name="en" />
+    </Wire>
+    <Wire UId="25">
+      <IdentCon UId="21" />
+      <NameCon UId="23" Name="in" />
+    </Wire>
+    <Wire UId="26">
+      <NameCon UId="23" Name="out1" />
+      <IdentCon UId="22" />
+    </Wire>
+  </Wires>
+</FlgNet></NetworkSource>
+          <ProgrammingLanguage>LAD</ProgrammingLanguage>
+        </AttributeList>
+        <ObjectList>
+          <MultilingualText ID="84" CompositionName="Comment">
+            <ObjectList>
+              <MultilingualTextItem ID="85" CompositionName="Items">
+                <AttributeList>
+                  <Culture>en-US</Culture>
+                  <Text />
+                </AttributeList>
+              </MultilingualTextItem>
+              <MultilingualTextItem ID="86" CompositionName="Items">
+                <AttributeList>
+                  <Culture>de-DE</Culture>
+                  <Text />
+                </AttributeList>
+              </MultilingualTextItem>
+              <MultilingualTextItem ID="87" CompositionName="Items">
+                <AttributeList>
+                  <Culture>ru-RU</Culture>
+                  <Text />
+                </AttributeList>
+              </MultilingualTextItem>
+            </ObjectList>
+          </MultilingualText>
+          <MultilingualText ID="88" CompositionName="Title">
+            <ObjectList>
+              <MultilingualTextItem ID="89" CompositionName="Items">
+                <AttributeList>
+                  <Culture>en-US</Culture>
+                  <Text>Метка времени</Text>
+                </AttributeList>
+              </MultilingualTextItem>
+              <MultilingualTextItem ID="8A" CompositionName="Items">
+                <AttributeList>
+                  <Culture>de-DE</Culture>
+                  <Text />
+                </AttributeList>
+              </MultilingualTextItem>
+              <MultilingualTextItem ID="8B" CompositionName="Items">
+                <AttributeList>
+                  <Culture>ru-RU</Culture>
+                  <Text />
+                </AttributeList>
+              </MultilingualTextItem>
+            </ObjectList>
+          </MultilingualText>
+        </ObjectList>
+      </SW.Blocks.CompileUnit>
+      <MultilingualText ID="8C" CompositionName="Title">
+        <ObjectList>
+          <MultilingualTextItem ID="8D" CompositionName="Items">
+            <AttributeList>
+              <Culture>en-US</Culture>
+              <Text />
+            </AttributeList>
+          </MultilingualTextItem>
+          <MultilingualTextItem ID="8E" CompositionName="Items">
+            <AttributeList>
+              <Culture>de-DE</Culture>
+              <Text />
+            </AttributeList>
+          </MultilingualTextItem>
+          <MultilingualTextItem ID="8F" CompositionName="Items">
+            <AttributeList>
+              <Culture>ru-RU</Culture>
+              <Text />
+            </AttributeList>
+          </MultilingualTextItem>
+        </ObjectList>
+      </MultilingualText>
+    </ObjectList>
+  </SW.Blocks.FB>
+</Document>

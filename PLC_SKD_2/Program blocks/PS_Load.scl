@@ -1,0 +1,130 @@
+﻿FUNCTION "PS_Load" : Void
+{ S7_Optimized_Access := 'TRUE' }
+VERSION : 0.1
+   VAR_INPUT 
+      PS_Add : Bool;
+   END_VAR
+
+   VAR_OUTPUT 
+      Ready : Bool;
+   END_VAR
+
+   VAR_IN_OUT 
+      PS_All : Int;
+      cnt : Int;
+      PS_Point : Real;   // точка схождения
+      PS_cnt : Int;   // число готовых насосов
+   END_VAR
+
+   VAR_TEMP 
+      x : Int;
+   END_VAR
+
+
+BEGIN
+	//обнуление временных значений
+	#PS_cnt := 0;
+	#Ready := FALSE;
+	"PS_cnt_DB".SP_High := "Logick_DB".SP_High;
+	"PID_PE_DB".Settings.Max_out := "Logick_DB".SP_High + 1;
+	"PID_PE_DB".Settings.Min_out := "Logick_DB".SP_Low - 1;
+	"PID_LE_in_DB".Settings.Max_out := "Logick_DB".SP_High + 1;
+	"PID_LE_in_DB".Settings.Min_out := "Logick_DB".SP_Low - 1;
+	"PID_LE_out_DB".Settings.Max_out := "Logick_DB".SP_High + 1;
+	"PID_LE_out_DB".Settings.Min_out := "Logick_DB".SP_Low - 1;
+	"PS_cnt_DB".SP_Min := "Logick_DB".SP_Min;
+	"Logick_DB".SP_Low := "PS_cnt_DB".SP_Low;
+	"PS_Main_DB".PS_Ready := 0;
+	"PS_Main_DB".PS_CMD := 0;
+	"PS_Main_DB".PS_Work := 0;
+	"PS_Main_DB".PS_Load := 0;
+	
+	IF "Logick_DB".SP_Hz > "Logick_DB".SP_High THEN
+	    "Logick_DB".SP_Hz := "Logick_DB".SP_High;
+	END_IF;
+	
+	//вычисление точки схождения скоростей
+	#PS_Point := "PS_cnt_DB".SP_Low + ((("Logick_DB".SP_Hz - "PS_cnt_DB".SP_Low) / 3) * 2);
+	
+	//Распределение уставки по работающим насосам
+	FOR #x := 1 TO #PS_All DO
+	    
+	    //число готовых насосов
+	    IF "PS_Main_DB".PS_One[#x].CMD.Ready THEN
+	        "PS_Main_DB".PS_Ready := "PS_Main_DB".PS_Ready + 1;
+	    END_IF;
+	    
+	    //число насосов в работе
+	    IF "PS_Main_DB".PS_One[#x].CMD.Start_M THEN
+	        "PS_Main_DB".PS_CMD := "PS_Main_DB".PS_CMD + 1;
+	    END_IF;
+	    
+	    //число насосов в штатном режиме
+	    IF "PS_Main_DB".PS_One[#x].Status = 3 THEN
+	        "PS_Main_DB".PS_Work := "PS_Main_DB".PS_Work + 1;
+	    END_IF;
+	    
+	    //число насосов под нагрузкой
+	    "PS_Main_DB".PS_Load := "PS_Main_DB".PS_Work + "PS_Main_DB".PS_min_cnt;
+	    
+	    
+	    //запуск установки
+	    IF "PS_cnt_DB".Step > 0 THEN
+	        IF "PS_cnt_DB".Step < 10 OR "PS_cnt_DB".Step = 13 THEN
+	            IF "PS_Main_DB".PS_One[#x].Status = 1 THEN
+	                "PS_Main_DB".PS_One[#x].Mode := 2;
+	            END_IF;
+	            IF "PS_Main_DB".PS_One[#x].Status = 2 THEN
+	                "PS_Main_DB".PS_One[#x].Mode := 3;
+	            END_IF;
+	            "PS_Main_DB".PS_One[#x].SP_A := "PS_cnt_DB".SP;
+	        END_IF;
+	    END_IF;
+	    
+	    //уставка в рабочем режиме
+	    IF "PS_Main_DB".PS_One[#x].Status = 3 OR "PS_Main_DB".PS_One[#x].Status = 30 THEN
+	        IF NOT "Logick_DB".PE_Warning AND NOT "Logick_DB".LE_in_Warning AND NOT "Logick_DB".LE_out_Warning THEN
+	            "PS_Main_DB".PS_One[#x].SP_A := "Logick_DB".SP_Hz;
+	        ELSE
+	            "PS_Main_DB".PS_One[#x].SP_A := "PS_Main_DB".PS_SP_Hz;
+	        END_IF;
+	    END_IF;
+	    
+	  //цикл замедления при подключении нового насоса
+	    IF #PS_Add THEN
+	        
+	        //команда замедлиться для подключения работающих насосов
+	        IF "PS_Main_DB".PS_One[#x].Status = 3 THEN
+	            "PS_Main_DB".PS_One[#x].Mode := 4;
+	        END_IF;
+	        
+	        //коррекция уставки для замедленных насосов
+	        IF "PS_Main_DB".PS_One[#x].Status = 40 THEN
+	            "PS_Main_DB".PS_One[#x].SP_A := #PS_Point;
+	        END_IF;
+	        
+	        //контроль готовности всех насосов
+	        IF "PS_Main_DB".PS_One[#x].Status = 4 THEN
+	            #PS_cnt := #PS_cnt + 1;
+	            IF #PS_cnt = #cnt THEN
+	                #Ready := true;
+	            END_IF;
+	        END_IF;
+	        
+	    END_IF;
+	    
+	    //возвращение в рабочий режим
+	    IF NOT #PS_Add THEN
+	        IF "PS_Main_DB".PS_One[#x].Status = 4 THEN
+	            "PS_Main_DB".PS_One[#x].Mode := 3;
+	        END_IF;
+	    END_IF;
+	    
+	    //проброс уставок таймера по давлению
+	    "PS_Main_DB".PS_One[#x].T_PE_Delay.SP_M := "Logick_DB".T_in_PE.SP_M;
+	    "PS_Main_DB".PS_One[#x].T_PE_Delay.SP_S := "Logick_DB".T_in_PE.SP_S;
+	    
+	END_FOR;
+	
+END_FUNCTION
+

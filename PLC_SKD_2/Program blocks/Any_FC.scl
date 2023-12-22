@@ -1,0 +1,43 @@
+﻿FUNCTION "Any_FC" : Void
+{ S7_Optimized_Access := 'TRUE' }
+VERSION : 0.1
+
+BEGIN
+	//Отключение датчиков тока при отсутствии готовности ПЧ
+	IF "P_1_DB".FB.QF THEN
+	    "kWt_Pump_1_DB".CMD.Start_A := TRUE;
+	ELSE
+	    "kWt_Pump_1_DB".CMD.Start_A := FALSE;
+	END_IF;
+	IF "P_2_DB".FB.QF THEN
+	    "kWt_Pump_2_DB".CMD.Start_A := TRUE;
+	ELSE
+	    "kWt_Pump_2_DB".CMD.Start_A := FALSE;
+	END_IF;
+	IF "P_3_DB".FB.QF THEN
+	    "kWt_Pump_3_DB".CMD.Start_A := TRUE;
+	ELSE
+	    "kWt_Pump_3_DB".CMD.Start_A := FALSE;
+	END_IF;
+	IF "P_4_DB".FB.QF THEN
+	    "kWt_Pump_4_DB".CMD.Start_A := TRUE;
+	ELSE
+	    "kWt_Pump_4_DB".CMD.Start_A := FALSE;
+	END_IF;
+	IF "P_5_DB".FB.QF THEN
+	    "kWt_Pump_5_DB".CMD.Start_A := TRUE;
+	ELSE
+	    "kWt_Pump_5_DB".CMD.Start_A := FALSE;
+	END_IF;
+	IF "P_6_DB".FB.QF THEN
+	    "kWt_Pump_6_DB".CMD.Start_A := TRUE;
+	ELSE
+	    "kWt_Pump_6_DB".CMD.Start_A := FALSE;
+	END_IF;
+	IF "P_7_DB".FB.QF THEN
+	    "kWt_Pump_7_DB".CMD.Start_A := TRUE;
+	ELSE
+	    "kWt_Pump_7_DB".CMD.Start_A := FALSE;
+	END_IF;
+END_FUNCTION
+

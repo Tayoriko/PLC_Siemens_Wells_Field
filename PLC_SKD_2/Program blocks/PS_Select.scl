@@ -1,0 +1,80 @@
+﻿FUNCTION "PS_Select" : Void
+{ S7_Optimized_Access := 'TRUE' }
+VERSION : 0.1
+   VAR_INPUT 
+      PS_All : Int;
+   END_VAR
+
+   VAR_IN_OUT 
+      Weight : Real;
+      CMD : Bool;
+      Mode : Bool;   // 0 - останов, 1 - запуск
+      PS_Number : Int;
+   END_VAR
+
+   VAR_TEMP 
+      x : Int;
+   END_VAR
+
+
+BEGIN
+	//контроль запроса на выбор насоса для запуска
+	IF #CMD THEN
+	    #Weight := 0.0;
+	    #PS_Number := 0;
+	    
+	    FOR #x := 1 TO #PS_All DO
+	        
+	        //выбор максимального веса
+	        IF "PS_Main_DB".PS_One[#x].Weight >= #Weight THEN
+	            #Weight := "PS_Main_DB".PS_One[#x].Weight;
+	        END_IF;
+	        
+	    END_FOR;
+	    
+	    //проходим по всему списку насосов
+	    FOR #x := 1 TO #PS_All DO
+	        
+	        //выбор насоса для запуска
+	        IF #Mode THEN
+	            //проверяем приоритетность запуска для остановленных насосов
+	            IF "PS_Main_DB".PS_One[#x].Weight <= #Weight AND "PS_Main_DB".PS_One[#x].CMD.Ready AND NOT "PS_Main_DB".PS_One[#x].CMD.Start_M THEN
+	                #Weight := "PS_Main_DB".PS_One[#x].Weight;  //сохраняем приоритет в буфер
+	                #PS_Number := #x;                           //возвращаем номер насоса для запуска
+	            END_IF;
+	        END_IF;
+	        
+	    END_FOR;
+	    
+	    FOR #x := 1 TO #PS_All DO
+	        
+	        //выбор максимального веса
+	        IF "PS_Main_DB".PS_One[#x].Weight <= #Weight THEN
+	            #Weight := "PS_Main_DB".PS_One[#x].Weight;
+	        END_IF;
+	        
+	    END_FOR;
+	    
+	    //проходим по всему списку насосов
+	    FOR #x := 1 TO #PS_All DO
+	        
+	        //выбор насоса для останова
+	        IF NOT #Mode THEN
+	            //проверяем приоритетность запуска для остановки насосов
+	            IF "PS_Main_DB".PS_One[#x].Weight >= #Weight AND "PS_Main_DB".PS_One[#x].Status = 3 AND "PS_Main_DB".PS_One[#x].CMD.Start_M THEN
+	                #Weight := "PS_Main_DB".PS_One[#x].Weight;  //сохраняем приоритет в буфер
+	                #PS_Number := #x;                           //возвращаем номер насоса для запуска
+	            END_IF;
+	        END_IF;
+	    END_FOR;
+	    
+	    //снятие флага запуска
+	    #CMD := FALSE;
+	END_IF;
+	
+	
+	
+	
+	
+END_FUNCTION
+
