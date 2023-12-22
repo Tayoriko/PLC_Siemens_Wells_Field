@@ -1,0 +1,103 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Document>
+  <Engineering version="V17" />
+  <DocumentInfo>
+    <Created>2023-12-22T15:05:34.4551019Z</Created>
+    <ExportSetting>WithDefaults</ExportSetting>
+    <InstalledProducts>
+      <Product>
+        <DisplayName>Totally Integrated Automation Portal</DisplayName>
+        <DisplayVersion>V17</DisplayVersion>
+      </Product>
+      <OptionPackage>
+        <DisplayName>TIA Portal Openness</DisplayName>
+        <DisplayVersion>V17</DisplayVersion>
+      </OptionPackage>
+      <OptionPackage>
+        <DisplayName>TIA Portal Version Control Interface</DisplayName>
+        <DisplayVersion>V17</DisplayVersion>
+      </OptionPackage>
+      <Product>
+        <DisplayName>STEP 7 Professional</DisplayName>
+        <DisplayVersion>V17</DisplayVersion>
+      </Product>
+      <OptionPackage>
+        <DisplayName>STEP 7 Safety</DisplayName>
+        <DisplayVersion>V17</DisplayVersion>
+      </OptionPackage>
+      <Product>
+        <DisplayName>WinCC Advanced</DisplayName>
+        <DisplayVersion>V17</DisplayVersion>
+      </Product>
+    </InstalledProducts>
+  </DocumentInfo>
+  <SW.Blocks.GlobalDB ID="0">
+    <AttributeList>
+      <AutoNumber>false</AutoNumber>
+      <DBAccessibleFromOPCUA>true</DBAccessibleFromOPCUA>
+      <HeaderAuthor />
+      <HeaderFamily />
+      <HeaderName />
+      <HeaderVersion>0.1</HeaderVersion>
+      <Interface><Sections xmlns="http://www.siemens.com/automation/Openness/SW/Interface/v5">
+  <Section Name="Static">
+    <Member Name="Report" Datatype="Struct" Remanence="Retain" Accessibility="Public"><AttributeList><BooleanAttribute Name="ExternalAccessible" SystemDefined="true">true</BooleanAttribute><BooleanAttribute Name="ExternalVisible" SystemDefined="true">true</BooleanAttribute><BooleanAttribute Name="ExternalWritable" SystemDefined="true">true</BooleanAttribute><BooleanAttribute Name="SetPoint" SystemDefined="true">false</BooleanAttribute></AttributeList><Member Name="Last_Day" Datatype="Int"><AttributeList><BooleanAttribute Name="ExternalAccessible" SystemDefined="true">true</BooleanAttribute><BooleanAttribute Name="ExternalVisible" SystemDefined="true">true</BooleanAttribute><BooleanAttribute Name="ExternalWritable" SystemDefined="true">true</BooleanAttribute><BooleanAttribute Name="SetPoint" SystemDefined="true">false</BooleanAttribute></AttributeList><Comment><MultiLanguageText Lang="en-US">Прошедший день</MultiLanguageText></Comment><StartValue>3</StartValue></Member><Member Name="Last_Date" Datatype="Int"><AttributeList><BooleanAttribute Name="ExternalAccessible" SystemDefined="true">true</BooleanAttribute><BooleanAttribute Name="ExternalVisible" SystemDefined="true">true</BooleanAttribute><BooleanAttribute Name="ExternalWritable" SystemDefined="true">true</BooleanAttribute><BooleanAttribute Name="SetPoint" SystemDefined="true">false</BooleanAttribute></AttributeList><Comment><MultiLanguageText Lang="en-US">Прошедшее число (дата)</MultiLanguageText></Comment><StartValue>13</StartValue></Member><Member Name="Last_Month" Datatype="Int"><AttributeList><BooleanAttribute Name="ExternalAccessible" SystemDefined="true">true</BooleanAttribute><BooleanAttribute Name="ExternalVisible" SystemDefined="true">true</BooleanAttribute><BooleanAttribute Name="ExternalWritable" SystemDefined="true">true</BooleanAttribute><BooleanAttribute Name="SetPoint" SystemDefined="true">false</BooleanAttribute></AttributeList><Comment><MultiLanguageText Lang="en-US">Прошедший месяц</MultiLanguageText></Comment><StartValue>10</StartValue></Member><Member Name="RM_1" Datatype="Real"><AttributeList><BooleanAttribute Name="ExternalAccessible" SystemDefined="true">true</BooleanAttribute><BooleanAttribute Name="ExternalVisible" SystemDefined="true">true</BooleanAttribute><BooleanAttribute Name="ExternalWritable" SystemDefined="true">true</BooleanAttribute><BooleanAttribute Name="SetPoint" SystemDefined="true">false</BooleanAttribute></AttributeList><Comment><MultiLanguageText Lang="en-US">Расходомер 1</MultiLanguageText></Comment><StartValue>956.8786</StartValue></Member><Member Name="RM_2" Datatype="Real"><AttributeList><BooleanAttribute Name="ExternalAccessible" SystemDefined="true">true</BooleanAttribute><BooleanAttribute Name="ExternalVisible" SystemDefined="true">true</BooleanAttribute><BooleanAttribute Name="ExternalWritable" SystemDefined="true">true</BooleanAttribute><BooleanAttribute Name="SetPoint" SystemDefined="true">false</BooleanAttribute></AttributeList><Comment><MultiLanguageText Lang="en-US">Расходомер 2</MultiLanguageText></Comment><StartValue>0.0</StartValue></Member><Member Name="D_Mid" Datatype="Real"><AttributeList><BooleanAttribute Name="ExternalAccessible" SystemDefined="true">true</BooleanAttribute><BooleanAttribute Name="ExternalVisible" SystemDefined="true">true</BooleanAttribute><BooleanAttribute Name="ExternalWritable" SystemDefined="true">true</BooleanAttribute><BooleanAttribute Name="SetPoint" SystemDefined="true">false</BooleanAttribute></AttributeList><Comment><MultiLanguageText Lang="en-US">Средняя доза за сутки</MultiLanguageText></Comment><StartValue>3.0</StartValue></Member><Member Name="Flow" Datatype="Real"><AttributeList><BooleanAttribute Name="ExternalAccessible" SystemDefined="true">true</BooleanAttribute><BooleanAttribute Name="ExternalVisible" SystemDefined="true">true</BooleanAttribute><BooleanAttribute Name="ExternalWritable" SystemDefined="true">true</BooleanAttribute><BooleanAttribute Name="SetPoint" SystemDefined="true">false</BooleanAttribute></AttributeList><Comment><MultiLanguageText Lang="en-US">Общая труба (куда происходит дозация)</MultiLanguageText></Comment><StartValue>17096.32</StartValue></Member><Member Name="Days" Datatype="Array[1..7] of &quot;Line_Report&quot;"><AttributeList><BooleanAttribute Name="ExternalAccessible" SystemDefined="true">true</BooleanAttribute><BooleanAttribute Name="ExternalVisible" SystemDefined="true">true</BooleanAttribute><BooleanAttribute Name="ExternalWritable" SystemDefined="true">true</BooleanAttribute><BooleanAttribute Name="SetPoint" SystemDefined="true">true</BooleanAttribute></AttributeList><Comment><MultiLanguageText Lang="en-US">Дни</MultiLanguageText></Comment><Sections><Section Name="None"><Member Name="RM_1" Datatype="Real"><Subelement Path="1"><StartValue>1936.87</StartValue></Subelement><Subelement Path="2"><StartValue>2298.9</StartValue></Subelement><Subelement Path="3"><StartValue>1640.521</StartValue></Subelement><Subelement Path="4"><StartValue>43.10154</StartValue></Subelement><Subelement Path="5"><StartValue>5.310862</StartValue></Subelement><Subelement Path="6"><StartValue>0.0</StartValue></Subelement><Subelement Path="7"><StartValue>3.251781</StartValue></Subelement></Member><Member Name="RM_2" Datatype="Real"><Subelement Path="1"><StartValue>0.0</StartValue></Subelement><Subelement Path="2"><StartValue>0.0</StartValue></Subelement><Subelement Path="3"><StartValue>0.0</StartValue></Subelement><Subelement Path="4"><StartValue>0.0</StartValue></Subelement><Subelement Path="5"><StartValue>0.0</StartValue></Subelement><Subelement Path="6"><StartValue>0.0</StartValue></Subelement><Subelement Path="7"><StartValue>0.0</StartValue></Subelement></Member><Member Name="Res_1" Datatype="Real"><Subelement Path="1"><StartValue>0.0</StartValue></Subelement><Subelement Path="2"><StartValue>0.0</StartValue></Subelement><Subelement Path="3"><StartValue>0.0</StartValue></Subelement><Subelement Path="4"><StartValue>0.0</StartValue></Subelement><Subelement Path="5"><StartValue>0.0</StartValue></Subelement><Subelement Path="6"><StartValue>0.0</StartValue></Subelement><Subelement Path="7"><StartValue>0.0</StartValue></Subelement></Member><Member Name="Res_2" Datatype="Real"><Subelement Path="1"><StartValue>0.0</StartValue></Subelement><Subelement Path="2"><StartValue>0.0</StartValue></Subelement><Subelement Path="3"><StartValue>0.0</StartValue></Subelement><Subelement Path="4"><StartValue>0.0</StartValue></Subelement><Subelement Path="5"><StartValue>0.0</StartValue></Subelement><Subelement Path="6"><StartValue>0.0</StartValue></Subelement><Subelement Path="7"><StartValue>0.0</StartValue></Subelement></Member><Member Name="D_Mid" Datatype="Real"><Subelement Path="1"><StartValue>3.046245</StartValue></Subelement><Subelement Path="2"><StartValue>3.5</StartValue></Subelement><Subelement Path="3"><StartValue>3.5</StartValue></Subelement><Subelement Path="4"><StartValue>1.8125</StartValue></Subelement><Subelement Path="5"><StartValue>4.0</StartValue></Subelement><Subelement Path="6"><StartValue>0.0</StartValue></Subelement><Subelement Path="7"><StartValue>3.0</StartValue></Subelement></Member><Member Name="Flow" Datatype="Real"><Subelement Path="1"><StartValue>34064.4</StartValue></Subelement><Subelement Path="2"><StartValue>35206.3</StartValue></Subelement><Subelement Path="3"><StartValue>25124.08</StartValue></Subelement><Subelement Path="4"><StartValue>1278.395</StartValue></Subelement><Subelement Path="5"><StartValue>77.60835</StartValue></Subelement><Subelement Path="6"><StartValue>0.0</StartValue></Subelement><Subelement Path="7"><StartValue>58.42366</StartValue></Subelement></Member><Member Name="WeekDay" Datatype="Int"><Subelement Path="1"><StartValue>2</StartValue></Subelement><Subelement Path="2"><StartValue>1</StartValue></Subelement><Subelement Path="3"><StartValue>7</StartValue></Subelement><Subelement Path="4"><StartValue>6</StartValue></Subelement><Subelement Path="5"><StartValue>5</StartValue></Subelement><Subelement Path="6"><StartValue>4</StartValue></Subelement><Subelement Path="7"><StartValue>3</StartValue></Subelement></Member><Member Name="Day" Datatype="Int"><Subelement Path="1"><StartValue>12</StartValue></Subelement><Subelement Path="2"><StartValue>11</StartValue></Subelement><Subelement Path="3"><StartValue>10</StartValue></Subelement><Subelement Path="4"><StartValue>9</StartValue></Subelement><Subelement Path="5"><StartValue>8</StartValue></Subelement><Subelement Path="6"><StartValue>7</StartValue></Subelement><Subelement Path="7"><StartValue>6</StartValue></Subelement></Member><Member Name="Month" Datatype="Int"><Subelement Path="1"><StartValue>10</StartValue></Subelement><Subelement Path="2"><StartValue>10</StartValue></Subelement><Subelement Path="3"><StartValue>10</StartValue></Subelement><Subelement Path="4"><StartValue>10</StartValue></Subelement><Subelement Path="5"><StartValue>10</StartValue></Subelement><Subelement Path="6"><StartValue>10</StartValue></Subelement><Subelement Path="7"><StartValue>10</StartValue></Subelement></Member></Section></Sections></Member><Member Name="cnt" Datatype="Int"><AttributeList><BooleanAttribute Name="ExternalAccessible" SystemDefined="true">true</BooleanAttribute><BooleanAttribute Name="ExternalVisible" SystemDefined="true">true</BooleanAttribute><BooleanAttribute Name="ExternalWritable" SystemDefined="true">true</BooleanAttribute><BooleanAttribute Name="SetPoint" SystemDefined="true">false</BooleanAttribute></AttributeList><StartValue>7</StartValue></Member><Member Name="cnt_x" Datatype="Int"><AttributeList><BooleanAttribute Name="ExternalAccessible" SystemDefined="true">true</BooleanAttribute><BooleanAttribute Name="ExternalVisible" SystemDefined="true">true</BooleanAttribute><BooleanAttribute Name="ExternalWritable" SystemDefined="true">true</BooleanAttribute><BooleanAttribute Name="SetPoint" SystemDefined="true">false</BooleanAttribute></AttributeList><StartValue>1</StartValue></Member></Member>
+    <Member Name="Report_H" Datatype="&quot;Line_Report&quot;" Remanence="Retain" Accessibility="Public"><AttributeList><BooleanAttribute Name="ExternalAccessible" SystemDefined="true">true</BooleanAttribute><BooleanAttribute Name="ExternalVisible" SystemDefined="true">true</BooleanAttribute><BooleanAttribute Name="ExternalWritable" SystemDefined="true">true</BooleanAttribute><BooleanAttribute Name="SetPoint" SystemDefined="true">false</BooleanAttribute></AttributeList><Sections><Section Name="None"><Member Name="RM_1" Datatype="Real"><StartValue>0.0</StartValue></Member><Member Name="RM_2" Datatype="Real"><StartValue>0.0</StartValue></Member><Member Name="Res_1" Datatype="Real"><StartValue>15224.0</StartValue></Member><Member Name="Res_2" Datatype="Real"><StartValue>4675.0</StartValue></Member><Member Name="D_Mid" Datatype="Real"><StartValue>3.256471</StartValue></Member><Member Name="Flow" Datatype="Real"><StartValue>0.0</StartValue></Member><Member Name="WeekDay" Datatype="Int"><StartValue>0</StartValue></Member><Member Name="Day" Datatype="Int"><StartValue>0</StartValue></Member><Member Name="Month" Datatype="Int"><StartValue>0</StartValue></Member></Section></Sections></Member>
+    <Member Name="Time_DTL" Datatype="DTL" Version="1.0" Remanence="Retain" Accessibility="Public"><AttributeList><BooleanAttribute Name="ExternalAccessible" SystemDefined="true">true</BooleanAttribute><BooleanAttribute Name="ExternalVisible" SystemDefined="true">true</BooleanAttribute><BooleanAttribute Name="ExternalWritable" SystemDefined="true">true</BooleanAttribute><BooleanAttribute Name="SetPoint" SystemDefined="true">false</BooleanAttribute></AttributeList><StartValue>DTL#2020-10-13-13:05:16.588575848</StartValue></Member>
+  </Section>
+</Sections></Interface>
+      <IsOnlyStoredInLoadMemory>false</IsOnlyStoredInLoadMemory>
+      <IsWriteProtectedInAS>false</IsWriteProtectedInAS>
+      <MemoryLayout>Standard</MemoryLayout>
+      <Name>Report_Line_2_DB</Name>
+      <Number>52</Number>
+      <ProgrammingLanguage>DB</ProgrammingLanguage>
+    </AttributeList>
+    <ObjectList>
+      <MultilingualText ID="1" CompositionName="Comment">
+        <ObjectList>
+          <MultilingualTextItem ID="2" CompositionName="Items">
+            <AttributeList>
+              <Culture>en-US</Culture>
+              <Text />
+            </AttributeList>
+          </MultilingualTextItem>
+          <MultilingualTextItem ID="3" CompositionName="Items">
+            <AttributeList>
+              <Culture>de-DE</Culture>
+              <Text />
+            </AttributeList>
+          </MultilingualTextItem>
+          <MultilingualTextItem ID="4" CompositionName="Items">
+            <AttributeList>
+              <Culture>ru-RU</Culture>
+              <Text />
+            </AttributeList>
+          </MultilingualTextItem>
+        </ObjectList>
+      </MultilingualText>
+      <MultilingualText ID="5" CompositionName="Title">
+        <ObjectList>
+          <MultilingualTextItem ID="6" CompositionName="Items">
+            <AttributeList>
+              <Culture>en-US</Culture>
+              <Text />
+            </AttributeList>
+          </MultilingualTextItem>
+          <MultilingualTextItem ID="7" CompositionName="Items">
+            <AttributeList>
+              <Culture>de-DE</Culture>
+              <Text />
+            </AttributeList>
+          </MultilingualTextItem>
+          <MultilingualTextItem ID="8" CompositionName="Items">
+            <AttributeList>
+              <Culture>ru-RU</Culture>
+              <Text />
+            </AttributeList>
+          </MultilingualTextItem>
+        </ObjectList>
+      </MultilingualText>
+    </ObjectList>
+  </SW.Blocks.GlobalDB>
+</Document>

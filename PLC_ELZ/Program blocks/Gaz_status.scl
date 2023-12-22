@@ -1,0 +1,66 @@
+﻿FUNCTION_BLOCK "Gaz_status"
+{ S7_Optimized_Access := 'FALSE' }
+VERSION : 0.1
+   VAR 
+      Alarm : Word;
+      H2_1_status : Int;
+      H2_2_status : Int;
+      Cl2_1_status : Int;
+      Cl2_2_status : Int;
+   END_VAR
+
+
+BEGIN
+	//датчик водорода 1
+	IF NOT "DIx_1_DB".Gas_Chanel_1_1.Signal AND NOT "DIx_1_DB".Gas_Chanel_1_2.Signal THEN
+	    #H2_1_status := 0;
+	END_IF;
+	IF "DIx_1_DB".Gas_Chanel_1_1.Signal OR "DIx_1_DB".Gas_Chanel_1_2.Signal THEN
+	    #H2_1_status := 1;
+	END_IF;
+	IF "DIx_1_DB".Gas_Chanel_1_1.Signal AND "DIx_1_DB".Gas_Chanel_1_2.Signal THEN
+	    #H2_1_status := 2;
+	    #Alarm.%X0 := TRUE;
+	END_IF;
+	
+	//датчик водорода 2
+	IF NOT "DIx_1_DB".Gas_Chanel_2_1.Signal AND NOT "DIx_1_DB".Gas_Chanel_2_2.Signal THEN
+	    #H2_2_status := 0;
+	END_IF;
+	IF "DIx_1_DB".Gas_Chanel_2_1.Signal OR "DIx_1_DB".Gas_Chanel_2_2.Signal THEN
+	    #H2_2_status := 1;
+	END_IF;
+	IF "DIx_1_DB".Gas_Chanel_2_1.Signal AND "DIx_1_DB".Gas_Chanel_2_2.Signal THEN
+	    #H2_2_status := 2;
+	    #Alarm.%X1 := TRUE;
+	END_IF;
+	
+	//датчик хлора 1
+	IF NOT "DIx_1_DB".signal_11.Signal AND NOT "DIx_1_DB".signal_12.Signal THEN
+	    #Cl2_1_status := 0;
+	END_IF;
+	IF "DIx_1_DB".signal_11.Signal OR "DIx_1_DB".signal_12.Signal THEN
+	    #Cl2_1_status := 1;
+	END_IF;
+	IF "DIx_1_DB".signal_11.Signal AND "DIx_1_DB".signal_12.Signal THEN
+	    #Cl2_1_status := 2;
+	    #Alarm.%X2 := TRUE;
+	END_IF;
+	
+	//датчик хлора 2
+	IF NOT "DIx_1_DB".signal_10.Signal AND NOT "DIx_1_DB".signal_13.Signal THEN
+	    #Cl2_2_status := 0;
+	END_IF;
+	IF "DIx_1_DB".signal_10.Signal OR "DIx_1_DB".signal_13.Signal THEN
+	    #Cl2_2_status := 1;
+	END_IF;
+	IF "DIx_1_DB".signal_10.Signal AND "DIx_1_DB".signal_13.Signal THEN
+	    #Cl2_2_status := 2;
+	    #Alarm.%X3 := TRUE;
+	END_IF;
+	
+	IF "Reset_All" THEN
+	    #Alarm := 0;
+	END_IF;
+END_FUNCTION_BLOCK
+

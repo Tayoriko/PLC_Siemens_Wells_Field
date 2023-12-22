@@ -1,0 +1,105 @@
+﻿FUNCTION "Report_Line_FC" : Void
+{ S7_Optimized_Access := 'TRUE' }
+VERSION : 0.1
+   VAR_INPUT 
+      Reset : Bool;
+      Line : Int;
+   END_VAR
+
+   VAR_IN_OUT 
+      Report : Struct
+         Last_Day : Int;
+         Last_Date : Int;
+         Last_Month : Int;
+         RM_1 : Real;   // Расходомер 1
+         RM_2 : Real;   // Расходомер 2
+         D_Mid : Real;   // Средняя доза за сутки
+         Flow : Real;   // Общая труба (куда происходит дозация)
+         Days : Array[1..7] of "Line_Report";
+         cnt : Int;
+         cnt_x : Int;
+      END_STRUCT;
+      cnt : Int;
+      cnt_x : Int;
+   END_VAR
+
+   VAR_TEMP 
+      x : Int;
+   END_VAR
+
+
+BEGIN
+	#Report.RM_1 := "Line_Control_DB".Line[#Line].FlowMeter_1.Flow_Today;
+	#Report.RM_2 := "Line_Control_DB".Line[#Line].FlowMeter_2.Flow_Today;
+	IF "pulse_1s" THEN
+	    #Report.Flow := #Report.Flow + "Line_Control_DB".Line[#Line].Flow_s;
+	END_IF;
+	IF "Line_Control_DB".Line[#Line].D_Num <> 0 THEN
+	    #Report.D_Mid := "Line_Control_DB".Line[#Line].D_Sum / "Line_Control_DB".Line[#Line].D_Num;
+	ELSE
+	    #Report.D_Mid := 0.0;
+	END_IF;
+	//сдвиг по дням недели
+	//
+	
+	IF #Report.Last_Date <> "Time_SYS_DB".Time_Now.Day THEN
+	    
+	    IF #cnt <= 0 THEN
+	        #cnt := 7;
+	    END_IF;
+	    
+	    IF #cnt > 1 THEN
+	        #cnt_x := #cnt - 1;
+	        #Report.Days[#cnt] :=#Report.Days[#cnt_x];
+	        #cnt := #cnt_x;
+	    END_IF;
+	    
+	    IF #cnt = 1 THEN
+	            //#Comm_Days := #Report.Days[1];
+	            
+	            
+	            #Report.Days[1].RM_1 := #Report.RM_1;
+	            #Report.Days[1].RM_2 := #Report.RM_2;
+	            #Report.Days[1].D_Mid :=#Report.D_Mid;
+	            #Report.Days[1].Flow :=#Report.Flow;
+	            #Report.Days[1].Day :=#Report.Last_Date;
+	            #Report.Days[1].Month :=#Report.Last_Month;
+	            #Report.Days[1].WeekDay :=#Report.Last_Day;
+	            
+	            #Report.RM_1 := 0.0;
+	            #Report.RM_2 := 0.0;
+	            #Report.D_Mid := 0.0;
+	            #Report.Flow := 0.0;
+	            
+	            #Report.Last_Month :="Time_SYS_DB".Time_Now.Month;
+	            #Report.Last_Day :="Time_SYS_DB".Time_Now.Weekday;
+	            #Report.Last_Date :="Time_SYS_DB".Time_Now.Day;
+	            
+	            "Line_Control_DB".Line[#Line].D_Sum := 0.0;
+	            "Line_Control_DB".Line[#Line].D_Num := 0.0;
+	            "Line_Control_DB".Line[#Line].FlowMeter_1.Flow_Today := 0.0;
+	            "Line_Control_DB".Line[#Line].FlowMeter_2.Flow_Today := 0.0;
+	    END_IF;
+	END_IF;
+	
+	    
+	    IF #Report.Last_Date ="Time_SYS_DB".Time_Now.Day THEN
+	        #cnt := 7;
+	    END_IF;
+	    
+	    IF #Reset THEN
+	        FOR #x := 1 TO 7 DO
+	            #Report.Days[#x].RM_1 := 0.0;
+	            #Report.Days[#x].RM_2 := 0.0;
+	            #Report.Days[#x].D_Mid := 0.0;
+	            #Report.Days[#x].Flow := 0.0;
+	            #Report.Days[#x].Day := 0;
+	            #Report.Days[#x].Month := 0;
+	            #Report.Days[#x].WeekDay := 0;
+	            ;
+	        END_FOR;
+	    END_IF;
+	    
+	
+END_FUNCTION
+
